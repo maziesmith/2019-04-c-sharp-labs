@@ -1,4 +1,4 @@
-# 2019-04-c-sharp-labs
+﻿# 2019-04-c-sharp-labs
 
 
 Appsa
@@ -580,6 +580,123 @@ IT Projects : Examples of SDLC = Software Development Life Cycle
 
 
 
+Advanced Communication
+
+NLP Neuro		First responses ('first mental map'
+			ie how you encounter world around you
+			5 SENSES : Touch, smell, taste, sight , hear
+    Linguistic 
+			Learning : how you process information
+
+    Programming		Action : what you DO!  
+
+Bias
+	
+	tend to take sides based on our personal preference
+
+		OBJECTIVE		FACTUAL, IMPARTIAL, UNBIASED
+
+		SUBJECTIVE		OPINION BASED, CAN CHANGE
+
+	Exam : cases which may cause bias
+
+		Pressure of time : people tend not to think things through 
+					carefully
+
+		Money : lack of it : tends to cause pressured behaviour
+
+		Lack of information / meaning / clarity : Poor decisions based
+				on half-information
+		
+		Diversity issues
+
+		Overwhelmed with choice : too much info!
+
+		(human level) forget which can limit ability to make good 
+				decisions (limitations of memory)
+
+	Examples
+
+		Anchoring bias : tend to choose 'first option'
+
+		Choice-supportive : support option which you personally prefer				
+		Confirmation bias : I've already reached my conclusion so
+			the facts must fit my choice.
+
+		Outcome bias : concerned about the consequences of a certain
+				outcome rather than making a good, rational
+				decision
+
+	Reducing Bias
+
+		6 'objective hats'   (De Bono Thinking Hats)
+
+		White		pure facts only
+		Yellow		optimistic choice
+		Black		pessimist / negatives / dangers
+		Red		emotional / feelings to do with this decision
+		Green		creativity, creating opportunities from 				nothing
+		Blue		rational decision	
+
+
+CV
+	Profile Statement
+
+		Best opportunity to 'sell yourself'
+
+		3rd person 'Jas is a hard working, proactive individual ..
+
+			She has graduated recently with a 2:1 in Software
+			Engineering from xx university.  Having recently 
+			attended Sparta Academy she has developed on C# skills
+			already strong from University. 
+
+	Grammar and spelling : critical !!!
+
+	
+	Structure
+		Personal Profile Statement !!! Yes !!! 
+
+		Sparta ...
+
+		Education History (most recent first) degree, A level, GCSE
+
+		Work History (most recent first)
+
+		Interests
+
+			xxxx no !!!  party/drinking / friends
+	
+
+Goals
+
+	Today 	Powerpoint & deliver it well 		
+
+	Profile  100% overnight : reads well, spelling, grammar, facts
+
+		Email to me !!!  '
+
+		==>  Practice on INTERVIEW TECHNIQUES : TOMORROW YOU 
+				HAVE TO 'PASS' AN INTERVIEW WITH ME!!!
+
+	Are you : ready for this? keen ? motivated? energised? aware of
+			practically what is ahead? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 
 
@@ -650,6 +767,169 @@ Programming Puzzle : Fizz-Buzz
 			a=6    assigning 6 to a
 
 			if(a==6)    does a equal 6???
+
+
+
+
+Thursday : Review of work 
+
+Loops
+	For, Foreach, Do, Do..While
+
+SQL : Structured Query Language
+	MS-SQL : Paid product
+	MYSQL  : Open source
+
+Microsoft vs Open source : Web server (hosts websites)
+
+	IIS Internet Information Server : Microsoft
+
+	Apache : Open source
+	NGINX  
+
+	
+Git		Local application running on computer.  Allows you to TRACK VERSIONS OF FILES
+
+	GitBash (fake command line, looks like 'Linux' computer)
+
+Github		Website which allows us to 'push' files stored in Git up
+		to internet.  Others can 'pull' down those files
+
+ CMADE : Presentation acronym
+
+	Confidence, Manner, Attitude, Diligence (hard work), Enthusiasm
+
+KISS Keep it simple, stupid!
+
+
+Lohminger : 'Competencies' (ability to operate in certain areas)
+
+	4 main categories
+
+		Behaviour (actions)
+		Technical Knowledge
+		Attitude (posture)
+		Attributes (qualities you have)
+
+	5 Sparta categories
+		Behaviour, Coding, Interview, Presentation, Project
+		
+	Scored on : 
+		Horsepower, interpersonal, perseverance, standing alone, 
+		Self development
+		
+		
+2 Triangles
+
+		'Triple Constraint'           TIME VS QUALITY VS COST
+
+					   People	
+					
+		POPIT			    Tech
+
+				 Organisation        Processes
+				(company)            (flow of info/data)
+
+SDLC models
+
+	Software Dev Life Cycle
+
+Waterfall
+	Simple, structured project which will NOT CHANGE!
+
+V-Model
+
+	Add to waterfall : extra testing at each stage
+
+Agile
+	builds 'MVP' minimum viable product ie first prototype, then 
+		add functionality steadily each 'sprint'
+	'manifesto' ==> value people, embrace change
+
+	Scrum : Implementation of agile in a practical way
+		'Sprints' : build fixed chosen new 'iteration' (improvement)
+			Stand-up :  Did yesterday, Do today, 'blockers'	
+
+	Customer : 'list of requirements' (product backlog)
+		Sprint : choose one or two items to build (sprint backlog)
+
+Kanban
+	Continuous flow of work : limit work-in-progress at any one time!
+
+	Backlog     Chosen For development       In development      Done
+
+	lots         few                         5 max               
+
+Time Management 
+
+	Boxing : limit time on task, helps not to just run without end
+
+	2 mins : just do it!
+
+	1	Capture
+	2	Organise
+			Prioritise
+	3. 	Do
+			Plan , Track progress, Report 
+
+Pareto : 20/80     
+
+Underpromise / Overdeliver
+
+Eisenhower 'box of tasks'
+			URGENCY
+			HIGH		LOW	
+
+IMPORTANCE  HIGH	1 fire-fight	2 BEST PLACE 'high quality'
+			  'necessity'
+
+	LOW		3 not important		4. waste of time 	
+			  (urgent but for
+			  reasons often not
+			  helpful to yourself) 
+			    (deception)
+
+Communication
+	Cultural, geographical, working styles
+
+	Verbal   	Content
+	Vocal		How said, tone
+	Visual		Body language
+
+
+Listen types
+	
+	Passive : think about something else!	
+	Conversational 
+	Active : questions
+	Deep
+
+	
+
+
+
+
+
+
+TDD
+BDD
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
