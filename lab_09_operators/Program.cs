@@ -27,6 +27,25 @@ namespace lab_09_operators
             // firstly increment a to 101 then b=a=101 after
             Console.WriteLine($"a is {a} and b is {b}");
 
+            // GENERAL RULE = JUST ONLY USE ++; ON IT'S OWN SEPARATE LINE!!!
+
+            // best way
+
+            int r = 1000;
+            r++;          // UP TO 1001
+            int s = r;  // clear and no nonsense!!!  BOTH 1001
+
+
+            // NOT OPERATOR
+            //  !true=false
+
+            bool isExcellent = true;
+            bool isRubbish = false;
+
+            Console.WriteLine(isExcellent);   // TRUE
+            Console.WriteLine(!isExcellent);  // FALSE
+
+
 
         }
     }
