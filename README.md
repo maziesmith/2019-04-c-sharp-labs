@@ -1451,10 +1451,155 @@ int s = r;  // clear and no nonsense!!!  BOTH 1001
 X-- is decrement operator
 
 
+### NOT OPERATOR
+
+```cs
+//  !true=false
+
+bool isExcellent = true;
+bool isRubbish = false;
+
+Console.WriteLine(isExcellent);   // TRUE
+Console.WriteLine(!isExcellent);  // FALSE
+
+```
+
+### Bodmas / Bidmas
+
+Brackets
+Indices
+Divide/Multiply
+Add/Subtract
+
+
+// Got to get your BIDMAS clear!!!
+
+// 96 + 20 / 5 - 77 / 11
+
+//  96  +  4    -     7
+
+//  93
+
+// WRITE OUT ON COMPUTER AND GET ANSWER
+
+//  5 SQUARED * 13 CUBED - 7 / 4
+
+```CS
+
+
+Console.WriteLine(5*5*13*13*13-(7/4.0));
+
+var FiveSquared = Math.Pow(5, 2);
+var ThirteenCubed = Math.Pow(13, 3);
+
+Console.WriteLine(FiveSquared*ThirteenCubed-(7/4.0));
+
+
+Console.WriteLine(Math.Sqrt(100));
+
+// modulus
+
+Console.WriteLine(100/8); // 12 WRONG - CARE!! integers yield integers!!!
+Console.WriteLine(100/8.0);  // 12.5 CORRECT
+Console.WriteLine(100%8); // 4 REMAINDER CORRECT
 
 
 
+```
 
+
+
+## Data Types 
+
+Let's look at the following
+
+Strings
+
+Integers : short, int and long
+
+Unsigned integers : uint
+
+Floats
+
+Doubles
+
+Decimal
+
+null
+
+
+```CS
+// string
+string x = "hi";
+String y = " there";
+// use lowercase 'string'
+// uppercase String is when use String as a 'class'
+
+// concatenate
+Console.WriteLine(x+y);
+//  super-long strings this is MEMORY INEFFICIENT
+// stringbuilder : use to build very long strings
+var longString = new StringBuilder();
+for(int i = 0; i < 1000000; i++)
+{
+    longString.Append($"adding{i}");
+}
+// Console.WriteLine(longString);
+
+// Integers ARE 32 BITS LONG!!!
+int anyNumber = 23456;
+Console.WriteLine(anyNumber.GetType());
+
+```
+
+Using computers to store data
+
+All computers store data like this
+
+	var number = 1010;      raw data is stored as 0 or 1 (bit)
+
+	If our number had 4 bits then in binary we can count from
+
+		0       0000
+		1       0001
+		2       0010
+		3       0011
+        4       0100
+        ..
+        15      1111
+
+        With 4 bits we can count from 0 to 15 (16 spaces ie 2 to power 4 = 16)
+
+
+        Now let's take a number with 32 bits - what is the maximum???
+
+        	2^32 = ????  4 billion
+
+        			4 294 967 296
+
+        short = 16 bits (2^16 = 65536)
+
+        long = 64 bits (2^64 = 1.8446744e+19)
+
+
+        Only thing to be aware of is that we also have to store a +/- sign for every number
+        	because -200000 or +200000 
+
+        Therefore ONE BIT IS FOR 'SIGN' 
+
+        	INT : 32 BITS : ACTUALLY HAS ONLY 31 BITS FOR NUMBER AND 1 BIT FOR SIGN
+
+        	Prove : Int.MaxValue()
+        	        Int.MinValue()
+
+
+
+Casting
+Boxing
+Value types
+Reference types
+Loop : break; continue; switch; return
+ exceptions try..catch..finally
 
 
 
