@@ -242,7 +242,7 @@ Time Management
 
 Progress At The Academy
 
-	Lohminger 	
+	Lominger 	
 
 		Score behaviour
 
@@ -802,7 +802,7 @@ Github		Website which allows us to 'push' files stored in Git up
 KISS Keep it simple, stupid!
 
 
-Lohminger : 'Competencies' (ability to operate in certain areas)
+Lominger : 'Competencies' (ability to operate in certain areas)
 
 	4 main categories
 
@@ -920,7 +920,543 @@ BDD
 
 
 
+### Rapid Business Skills Exam Prep
 
+Paragraphs : Rule of 5 : Start, Background, Transition, Details, Conclusion
+
+Powerpoint : rule of 3 : 3 sections/slides per topic
+
+Time Management : Timboxing, Meetings, Measuring and Recording
+
+Lominger : Behaviour, Technical, Attributes, Attitudes
+
+Task Manage : Collect, Organise, Do
+
+	Do (Larger Tasks) : Plan, Track, Report
+
+Eisenhower : Important vs Urgency
+
+	1. Fires : Necessity 2. High Quality    3. Deception  4. Waste
+
+Pareto 20/80
+
+Communication : Verbal Vocal Visible
+
+Listening : Cosmetic, Conversational, Active, Deep
+
+Open/Closed questions
+	Closed : yes/no or one word answers
+
+Presentation : CMADE  Confidence, Manner, Attitude, Diligence, Enthusiasm
+
+NLP : Neuro = first response (5 senses), L=Linguistic : adding learning, P=Programming = Action
+
+Cognitive Bias : caused by : Pressure of time, money, Too much info, too little info, limitations of memory
+
+Types of bias : Anchor (to first option), Choice-support(your preference), confirmation(support the one you chose), outcome (focus on result not on good choices)
+
+CMADE presentation : CONFIDENCE, MANNER, ATTITUDE, DILIGENCE,ENTHUSIASM
+
+BAU : Business as usual
+Project : Unique and transient
+
+Triple Constraint : Time, Cost, Quality
+
+POPIT : IT at centre with people, processes and organisation
+
+Waterfall : Propose, Analyse, Design, Build, Test, Maintain
+
+V-Model = Waterfall + testing
+
+Agile : build in increments
+
+Project Planning : Initiate, Plan, Execute, Monitor/Control, Close
+
+Project Roles : 
+	Business Owner = customer, our client
+	Analyst = Analyse client needs, gets ball rolling
+	Project Manager : runs project
+	Tester = ensures high quality (QA)
+
+Stakeholders
+	
+
+### Extra Exam Prep
+
+TDD Test Driven Development : tests written in code
+BDD Behaviour Driven Development : tests written in plain english
+XP Extreme Programming 
+
+
+Critical path : most efficient path for project
+
+Interview Succces
+
+	STAR Situation Task Action Result
+
+		Situation : background to problem
+		Task : what was your task
+		Action : you did
+		Result : outcome
+
+
+
+Project has a critical path which details the correct path to take to complete all of the work in the project
+
+Preceding tasks must be completed before a task can be started (Precedence)
+
+Scope = Total sum of all of the work in a project
+
+Gantt Chart = Projects over time
+
+Proposing a new business venture.  Also called 'making a case' for a new project
+	Risk
+	Estimation of Time, Money, Resources (People and Assets)	
+	Gantt Chart
+
+
+Stakeholders
+	High power and interest : actively manage
+		   medium interest : satisfy
+                   low interest : watch
+	Medium power : keep onside
+	Low power : inform
+
+
+
+
+Exam Prep
+
+
+Presenation : CMADE Confidence Manner Attitude Diligence Enthusiasm
+
+Paragraphs : rule of 5 : intro, background, transition, detail, summary
+
+Powerpoint : rule of 3 
+
+KISS
+
+Time boxing
+
+Time Management : effective meetings, measure/report
+
+Tasks : Capture/Gather, organise, Do		
+
+	Do : Track, Progress, Report
+
+Pareto : 20 effort produces 80 result
+
+Eisenhower
+
+1 Necessity = Must do (high importance/urgency)
+2 High Quality : Important
+3 Deception : Not important
+4 Waste 
+
+Triple constraint   :   TIME QUALITY COST
+
+POPIT :  IT at focus , people, process, organisation
+
+Lominger : behaviour
+		
+	67
+	4 categories  : Behaviour, attitude, attributes, Technical 
+
+Sparta attributes : horsepower, interpersonal, persevere, stand alone, problem solve, self develop
+
+Listening : Costmetic, conversation, active, deep
+
+IT Project
+	Waterfall : Analysis, Design, Build, Test, Release, Maintain
+		V-model	 + TESTING
+	Agile : increments
+		Scrum  : sprint (2-4 weeks) + daily standup
+	Kanban    roll 24/7 : limit tasks
+
+	No longer write code then test it
+	But write TESTS then build code to pass tests
+		TDD 	Test Driven Development
+						Assert.AreEqual(x,y)   x=actual y=expected
+		BDD 	Behaviour Driven Development 
+						If user clicks button then link 'x' should open
+	Older XP Extreme Programming
+
+Meetings : invitees, agenda, minutes, actions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# C# #
+
+Structure of an application
+
+.sln
+	Solution
+		Container object : of itself it does nothing
+		XML : lists projects and other 'meta' data
+
+	Project
+
+		.csproj
+			XML with details of project
+
+		ONE PROJECT : COMPILE TO BINARY FILES (NON-HUMAN-READABLE)
+				1) .exe  running application 
+				2) .dll  library (dynamic link library)  
+
+Referencing files
+
+	From one project to another, we can 'use' or 'reference' files (normally we call them 'classes') from one project in another project.
+
+	Lab
+		1) Build lab_04.dll and exposed a PUBLIC CLASS WITH A PUBLIC FIELD
+
+		2) Build lab_05_using_dll.exe which reads from lab_04.dll
+
+			((Add a reference to achieve this))
+
+
+CSC C Sharp Compiler
+
+To 'compile' is to take code from readable .cs to .exe running code
+
+	compile = repackage our code in such a way that it can be processed by the CPU as 
+			running code, and run as an application/library on the computer
+
+	.NET has several languages and they can all compile to same code
+
+							==>      'half-way-house'                   ==>        Runtime			
+
+		C++
+		C#
+		VB Visual Basic			     CIL COMMON INTERMEDIATE LANGUAGE             'CLR'
+		F#																		Common language
+																				Runtime (matched to CPU
+																				architecture)
+
+		Exercise : view and inspect CIL compiled code
+
+			TOOL : ILDASM  (Visual Studio Command Line 'Developer Tools')
+
+
+		.cs raw human-readable code
+
+			CIL half-way-house compiled code
+
+				CLR runtime 
+
+
+.CSC compiling a single file
+
+	The C Sharp compiler can compile just one file, without Visual Studio
+
+	Copy program.cs to notepad and save as myapp.cs
+
+		Compile c:\......\csc.exe  myapp.cs
+
+			==> create myapp.exe  
+
+
+.NET vs .NET Core
+
+Windows computers are built with a programming language called 'C'.  This has developed into modern C++.  ((Linux/Apple/Android/Windows all have 'C' at heart))
+
+	Raw, fast ==> C++ best option
+
+	But!!!  Visual Basic (old) and C# have both been created with developer in mind, for ease 
+			of coding
+
+			Java (non-microsoft)
+			VB
+			C#
+						High level languages ==> slower but a lot of features, easy to use !
+
+	Windows ==> over time, huge 'library' of code built by Microsoft
+
+		.NET library
+
+			using System.IO;    part of .NET
+
+				Too big!!! (4.2GB) and Windows-only
+
+	.NET Core => cut-down version for all operating systems
+	
+	Both are now OPEN SOURCE!!!
+
+		CLOSED SOURCE ==> WINDOWS10,APPLE  (only the company can work on this code)
+		OPEN SOURCE ==> ANYONE CAN CONTRIBUTE
+
+
+Namespace
+
+	Useful for creating a 'container' for our code
+
+		In each container we can have unique names, so there is no risk of conflict
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using phil1;
+
+namespace lab_06_namespace
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var item = new phil1.GreatTrainer();
+            // add using statement, can see directly
+            var item2 = new GreatTrainer();
+
+            var item3 = new phil2.ExcellentLearning();
+            Console.WriteLine(item3.LearnLots);
+        }
+    }
+}
+
+namespace phil1 {
+    public class GreatTrainer { }
+}
+
+namespace phil2 {
+    public class ExcellentLearning {
+        public string LearnLots = "running C#";
+    }
+}
+
+
+
+
+	
+
+	Main() method	
+
+
+		Start point for every program
+
+	Program types
+
+		Console EXE
+		Library  DLL
+		Old - Windows Forms
+		New - WPF Forms
+		Xamarin - Mobile Apps (Android, IOS)
+		Unity - Games
+		UWP Universal Windows Platform : Windows 10 'Store' apps 
+
+
+Args array
+
+	When we run a program the Main() method gives us access to the 'Args' array
+
+
+	If we run any program eg myapp.exe some data here then the extra words are treated
+			as input for the program 
+
+
+            Console.WriteLine("Printing out arguments array");
+           
+            if(args.Length == 0)
+            {
+                Console.WriteLine("There are no arguments");
+            }
+            else
+            {
+                foreach (string item in args)
+                {
+                    Console.WriteLine("Your item is - " + item);
+                }
+            }
+
+
+## Simple Programming
+
+Covered last week, in passing!
+
+Loops
+
+	4 types
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_08_loops
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // FOR
+            for (int i = 0; i < 10; i++) {
+                Console.WriteLine($"Your number is {i}");
+                Console.WriteLine($"Number squared is {i*i}");
+            }
+
+            // WHILE
+            int counter = 0;
+            while (counter < 10)
+            {
+                Console.WriteLine($"While loop : number is {counter}");
+                counter++;
+            }
+
+            // DO..WHILE
+            counter = 0; // reset
+            do
+            {
+                Console.WriteLine($"Do..While : number is {counter}");
+                counter++;
+            }
+            while (counter < 10);
+
+
+            // ARRAY
+
+            // ARRAY is a FIXED-SIZE STRUCTURE which is very fast to access.
+
+            // DECLARE
+            int[] myIntegerArray = new int[10];    // size has 10 boxes for integers
+            string[] myStringArray = new string[10];    // size has 10 boxes for strings
+
+            // ACCESS ONE ITEM
+            // FIRST ITEM HAS INDEX 0
+            myIntegerArray[0] = 100;
+            myIntegerArray[1] = 101;
+            myIntegerArray[2] = 102;
+            // LAST ITEM : INDEX = SIZE-1  IE 10-1 = [9]
+            myIntegerArray[9] = 999;
+
+            // FOREACH : COUNT OVER EVERY ITEM IN ARRAY
+            foreach(int item in myIntegerArray)
+            {
+                Console.WriteLine($"Item in array is {item}");
+            }
+
+            // REPEAT FOR A STRING ARRAY
+            string[] myArray  = new string[3];
+            // FILL ARRAY AT SAME TIME : STRING 'LITERALS' GOING IN CODE
+            string[] myArray2 = new string[]{ "one", "two", "three" };
+            // fill the array 
+            myArray[0] = "one";
+            myArray[1] = "two";
+            myArray[2] = "three";
+            // foreach loop to print the items
+            // PRINT myArray
+            foreach(string item in myArray)
+            {
+                Console.WriteLine(item);
+            }
+            foreach(string item in myArray2){
+                Console.WriteLine(item);
+            }
+            // NOTE CAN USE FOR - start at 0 and count to the array length - 1 
+            for(int i = 0;i < myArray2.Length; i++)
+            {
+                Console.WriteLine($"Using for loop over array - {myArray2[i]}");
+            }
+
+            // 10-MINUTE LAB : BUILD FOR LOOP, THEN ALSO BUILD A WHILE LOOP.
+            // BOTH WILL COUNT TO 1000 (step 50)
+            for(int i = 0; i < 1000; i+=50)
+            {
+                Console.WriteLine($"for loop to 1000 - {i}");
+            }
+
+            counter = 0;
+            while (counter < 1000)
+            {
+                Console.WriteLine($"While loop to 1000 - {counter}");
+                counter+=50;
+            }
+            // BONUS : FILL ARRAY WITH 1000 NUMBERS AND PRINT OUT ALSO
+            // VAR JUST MEANS 'any variable type' - let the computer decide
+            // (ALREADY STATED TYPE ON RIGHT IE int[1000]
+            var myLargeArray = new int[1000];
+            for (int i = 0; i < myLargeArray.Length; i++)
+            {
+                // fill the array
+                myLargeArray[i] = i;
+            }
+            for (int i = 0; i < myLargeArray.Length; i++)
+            {
+                // print the items
+                myLargeArray[i] = i;
+            }
+
+        }
+    }
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
