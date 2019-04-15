@@ -94,7 +94,8 @@ namespace lab_08_loops
                 counter+=50;
             }
             // BONUS : FILL ARRAY WITH 1000 NUMBERS AND PRINT OUT ALSO
-
+            // VAR JUST MEANS 'any variable type' - let the computer decide
+            // (ALREADY STATED TYPE ON RIGHT IE int[1000]
             var myLargeArray = new int[1000];
             for (int i = 0; i < myLargeArray.Length; i++)
             {
