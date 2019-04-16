@@ -1,7 +1,8 @@
 ﻿# 2019-04-c-sharp-labs
 
 
-Appsa
+Apps
+
 	* Visual Studio 2017/2019
 
 	Sublime Text 3
@@ -1618,6 +1619,484 @@ Loop : break; continue; switch; return
 
 
 
+
+
+
+
+
+
+
+
+Tuesday : Review Of Monday
+
+```cs
+            // DATA TYPES
+            // int
+
+            // signed
+            short x;    // 16 bit
+            Int16 xx;  // same thing
+
+            long l;     // 64 bit
+            Int64 ll;
+
+            int i;      // 32 bit default  (31 for data, 1 for sign) 
+            Int32 ii; 
+
+            // unsigned : positive only
+            ushort u1;
+
+            // danger : integer division TRUNCATES!!!! CARE!!!!
+            Console.WriteLine(12 / 6); // expected 2
+            Console.WriteLine(12 / 5); // expected 2.something but get 2
+
+            Console.WriteLine(12.0 / 5); // 2.4
+            Console.WriteLine(12 / 5.0); // 2.4
+
+            // decimals : default is DOUBLE AND HAS 64 BIT PRECISION
+
+            var num1 = 1.23456778901234567890; // DOUBLE 64 BITS 
+            var num2 = 1.23456778901234567890F;  // turns into FLOAT 32 BIT PRECISION
+            var decimal01 = 1.23456789012345678901234567890123456789012345678901M;
+            // super long 128 bit decimal type
+
+            // float 32 bit
+            // double 64 bit
+            // decimal 128 bits long (precise for money)
+
+            // INTEGERS
+            // DECIMALS
+
+            // division
+            Console.WriteLine(100/8);    // 12 INCORRECT (INTEGER WHOLE NUM ONLY)
+            Console.WriteLine(100/8.0);  // 12.5 CORRECT 
+            Console.WriteLine(100%8);    // MODULUS  REMAINDER 4 CORRECT
+
+
+            // LOOPS : 4 TYPES
+
+            // FOR
+
+            // FOREACH
+            string[] myArray = new string[] { "one", "two", "three" };
+
+            // WHILE
+
+            // DO.WHILE
+
+            // BODMAS / BIDMAS   Brachet, operator/indexes, dm , as
+
+            //NAMESPACE : SEPARATE CODE
+            // main() always runs first
+            //  .sln     SOLUTION  CONTAINER FOR MULTIPLE PROJECTS
+            //  .csproj  PROJECT ==> GENERATES EXE OR DLL LIBRARY
+
+            // OPERATOR
+
+            // increment  ++  and decrement --
+            // rule : put ++ on separate line
+
+            // boolean
+            var isOff = true;
+            var isOn = false;
+
+
+
+```
+
+Compile : turn .cs code into .exe binary or .dll binary
+
+.NET : Can use multiple languages C# C++ which all compile to CIL intermediate language
+
+.NET CORE : websites
+
+Main() method has string[] array called 'args'
+
+	myapp 1 2 3   sends 1 2 3 as 'arguments'
+
+
+Debugging
+
+	How to stop a program and inspect the variables???
+
+	Set a breakpoint!!!  
+
+	F5 to start
+
+	F10 or F11 to continue stepping through program
+
+	Conditional debug : only break if a certain condition is met !!!!
+
+	Watching a variable 
+
+		Right click and watch
+
+	Autos : very useful : just shows all of variables in use ON THIS LINE OR PREVIOUS LINE  (Variables in 'scope')
+
+
+Running an application in 'debug' mode or 'release' mode
+
+	DEBUG ==> SLOWER
+
+	RELEASE ==> PRODUCTION ie debug tools turned off
+
+
+		SET THIS IN  BUILD=>CONFIGURATION MANAGER => DEBUG/RELEASE
+
+				((Similar to 'minification' in Javascript world  .min.js faster))
+
+		F5 => DEBUG
+
+		CONTROL + F5 ==> RELEASE
+
+
+
+WPF application demo
+
+	Current app in Windows 
+
+		WPF = WINDOWS PRESENTATION FOUNDATION
+
+	WPF uses XML for graphic interface
+
+	<window ...>  main graphics  .xaml     eXtensible Application Markup Language
+
+		.cs  'code-behind'    ie 2 files (XML and .cs)  for every page		
+
+
+
+
+Rounding Errors In Computing
+
+	Computers cannot store decimal numbers accurately
+
+
+		eg 10.1 cannot be stored 100% accurately on a computer
+
+				Computers think in powers of 1,2,4,8, 16 etc and decimal is an 'alien'
+				numbering structure
+
+	Worked example to illustrate this
+
+```cs
+double total = 0;
+for (int i = 1; i <= 8192; i++)
+{
+    total += 0.7;
+}
+Console.WriteLine(total);
+
+// after 8000 loops, 9 decimal places is enough
+// for us to lose accuracy++++++
+
+
+decimal total2 = 0;
+for (int i = 1; i <= 8192; i++)
+{
+    total2 += 0.7M;
+}
+Console.WriteLine(total2);
+
+```	
+
+Other data types
+
+null
+
+```cs
+string x = null;
+string y = "";
+Console.WriteLine(x == y);  // false
+
+// If reading from database and there
+// literally is no data coming in,
+// then that's a 'null'
+
+// integers : default value is '0'
+int z = new int();
+Console.WriteLine(z);
+
+// Scenario : reading numbers from database
+// Want to differentiate from '0' and blank space
+
+// nullable integer
+int? zz = 0;
+zz = null;
+```
+
+
+DateTime
+
+```cs
+
+// declare date
+// not very helpful : default date is 1 Jan 0001 at midnight
+var d = new DateTime();
+
+
+Console.WriteLine(d);
+
+var e = DateTime.Today;   // midnight 
+var f = DateTime.Now;     // now
+
+
+Console.WriteLine(e);
+Console.WriteLine(f);
+
+// add calendar day/week/month
+e = e.AddDays(1);
+e = e.AddMonths(1);
+e = e.AddHours(1);
+
+Console.WriteLine(e);
+
+// elapsed time
+// use seconds, milliseconds, ticks (10-7 seconds ie 100 nanoseconds!)
+
+// CRUDE : SUBTRACTING TIME
+var start = DateTime.Now;
+
+int total = 0;
+
+for(int i = 0; i < 100000000; i++)
+{
+    total += i;
+}
+
+Console.WriteLine(total);
+
+var stop = DateTime.Now;
+
+Console.WriteLine($"Counting took {(stop - start)}");
+Console.WriteLine($"Counting took {(stop - start).Milliseconds}");
+Console.WriteLine($"Counting took {(stop - start).Ticks}");
+
+
+// EASY WAY : CREATE 'STOPWATCH'
+
+var s = new Stopwatch();
+s.Start();
+
+total = 0;
+
+for (int i = 0; i < 100000000; i++)
+{
+    total += i;
+}
+
+s.Stop();
+Console.WriteLine(s.ElapsedTicks);
+Console.WriteLine(s.Elapsed);
+```
+
+
+
+### bytes
+
+Bytes are important 
+
+	raw data is stored in bits = 1 or 0
+
+	bytes are blocks of 8 bits   10101010
+
+		bytes can have min value 0 (00000000) and max value 255 which is all 1's (11111111)
+
+	nibble are blocks of 4 bits 1010  with min 0 (0000) and max 15 (1111)
+
+				                             HEX  0.9     A=10,B=11,C=12,D=13,E=14,F=15	
+```cs
+
+            byte b = 0b10101010; // latest c# has literal binary type
+
+            // also use hex
+
+            byte bb = 0xFF;   // f=15 decimal = 1111 binary
+                              //   FF = 11111111 in binary
+
+            byte bbb = 15;
+
+```
+
+
+Bytes become useful with	a) Encryption
+	b) Sending data : STREAMING : data is sent in chunks of BYTES
+
+			byte[] array of bytes to send raw data
+
+
+ 
+Char
+
+	ASCII is a numbering system for basic characters
+
+	Each 'character' has a related number and we call this  a 'char' data type
+
+```cs
+char c = 'f';
+Console.WriteLine(c);
+// convert to a number using (int) (casting)
+Console.WriteLine((int)c);
+
+char c02 = 'g';
+Console.WriteLine(c02);
+// convert to a number using (int) (casting)
+Console.WriteLine((int)c02);
+
+// Convert a number to a character
+char c03 = (char)104;
+Console.WriteLine(c03);
+```	
+
+Char is useful to parse strings character by character
+
+```cs
+string s = "abcdef";
+foreach (char item in s)
+{
+    Console.WriteLine(item);
+}
+```
+
+
+Encoding!
+
+ASCII counts from 0 to 127
+
+Web : count from 0 to 255 and call this UTF8  (internet, default way write text)
+
+C#  : uses the upgrade to this called UNICODE OR UTF16 and this means 16 bits for every character 
+	used.  Reason we use this ==> allows for Chinese and other non-english characters
+
+
+
+### raw object data type
+
+In most computing languages 'object' is the parent of all other data types
+
+```CS
+// raw objects
+
+object o1 = 10;
+o1 = "hi";
+Console.WriteLine(o1);
+object o2 = "hi";
+object o3 = false;
+
+// custom
+// key/value pairs
+object o4 = new
+{
+    name = "Bob",
+    dob = "20/3/2000"
+};
+
+
+// BAD BAD CODING BUT JUST FOR ILLUSTRATION!!!
+dynamic o5 = 12;
+o5 = "hi";
+o5 = false;
+
+
+// const
+
+const string DONT_CHANGE_ME = "I don't change";
+// DontChangeMe = "to something else";
+
+```
+
+
+### Casting
+
+C# is 'strongly typed' so int, double are 'different'
+
+2 ==> 2.0      IMPLICIT (= SAFE) CASTING
+
+2.3 ==> 2  (LOSE DATA)     EXPLICIT (=DANGEROUS) CASTING 
+
+	CASTING
+
+```cs
+// SAFE CASTING
+
+int i = 10;
+double d = i;
+
+
+// EXPLICIT (DANGEROUS) CASTING
+double dd = 10.79;
+int ii = (int)dd;
+Console.WriteLine(ii);
+
+// different to rounding
+
+Console.WriteLine(Math.Round(dd));
+Console.WriteLine(Math.Floor(dd));
+Console.WriteLine(Math.Ceiling(dd));
+```
+
+
+BOXING
+
+```cs
+
+// boxing is same as casting but to object
+
+int iii = 100;
+object ooo = iii;
+
+// unbox
+
+int jjj = (int)ooo;
+
+```
+
+
+
+
+AND/OR/XOR
+
+Truth table
+
+AND OPERATOR 
+
+										 OUTPUT    : ARE THEY BOTH ON?  (AND)      
+
+	INPUT    1     1                     							HIGH (TRUE OR 1)
+            high  high
+
+
+             0     0												LOW (FALSE OR  0)
+             low   low 
+
+
+             1     0												0
+
+             0     1												0
+
+
+
+OR OPERATOR
+
+			INPUT    		OUTPUT (ARE EITHER OF THEM HIGH)
+			1 1 						1
+			0 0 						0
+			1 0 						1
+			0 1 						1
+
+
+// ^ XOR
+
+// SAME AS OR BUT FALSE IF BOTH HIGH		ARE ONE (AND ONLY ONE) OF THEM HIGH?	
+
+		1 1      0
+		1 0      1
+		0 1      1
+		0 0      0
+
+		1^1     RETURN FALSE
+		1^0            TRUE
+
+		
 
 
 
