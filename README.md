@@ -1111,7 +1111,7 @@ Structure of an application
 	Solution
 		Container object : of itself it does nothing
 		XML : lists projects and other 'meta' data
-
+ 
 	Project
 
 		.csproj
@@ -2096,13 +2096,17 @@ OR OPERATOR
 		1^1     RETURN FALSE
 		1^0            TRUE
 
-		
 
 
 
 
 
 
+
+
+
+
+### OOP Object Oriented Programming
 
 
 
