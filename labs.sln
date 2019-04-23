@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_38_pass_object_into_met
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_39_polymorphism", "lab_39_polymorphism\lab_39_polymorphism.csproj", "{F352A941-EFB4-47C5-AAB2-4EE24C26E166}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_40_abstract_class", "lab_40_abstract_class\lab_40_abstract_class.csproj", "{BE944182-EDF5-433C-AF26-6A11FB7C12BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -249,6 +251,10 @@ Global
 		{F352A941-EFB4-47C5-AAB2-4EE24C26E166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F352A941-EFB4-47C5-AAB2-4EE24C26E166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F352A941-EFB4-47C5-AAB2-4EE24C26E166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE944182-EDF5-433C-AF26-6A11FB7C12BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE944182-EDF5-433C-AF26-6A11FB7C12BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE944182-EDF5-433C-AF26-6A11FB7C12BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE944182-EDF5-433C-AF26-6A11FB7C12BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
