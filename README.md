@@ -2108,17 +2108,243 @@ OR OPERATOR
 
 ### OOP Object Oriented Programming
 
+Intro to OOP!!!
+
+What is OOP??
+
+### Scripting
+
+Historically computing was created with 'batch files' which run 'top-down' ie start at line 1 and run to close
+
+### .bat
+
+Windows 'batch' file
+
+run with myScript.bat
+
+also .cmd works as well
+
+### .ps1
+
+Same thing but with  more powerful scripts
+
+Remember : must allow Powershell scripts with 'Set-ExecutionPolicy Unrestricted'
+
+Run file with ./myScript.ps1
+
+### Linux computer 'BASH' shell does similar work
+
+
+### OOP 
+
+With GUI (Graphic User Interface) all of a sudden users interact with screen 'objects' eg button, inputs etc
+
+Screen 'object' and user 'event' eg click, double-click, hover, keypress, select etc
+
+New style of coding where no longer 'top-down' scripting but code attached to indiviual objects or events.
+
+Much simpler to maintain as code is naturally 'modular' and tied to objects/events.
+
+Javascript 'onclick' handler and 'click' event
+
+	Button addEventListener('click', function(){ // do some stuff })
+
+CSharp in 'WPF' graphic app we similar structure
+
+	Button_01_Click(object sender, eventArgs e){  // do stuff here }
+
+		'sender' object would be our button
+		eventArgs 'e' would contain ARRAY OF STRINGS PASSED FROM BUTTON TO OUR EVENT HANDLER CODE (METHOD)
+
+How do we create objects in C#?
+
+	Manually ==> Object o = new {  name="fred",age=21 }
+
+But say we have 1000 cars in a factory : we want to be able to create 1000 'car objects' with fixed structure - how do we create our 'template' for a new car?
+
+    car01 = { weight:1000, length:2000, width:1500, color:"red" }
+
+
+The template we use is called a 'Class'
+
+	Class Car {
+
+
+	}
+
+
+The reason we use classes is similar to nature
+
+In nature we have 'genus' or 'species' = 'class' of animal or plant
+
+mammal
+
+		cat
+				lion
+						american lion
+						asiatic lion
+
+				tiger
+
+
+				cheetah
 
 
 
+		dog
+
+
+reptile
+
+
+car
+	mercedes
+			a-class
+					A180D
+							sport
+					A35
+
+
+Let's create some code ...
+
+```cs
+    class Parent
+    {
+        public string Name;
+        public int Age;
+        public double Height;
+    }
+```
+
+We think of 'class' as 'blueprint' for new objects
+
+When we create a building the 'blueprint' is the master drawing.  Builders would then create real building from our blueprint
+
+Computing : blueprint ==> 'class'
+	
+	From class ==> create 'real' object (real Parent)  ==>  INSTANTIATION
 
 
 
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace lab_24_inheritance
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var p01 = new Parent();
+            p01.Name = "Father";
+            var c01 = new Child();
+            c01.Name = "Child";
+            // give age
+            c01.Age = 12;
+            // make grow in loop : 10 times
+            c01.Grow();
+            c01.Grow();
+            Console.WriteLine(c01.GrowReturningAge());  //increase age, print new age
+            Console.WriteLine(c01.GrowReturningAge());
+            Console.WriteLine(c01.GrowReturningAge());
+            var newAge = c01.GrowReturningAge();
+            newAge = c01.GrowReturningAge();
+        }
+    }
+
+    class Parent {
+        public string Name;
+        public int Age;
+        // age
+        public void Grow() {
+            Age++;
+        }
+        // grow
+        public int GrowReturningAge()
+        {
+            Age++;
+            return Age;
+        }
+    }
+
+    class Child : Parent { }
+}
+
+
+```
+
+## Methods
+
+```cs
+            // void method
+
+// return int
+int ReturnNumber()
+{
+    return 12;
+}
+
+// return string
+string ReturnText()
+{
+    return "some text";
+}
+
+// CALL THE METHODS
+ReturnNumber();    // WASTING THE OUTPUT; NOT USING IT!!!
+ReturnText();
+// use the output
+var output1 = ReturnNumber();
+var output2 = ReturnText();
+// print outputs
+Console.WriteLine($"output 1 is {output1} and output 2 is {output2}");
+Console.WriteLine($"output 1 is {ReturnNumber()} and output 2 is {ReturnText()}");
+
+
+// PASS IN INPUT ALSO INTO A METHOD
+void PrintNumber(int myNumber)
+{
+    Console.WriteLine($"Your number is {myNumber}");
+}
+
+PrintNumber(10);
+PrintNumber(100);
+PrintNumber(1000);
+
+
+// send in data and get data back
+double Cube(int myNumber)
+{
+    return Math.Pow(myNumber, 3);
+}
+
+Console.WriteLine(Cube(10));
+Console.WriteLine(Cube(11));
+Console.WriteLine(Cube(12));
+
+```
 
 
 
 	
+## Finish off day with some more simple coding
+
+### if..else if .. else
+
+  int x = 100;
+
+  if (x == 10){ .. }
+  else if (x == 20) { }
+  else {   }
+
+### Ternary operator
+
+  (Test a condition : is it true or false?) ? if true do this
+  			:  if false do this ;
 
 
 
@@ -2135,3 +2361,224 @@ OR OPERATOR
 
 
 
+
+
+
+
+## Random Notes And Topics
+Main()  ==> Method ==> START POINT OF EVERY PROGRAM
+
+	Class Program {  static void Main(){  
+			// PROGRAM STARTS HERE!!!! 
+		}
+   }
+
+public ==> exposes code to be visible publicly (by all code)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Tuesday : Review
+
+Class is a blueprint to create objects
+Class Parent{}
+Class Child : Parent{}
+Class MyClass{
+	public int Field01;       
+	public string Field02;    // fields
+	private bool _ isEnabled;   // normally private ofen with _ prefix
+	public int Property01 {get; set;}   // property 
+}
+
+
+
+
+
+
+
+
+## List<T> 
+
+List<int>
+List<string>
+List<AnyType>
+T = Type : Generics  (Generic item is a general item)
+using System.Collections.Generic;  is required
+List has an INDEX LIKE ARRAY [0] first item, [1] second item etc
+	So for this reason we can use any methods which are valid over arrays
+	including List01.ForEach() method
+
+	Note : Arrow notation (Lambda) is used often to replace a longer method
+
+List.Add(item)  (end)
+List.Insert(item,index)
+List.RemoveAt..
+               0 1 2 3 4
+               insert new item at index 2 : push others along 
+               0 1  (new item at 2)  3 4 5
+foreach(var item in MyList){
+	cw(item)   in numeric order of index ie 0 1 2 3 etc
+}
+Unlike array, can extend.
+.Concat() method 
+Yes it is possible to do List<List<int>>
+
+
+```cs
+        static List<int> list01 = new List<int>();
+        List<string> list02 = new List<string>();
+
+        static void Main(string[] args)
+        {
+            list01.Add(10);
+            list01.Add(20);
+            foreach (var item in list01) {
+                Console.WriteLine(item);
+            }
+        }
+```
+
+## Stacks
+
+Stack<int>
+Stack<string>
+
+Stacks are useful actually inside real computers 
+
+			z=30
+		DoThat()
+			y=10
+			x=20;
+		DoThis();
+		Main();
+		==========STACK MEMORY==============
+
+We call this a LIFO structure : Last in - First out and the picture is that of either a pack of cards or a rugby scrum.
+
+Methods : Push() and Pop()
+		Push : add to top
+		Pop  : remove from top
+		Contains : searches (quite slow) through stack one item at a time : output
+				is boolean if a match is found
+		Peek : inspect top item without removal
+
+
+## Summary so far
+
+	List : good thing is that we can extend and it has an index
+
+	Stack : similar to real computer - how it actually runs your programs
+
+	Array : fixed size but easily fastest for Read/Write operations
+
+
+## Queue
+
+Queue uses FIFO structure : First in first out
+
+	Think  : quiet village where people queue for a bus : first person in queue is also
+			first person to get on the bus
+
+			Computing : use this a lot for 1) Batch processing 2) Printing 3) Emails
+
+
+	Methods : Enqueue(10)   add item
+			  Dequeue       remove
+			  Contains
+			  Peek
+
+   Lab : Write a little lab to queue up 10 integers, check if an item is contained within, peek the first item, and dequeue 3 items then print the queue out with a
+   foreach loop
+
+
+
+
+## Review Of Classes with Fields And Properties
+
+field = private
+property = public
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_31_classes_with_properties
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var p = new Parent();
+            p.SetHidden("hello private data");
+            p.Age = 23;
+            p.Height = 1500;
+            Console.WriteLine(p.Height);
+            p.Height = -1500;
+            Console.WriteLine(p.Height);
+        }
+    }
+
+    class Parent {
+
+        private string _hidden;  // private field
+        private double height; // private field
+        public int Age { get; set; }  // public property : abbreviated form
+                                       // auto-implemented properties
+
+        // expanded form
+
+        public double Height
+        {
+            get
+            {
+                return height;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    height = value;  // value is c# code word
+                }
+            }
+        }
+
+
+
+        public void SetHidden(string setData)
+        {
+            _hidden = setData;
+        }
+        public string GetHidden()
+        {
+            return _hidden;
+        }
+    }
+}
+
+
+```
