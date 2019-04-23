@@ -2582,3 +2582,336 @@ namespace lab_31_classes_with_properties
 
 
 ```
+
+
+## Methods
+
+`out` keyword
+optional parameters
+named parameters
+static method
+instance method
+overloading
+passing 'by value' and 'by reference'
+passing objects into method
+
+
+There are 3 places we can declare a method
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_32_methods
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1. in another method (not recommended as gets messy with 'nesting')
+
+            void DoSomething()
+            {
+                Console.WriteLine("Hey I am doing something");
+            }
+
+            // call it
+            DoSomething();
+
+            // call static method
+            DoSomethingElse();
+
+ 
+        }
+
+
+        // 2. In the same class using STATIC KEYWORD WHICH ATTACHES METHOD TO THIS CLASS
+        static void DoSomethingElse()
+        {
+            Console.WriteLine("Hey I'm now doing something else");
+        }
+
+
+    }
+
+
+    // 3. in another class either as STATIC or INSTANCE method
+
+    class Dog
+    {
+        // instance method
+        public void Bark()
+        {
+            Console.WriteLine("dog is now barking loudly");
+        }
+
+        // static field
+        public static int NumLegs = 4;
+
+
+
+    }
+
+}
+
+```
+
+
+### Return type
+
+void DoThis(){}
+string DoThat(){ return "hi"; }
+bool DoNow(){ return true; }
+
+
+### Parameters
+
+Pass data into method
+
+void DoThis(int x, string y){  // use x, y }
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_33_parameters
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DoThis(10, "hello world");
+            var listOutput = BuildAList(100, 200, 300); // using list
+            listOutput.ForEach(item => Console.WriteLine(item));
+        }
+
+        static void DoThis(int x, string y)
+        {
+            Console.WriteLine(x + " " + y);
+        }
+
+        static List<int> BuildAList(int x, int y, int z)
+        {
+            var list = new List<int>();
+            list.Add(x);
+            list.Add(y);
+            list.Add(z);
+            return list;
+        }
+
+    }
+}
+
+
+```
+
+
+### Out parameter for methods
+
+By default, methods only return a single item eg void, int, string
+
+But we can also add `out` parameters as well
+
+
+```cs
+var listOutput = BuildAList(100, 200, 300, out bool isLong); // using list
+
+
+        static List<int> BuildAList(int x, int y, int z, out bool isLongList)
+        {
+            var list = new List<int>();
+            list.Add(x);
+            list.Add(y);
+            list.Add(z);
+            if (list.Count > 10)
+            {
+                isLongList = true;
+            }
+            else
+            {
+                isLongList = false;
+            }
+            return list;
+```
+
+
+### Optional parameters
+
+Often we have programs which accept many many parameters but not all of them are required all of the time
+
+If we supply default values then these parameters now become optional
+
+Note that optional parameters always must come after required parameters
+
+```cs
+        static void Main(string[] args)
+        {
+            DoThis(10, "hi", true);
+            DoThis(10, "hi");
+            DoThat(1, 2, 3, 4);
+            DoThat(10,2);
+        }
+
+        static void DoThis(int x, string y, bool z = false)
+        {
+
+        }
+
+        static void DoThat(int a, int b=5, int c=6, int d=7)
+        {
+
+        }
+
+```
+
+
+### Named Parameters
+
+Named parameters are useful when we have a lot of parameters and don't want to have to remember the order each time.
+
+We just call the method using MyMethod(x:5,y:6,z:7) etc 
+
+
+
+
+
+### Constructor Methods
+
+In every class we also have a default method called the `constructor`.
+
+This is used to `construct` a new object when we `instantiate` the class
+
+```cs
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var p = new Parent("fred",32);
+
+        }
+    }
+
+    class Parent {
+        public string Name { get; set; }  //  Property
+        public int Age;                   //  Field
+        // create a constructor : same name as class
+        // this keyword refers to 'instance' ie 'p' above
+        public Parent(string name, int age) {
+            this.Name = name;
+            this.Age = age;
+        }
+    }
+```
+
+Note : constructor is present even when we don't code one.
+
+Default (blank) constructor which is why we use new ... keyword with Class name and brackets
+
+```CS
+	var p = new Parent();    // calling CONSTRUCTOR METHOD HERE!
+```
+
+But be aware when you code your OWN CONSTRUCTOR, the default (blank) one no longer exists
+
+Be aware for the future that there is also a method called the `destructor` or `finalizer` which can be called when we are destroying an object.  It looks like
+
+  ~MyClass{
+  		// code which runs when destroying an object
+	}
+
+But!!! C# won't require to use them unless we are dealing with objects outside C# like files, databases, computer memory.
+
+	Actually a cleaner way of using these : using(){} block
+
+
+
+
+
+### Overloading
+
+
+Overloading allows us to call the SAME METHOD WITH DIFFERENT PARAMETERS
+
+	DoThis();
+	DoThis(10);    
+	DoThis(10,20,30);
+
+```cs
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // must instantiate first
+            var p = new Parent();
+            // can now run INSTANCE METHOD
+            p.DoThis();
+            p.DoThis(10);
+            p.DoThis("hi");
+            p.DoThis(10, "hi", true);
+            
+            // or a STATIC METHOD
+            Parent.DoThat();  // same for all instances
+            
+        }
+    }
+
+    class Parent {
+        public void DoThis() { Console.WriteLine("no parameters"); }
+        public void DoThis(int x) { Console.WriteLine("integer parameter"); }
+        public void DoThis(string y) { Console.WriteLine("string parameter"); }
+        public void DoThis(int x, string y, bool z) { Console.WriteLine("3 parameters"); }
+        public static void DoThat() { Console.WriteLine("static method"); }
+    }
+```
+
+
+### Summary
+Methods
+	optional params
+	named params
+	constructor methods
+	overloading
+
+### Passing integers into a method `by reference`  
+
+	`ref` keyword which allows us to track the integer inside the method
+
+	Normally when we pass an integer into a method it's treated as PRIVATE OR LOCAL INSIDE THE METHOD
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_37_by_reference
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // declare integer
+            int x = 1000;
+            DoThis(ref x);
+            Console.WriteLine($"x in the main method is {x}");
+        }
+
+        static void DoThis(ref int x) {
+            x = x + 1;
+            Console.WriteLine($"x in the method is {x}");
+        }
+    }
+}
+
+
+```
+
+
