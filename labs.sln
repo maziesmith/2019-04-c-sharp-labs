@@ -93,6 +93,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_Microsoft", "Tests_Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_Nunit", "Tests_Nunit\Tests_Nunit.csproj", "{D5EB7CCA-580D-4E97-9D6D-AA2F69B53378}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_43_entity", "lab_43_entity\lab_43_entity.csproj", "{A8B308F2-F17E-4073-952B-43B557802C21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -279,6 +281,10 @@ Global
 		{D5EB7CCA-580D-4E97-9D6D-AA2F69B53378}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5EB7CCA-580D-4E97-9D6D-AA2F69B53378}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5EB7CCA-580D-4E97-9D6D-AA2F69B53378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B308F2-F17E-4073-952B-43B557802C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B308F2-F17E-4073-952B-43B557802C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B308F2-F17E-4073-952B-43B557802C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B308F2-F17E-4073-952B-43B557802C21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

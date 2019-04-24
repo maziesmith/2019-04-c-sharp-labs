@@ -3318,6 +3318,123 @@ Practicalities
 
 
 
+## Working With Databases
+
+With C# we can work with traditional SQL directly.
+
+	Install database
+	Talk to it
+	Use regular SQL commands
+
+This is rather slow for the developer, and rather 'yesterday' though, but it still all works.
+
+Today we have a slightly more modern way of interacting with databases
+
+	Entity Framework
+
+		Interact with 1) SQL 2) SQLite (mobile devices ie local, small database)
+
+		Entity can be used to `scaffold` much of our code for us (scaffold = build)
+
+			1. Database First ==> Build our database + tables + fields + primary keys etc and any relationship between tables.   Entity builds for us, in code, all classes etc needed so we just use these Entity classes and we can easily talk to the database through this.
+
+			2. Code First ==> Build our CLASSES AND PRIMARY KEYS AND RELATIONSHIPS BETWEEN TABLES FIRST, then Entity will actually create the necessary database items for us!
+
+Practical Realm
+
+	1. Database ==> from Microsoft 'Northwind' database
+
+		install the .sql file
+
+		(localdb)\mssqllocaldb
+	
+
+SQL
+
+select * from customers where CustomerId = 'ALFKI'
+update customers set City = 'PhilsPalace' where CustomerID = 'ALFKI'
+select * from customers where CustomerId = 'ALFKI'
+insert into customers (customerid,companyname,contactname,city) 
+values ('phil3','philsco','phil','here')
+select * from customers where customerid = 'phil3'
+delete from customers where customerid = 'phil3'
+select * from customers where customerid = 'phil3'
+
+
+So far
+	Installed a database from an SQL script
+	Accessed database from Visual Studio
+	Run raw SQL queries
+
+Next
+	Talk to the database with Entity Framework
+
+
+```cs
+
+namespace lab_43_entity
+{
+    class Program
+    {
+        static Customer customerToUpdate;
+        static Customer findOneCustomer;
+
+        static void Main(string[] args)
+        {
+
+            // automatically clean up database connection when done
+            using (var db = new NorthwindEntities())
+            {
+                var customers = db.Customers.ToList();
+
+                foreach(var customer in customers)
+                {
+                    Console.WriteLine(customer.CustomerID);
+                }
+
+                foreach (var c in customers)
+                {
+                    Console.WriteLine($"ID is {c.CustomerID}, name is {c.ContactName}");
+                }
+
+                // update one customer
+                //                all customers where  (just select the one with right id) . just choose first
+                customerToUpdate = db.Customers.Where(cust => cust.CustomerID == "Phil1").FirstOrDefault();
+                customerToUpdate.City = "PhilsCity";
+                db.SaveChanges();
+
+
+
+
+            }
+
+            using (var db = new NorthwindEntities()) {
+                findOneCustomer =
+                    // select all customers in db.Customers
+                    (from cust in db.Customers
+                     // just choose this one only
+                     where cust.CustomerID == "Phil1"
+                     // select that one customer
+                     select cust).FirstOrDefault();
+                Console.WriteLine($"\n\nUpdated customer has new city = {findOneCustomer.City}");
+            }
+
+            try { // contact database
+            }
+            catch { // any errors
+            }
+            finally { // close database
+            }
+
+        }
+    }
+}
+
+
+```
+
+
+
 
 
 
