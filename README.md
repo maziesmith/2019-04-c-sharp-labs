@@ -1,7 +1,12 @@
-﻿# 2019-04-c-sharp-labs ..
+﻿# 2019-04-c-sharp-labs
 
+This repository holds teaching notes and labs for C#
 
-Apps
+The notes cover C# from basic to more advanced including ASP.NET and .NET Core, with Entity Framework included.
+
+The labs are ordered in numbered sequence in ascending order of difficulty, starting at the most easy and progressing to the harder labs and concepts.
+
+## Installed Apps
 
 	* Visual Studio 2017/2019
 
@@ -2400,7 +2405,7 @@ public ==> exposes code to be visible publicly (by all code)
 
 
 
-# Tuesday : Review
+# Week 2 : Tuesday : Review Of Terms
 
 Class is a blueprint to create objects
 Class Parent{}
@@ -2910,8 +2915,426 @@ namespace lab_37_by_reference
         }
     }
 }
+```
+
+
+
+### Passing an OBJECT into a method
+
+Objects by nature don't need the `ref` keyword - they will be tracked even when we pass them into a method
+
+Let's create an instance p of a class and pass it into a method
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_38_pass_object_into_method
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var a = new Animal("lion",12,200);
+            var b = new Animal("tiger", 13, 150);
+            ProcessAnimal(a); // 
+            ProcessAnimal(a);
+            Console.WriteLine($"after processing animal has age {a.Age} and weight {a.Weight}");
+        }
+
+        // process animals
+        static void ProcessAnimal(Animal animal) {
+            var newAnimal = new Animal(animal.Type, animal.Age, animal.Weight);
+            // .. process newAnimal;
+            animal.Age++;
+            animal.Weight += 20;
+        }
+    }
+
+    class Animal {
+        public string Type { get; set; }
+        public int Age { get; set; }
+ 
+        // constructor
+        public Animal(string type,int age,double weight) {
+            this.Type = type;
+            this.Age = age;
+            this.Weight = weight;
+        }
+    }
+
+
+}
+
 
 
 ```
+
+
+
+
+## Polymorphism
+
+When dealing with inheritance there may be a method in the parent which is also in the child class.  It may be that we want the method to run differently in the parent compared with the child.  Also possibly different for different child classes.
+
+
+	Human example : HAVE A PARTY!!!
+
+			Parent : HaveAParty(){  // posh dinner party }
+
+					Child1 : HaveAParty(){  // swimming }
+
+					Child2 : HaveAParty(){  // quasar   }
+
+					Teenager : HaveAParty(){  // out with friends }
+
+
+```cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_39_polymorphism
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var p = new BaseParent();
+            p.HaveAParty();
+            var c = new DerivedChild();
+            c.HaveAParty();
+            var d = new DerivedTeenager();
+            d.HaveAParty();
+        }
+    }
+
+    class BaseParent {
+        // Parent is VIRTUAL (can be overridden)
+        public virtual void HaveAParty() { Console.WriteLine("Having A Dinner Party"); }
+    }
+
+    class DerivedChild : BaseParent{
+        // child OVERRIDES code of parent (optionally)
+        public override void HaveAParty() { Console.WriteLine("Having A Swimming Party"); }
+    }
+
+    class DerivedTeenager : BaseParent {
+        // child OVERRIDES code of parent (optionally)
+        public override void HaveAParty() { Console.WriteLine("Going Out With Friends"); }
+    }
+}
+
+
+```
+
+
+### Overload vs Override
+
+Note : in the above code we are using
+
+	Parent Base Class : virtual keyword
+
+	Child Derived Class : override keyword
+
+
+		POLYMORPHISM : OVERRIDE (Same method with different code)
+
+This is different to methods with OVERLOAD (Same method with different parameters)
+
+
+Remember
+
+	OVERRIDE : Polymorphism : Same method different code
+
+	OVERLOAD :              : Same method different parameters
+
+
+
+
+
+## Abstract Classes
+
+Imagine we have a great idea for a holiday or a business venture!  We may pinpoint certain aspects of the venture, but omit many of the other details.  Our holiday has SOME PARTS PLANNED but OTHERS OMITTED.
+
+We can say
+
+	class Holiday
+
+		void ThisPartAllPlannedOut(){ // do stuff in detail };
+
+		void ThisPartNotPlanned(){  // no code !!! }
+
+When we write this code we change it to the following:
+
+	abstract class Holiday
+
+		void ThisPart....    (no change here)
+
+		abstract void ThisPartNotPlanned();        // add 'abstract' and omit blank braces {}
+
+
+Abstract class has one or more abstract methods
+
+If we think about it, we cannot go on holiday until we fill in all the blanks.  Therefore with our Holiday class we cannot INSTANTIATE IT because it's got empty (abstract) parts!
+
+In order to fill out the blanks, we must first `derive` a child class which inherits from Holiday but also fills out all the blanks => Then we can instantiate it.
+
+	It's a bit like giving our holiday plans to a tour operator who book all the practicalities.
+
+
+
+
+```cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_40_abstract_class
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // var h = new Holiday();
+            var h = new LetsGo(); // hey we're off!
+        }
+    }
+
+    abstract class Holiday
+    {
+        // REAL METHOD
+        void VisitGeysers() { 
+            // wow - have a great time! 
+        }
+        // ABSTRACT METHOD
+        public abstract void GettingToIceland();
+    }
+
+    class LetsGo : Holiday
+    {
+        public override void GettingToIceland()
+        {
+            // yes we do travel by plane and hire a car
+        }
+    }
+}
+
+```
+
+
+
+## Homework End Of OOP Day 2
+
+We have covered a lot today as it incorporated Thursday's work and today's work (2 days)
+
+Overnight please code me an example on EVERY TOPIC COVERED
+
+List<int>;
+List<char>;
+Stack : 10 items, push & pop
+Queue : 10 items, enqueue & dequeue
+Classes : Parent, Child, Grandchild and create FIELDS PROPERTIES METHODS and INSTANTIATE new instances of parent, child and grandchild and use Grow() as the method to add 1 to age
+Methods : call a method with 5 parameters : some optional
+Methods : call same method with named parameters
+Methods : passing object : Create a dog object and pass into method so it grows by 1 year (Age property)
+
+
+
+
+## Wednesday Term Review
+
+Polymorphism
+
+Virtual (in Parent Base Class)    virtual MyMethod() {  // code }
+Override (in Child Derived class)  override MyMethod() { // other code }    OPTIONAL OVERRIDE
+
+
+
+Abstract (in Parent Base Class)      abstract MyMethod();
+Override (in Child Derived Class)    override MyMethod(){  // some code }     MANDATORY OVERRIDE
+
+
+Override : Same method name but different code body
+Overload 
+	MyMethod(){}
+	MyMethod(int x){}
+	MyMethod(string y){}
+	MyMethod(int x, string y){}
+
+
+	call   MyMethod(10);  ==>  choose second option!
+	call   MyMethod(20,"hi") ==> choose fourth option!
+
+Constructor
+	Class MyClass{
+		public int MyProperty {get;set;}
+
+		public MyClass(int myproperty){
+			this.MyProperty=myproperty;
+		}
+	}
+
+
+	now we can create a new object with       var c = new MyClass(10);     Instantiation
+
+Default constructor : present even if we don't code it!
+
+	Class MyClass{
+
+	}
+
+	same as
+
+	Class MyClass{
+
+		public MyClass(){}
+
+	}
+
+Finally, when we add ANY CONSTRUCTOR the default one disappears!!!
+
+string MyMethod(int x, string y, bool z=true, out int a);
+
+	This method will return string and int
+
+	string MyMethod(int x, string y, bool z = true, out int a){
+		a = 101;
+		return "some string";
+	}
+
+call it with MyMethod(y:"hi",z:false,x:200,out int a);
+
+Method : pass in an integer/bool/char  (simple types  "PRIMITIVES") ==> use 'ref' keyword so that inside method the 'primitive' is treated like a global variable.  Any changes are also reflected outside the method, not just inside it
+
+	int x = 1000;
+	MyMethod(ref int x);
+
+	void MyMethod(ref int x){
+		x++;
+	}
+
+Method : pass object in
+
+	void MyMethod(Dog d){
+		d.name="Fred"
+		d.age++;
+	}
+
+
+	class Dog{
+		string name{get;set;}
+		int age{get;set;}
+	}
+
+	Main ==> var d = new Dog();
+	         MyMethod(d);  ==> passing dog 'd' into this method where give it new name and make 1 year older
+
+
+Class MyClass{
+	
+	string x;
+	static string y;
+
+	MyMethod(){}
+	static int MyMethod2(){ return 500; }
+
+}
+
+	static ==>     MyClass.y  or MyClass.MyMethod2()
+
+	instance member ==>    var m = new MyClass();
+	                       m.x  
+	                       m.MyMethod();
+
+
+
+
+
+## Testing
+
+What is testing?
+
+	With testing we can validate
+
+		For a given input that the output is as expected.
+		Check quantity, type, even if an exception (error) gets `thrown` at right point.
+
+	We cannot fully eliminate EVERY BUG!
+
+	But, over time, we can accumulate tests to prove more and more accurately that our code works.
+
+	We can also prove, contractually, that our code meets our side of the `bargaining table` ie we have built what the customer requires ==> testing can actually prove this, with documentation.
+
+
+DevOps ==> Code ==> Tested ==> Implemented on a production server : PIPELINE (automate as much as possible)
+
+	==> Testing today has become an INTEGRAL PART OF THE DEVELOPER'S LIFE-CYCLE for BUILDING MODERN CODE.
+
+			Old days ==> DEV ==> give work to TESTER
+
+			Today ==> Write tests FIRST (TDD TEST DRIVEN DEVELOPMENT) 
+				  ==> Pass Tests
+				  ==> Push to production
+
+				  BDD (Behaviour Driven Development)  : tests written in human-readable English and 
+				  			translated into code for us (Gherkin syntax)
+
+
+Visual Studio
+
+	NUGET ==> ADD 3RD PARTY PACKAGES 
+
+		NUNIT
+		XUNIT
+
+	MSTEST is built in to Visual Studio
+
+
+Practicalities
+
+	Give meaningful names to Class and Methods in testing module
+
+	Code 		
+
+			// arrange  : initialise 
+
+			// act : run code
+
+			// assert : test if pass/fail
+
+
+	Nuget : install NUNIT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
