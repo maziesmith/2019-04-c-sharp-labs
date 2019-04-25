@@ -3429,22 +3429,316 @@ namespace lab_43_entity
         }
     }
 }
-
-
 ```
 
 
+Thursday morning
+
+### Continuation of Entity 
+
+### Summary of actions so far
+
+	1. Add Entity to project
+
+	2. Query Northwind
+
+	3. Updated Existing Record
+
+	4. Inserted New Record
+
+	5. Deleted Record
+
+
+### Summary Of Entity : 4 CRUD Operations (Create, Read, Update, Delete)
+
+```cs
+
+            // encapsulates database for easy cleanup afterwards
+            using(var db = new NorthwindEntities())
+            {
+                // standard LINQ query
+                customerList =
+                    (from c in db.Customers
+                     select c).ToList<Customer>();
+
+                foreach(Customer c in customerList)
+                {
+                    Console.WriteLine($"ID : {c.CustomerID}, " +
+                        $"Name : {c.ContactName}, City : {c.City}");
+                }
+
+                // select one customer and update
+                customer = db.Customers.Where(cust => cust.CustomerID == "FRANK").FirstOrDefault();
+                customer.City = "BERLIN";
+                db.SaveChanges();
+
+            }
+
+            // check if the update has worked : query database from scratch again
+            using (var db = new NorthwindEntities())
+            {
+                foreach (Customer c in db.Customers)
+                {
+                    Console.WriteLine($"ID : {c.CustomerID}, " +
+                        $"Name : {c.ContactName}, City : {c.City}");
+                }
+
+                // LINQ LAMBDA QUERY
+                customer = db.Customers.Where(cust => cust.CustomerID == "FRANK").FirstOrDefault();
+                Console.WriteLine($"{customer.CustomerID}, {customer.ContactName},{customer.City}");
+
+                // LINQ STANDARD
+                customer =
+                    (from cust in db.Customers
+                     where cust.CustomerID == "FRANK"
+                     select cust).FirstOrDefault();
+                Console.WriteLine($"{customer.CustomerID}, {customer.ContactName},{customer.City}");
+            }
+
+            // insert new
+            using (var db = new NorthwindEntities())
+            {
+                newCustomer = new Customer(){
+                    CustomerID="Phil6",
+                    ContactName ="Bob",
+                    CompanyName="SpartaGlobal",
+                    City="London"
+                };
+                db.Customers.Add(newCustomer);
+                db.SaveChanges();
+            }
+
+            // query 
+            using (var db = new NorthwindEntities())
+            {
+                customer = db.Customers.Where(cust => 
+                    cust.CustomerID == "Phil6").FirstOrDefault();
+                Console.WriteLine($"Creating new record : {customer.CustomerID}, " +
+                    $"{customer.ContactName},{customer.City}");
+                
+            }
+
+            // delete this new record
+            using (var db = new NorthwindEntities())
+            {
+                // select customer
+                customer = db.Customers.Where(cust =>
+                    cust.CustomerID == "Phil6").FirstOrDefault();
+                // delete customer
+                db.Customers.Remove(customer);  // deleting local copy of this customer
+                Console.WriteLine("deleting Phil6");
+                db.SaveChanges();               // commiting deletion to the database
+            }
+
+            // query 
+            using (var db = new NorthwindEntities())
+            {
+                customer = db.Customers.Where(cust =>
+                    cust.CustomerID == "Phil6").FirstOrDefault();
+                if (customer!=null)
+                {
+                    Console.WriteLine($"{customer.CustomerID}, " +
+                        $"{customer.ContactName},{customer.City}");
+                }
+                else
+                {
+                    Console.WriteLine($"Customer Phil6 does not exist");
+                }
+
+
+            }
+```
+
+## File Operations
+
+We have looked at database operations : just basic 4 'CRUD' Create Read Update Delete operations
+
+	1. Raw SQL
+
+	2. Entity Framework
+
+In order to build a game you might also want the ability to save, for example, a person's name permanently or even their score or level in the game.  A database is `overkill` for trivial data items - perhaps a text file will be better?  Let's investigate simple file read/write operations.
+
+```cs
+using System.IO;
+```
+
+## Files : Summary So Far
+
+File.ReadAllText ==> string
+File.WriteAllText ==> string
+File.AppendAllText ==> string
+
+File.ReadAllLines ==> array
+
+	Search for one term in array!  Now search a text file for 1 line match
+
+File.WriteAllLines ==> array
+File.Copy
+File.Delete
+if(File.Exists)
+File.GetCreationTime
+File.GetLastWriteTime
+
+
+
+```CS
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace lab_45_file_operations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // create new file from scratch
+            File.WriteAllText("file.txt", "some data");
+            
+
+            // Read 1 line of text as a string
+            Console.WriteLine("\n\nRead raw data");
+            string data = File.ReadAllText("file.txt");
+            Console.WriteLine(data);
+
+            // Write data
+            Console.WriteLine("\n\nwriting new text");
+            File.WriteAllText("file.txt", "here is some new data",Encoding.UTF8);
+
+            Console.WriteLine("\n\nreading text back again");
+            data = File.ReadAllText("file.txt");
+            Console.WriteLine(data);
+
+            // append : adds at end
+            Console.WriteLine("\n\nAppending Text");
+            File.AppendAllText("file.txt", "\nand here is some more data 2 " + DateTime.Now.ToString());
+            File.AppendAllText("file.txt", "\nand here is some more data 3 " + DateTime.Now.ToString());
+            File.AppendAllText("file.txt", "\nand here is some more data 4 " + DateTime.Now.ToString());
+            File.AppendAllText("file.txt", "\nand here is some more data 5 " + DateTime.Now.ToString());
+            File.AppendAllText("file.txt", "\nand here is some more data 6 " + DateTime.Now.ToString());
+            File.AppendAllText("file.txt", "\nsearchterm22");
+            data = File.ReadAllText("file.txt");
+            Console.WriteLine(data);
+
+            // data logging : used all the time - add a DateTime.Now
+            Console.WriteLine("\n\nLogging With DateTime Stamp");
+            File.AppendAllText("file.txt", Environment.NewLine + DateTime.Now);
+            data = File.ReadAllText("file.txt");
+            Console.WriteLine(data);
 
 
 
 
+            // reading multiple lines to an array
+            Console.WriteLine("\n\nSearching text file for a term");
+            string[] dataArray = File.ReadAllLines("file.txt"); 
+            foreach(string item in dataArray){
+                if (item == "searchterm22")
+                {
+                    Console.WriteLine("Bingo ! searchterm22 has been found!!!" );
+                }
+            }
+            for(int i = 0; i < dataArray.Length; i++)
+            {
+                if (dataArray[i] == "searchterm22")
+                {
+                    Console.WriteLine($"Bingo!  searchterm22 found at line {i}");
+                }
+            }
 
 
+            // File.Copy   (true means yes overwrite 
+            // if exists already)
+            File.Copy("file.txt", "filecopy.txt", true);
+
+            File.Delete("file.txt");
+            File.Delete("filecopynewname.txt");
+
+            if (!File.Exists("filecopynewname.txt")){
+                File.Move("filecopy.txt", "filecopynewname.txt");
+            }
+
+            Console.WriteLine(File.GetCreationTime("filecopy.txt"));
+            Console.WriteLine(File.GetLastWriteTime("filecopy.txt"));
 
 
+            // folders
+            // create folder
+            Directory.CreateDirectory("Parent");
+            Directory.CreateDirectory("Parent\\Child1");
+            Directory.CreateDirectory("Parent\\Child2");
+            Directory.CreateDirectory("Parent\\Child3");
+            File.WriteAllText("Parent//Child3//file.txt", "hello");
+            File.WriteAllText($"Parent/Child3/file2.txt", "hello");
+            // delete one
+            Directory.Delete("Parent/Child2", true);
+            // create in C:\ drive
+            Directory.CreateDirectory("/TestFolder");
+            
+            // create in MyDocuments
+            Directory.CreateDirectory(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
+                + "/TestFolder");
+
+            // list all files in folder and see if one file exists!!!
+            /* lab : 
+             *      create folder in My Documents
+             *      create 3 text files 
+             *      create an array called FileList
+             *      put the names of the text files into this array
+             *      check if "BobsFile.txt" is one of your files!
+             *      return true if it is
+             * 
+            */
+                
+
+        }
+    }
+}
+
+```
+... to complete in the morning!
 
 
+## Collections
 
+To store multiple items we have
+
+	Arrays 					Fixed size 		Incredibly Fast!
+											Each 'pigeon hole' has a unique memory address so we can read/write data instantly to that single memory location
+
+	Collections 			Variable size   Niche roles depending upon
+											your needs.  Relatively slow.
+
+	With collections the two most useful are :
+
+		1. Lists because they have an index just same as arrays
+
+			First item is myList[0] etc
+			Second item is myList[1] etc
+
+		2. Dictionary
+
+					index 	data
+
+					10      "some"
+					20      "data"
+					30		"stored"
+					40		"here"
+
+				Index has to be UNIQUE
+
+				Write dictionary as
+
+				var d = new Dictionary<TKey,Tvalue>();  
+							TKey, TValue can be ANY VALID C# TYPE
+
+				var d = new Dictionary<int,string>();
 
 
 

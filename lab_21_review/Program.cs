@@ -8,6 +8,9 @@ namespace lab_21_review
 {
     class Program
     {
+
+        // main
+
         static void Main(string[] args)
         {
 
@@ -94,6 +97,53 @@ namespace lab_21_review
 
 
 
+
+
+            Method01(); // no input, no output
+            Method02(100);
+            Method03(5);  // not using 25 here
+            var outputNumber = Method03(5);  // 25
+            var outputNumber2 = Method04(5, out int number2); // 25
+            // number2 will hold 125
+
+            Console.Write(". . . . . \n\n");
+            Console.Write(".....\n\n");
+            Console.WriteLine("hi\tthere\thow\tare\tyou\t\n\n");
+
+            int mynumber = 100;
+            Changex(mynumber);
+            Console.WriteLine(mynumber);
+
+            ChangePermanentlyx(ref mynumber);
+            Console.WriteLine(mynumber);
+        }
+
+
+        // other methods here
+        static void Method01() { }
+
+        static void Method02(int x) {        }
+
+        static int Method03(int x) {
+            return x * x;
+        }
+        static int Method04(int x, out int a)
+        {
+            a = x * x * x;
+            return x * x;
+        }
+
+        static void Changex(int x)
+        {
+            x++; // add one
+            Console.WriteLine("inside method x = " + x);
+        }
+
+
+        static void ChangePermanentlyx(ref int x)
+        {
+            x++; // add one
+            Console.WriteLine("inside method x = " + x);
         }
     }
 }
