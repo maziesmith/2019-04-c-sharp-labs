@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using lab_42_testme;
+using lab_102_homework;
 
 namespace Tests
 {
@@ -37,6 +38,20 @@ namespace Tests
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(1,2,3,4,5,-1)]
+        public void Lab102_Collections_Test01(int a, int b, int c, int d, int e, int expected)
+        {
+            // arrange
+
+            // act 
+            var actual = Collections.UseCollections(a, b, c, d, e);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
 
     }
 }
