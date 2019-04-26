@@ -28,6 +28,46 @@ namespace lab_43_entity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        static List<Customer> customers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static Customer customerToUpdate;
         static Customer findOneCustomer;
 
@@ -181,6 +221,45 @@ namespace lab_43_entity
 
 
             }
+
+
+
+
+
+
+
+
+           
+            using (var db = new NorthwindEntities())
+            {
+                customers = db.Customers.ToList();
+
+                foreach(var customer in customers)
+                {
+                    // ListBox01.Items.Add(customer.ContactName);
+                }
+
+                // ListBox02.ItemsSource = db.Customers.ToList();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

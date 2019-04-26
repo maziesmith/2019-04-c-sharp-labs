@@ -39,7 +39,7 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(1,2,3,4,5,-1)]
+        [TestCase(1,2,3,4,5,-11)]
         public void Lab102_Collections_Test01(int a, int b, int c, int d, int e, int expected)
         {
             // arrange

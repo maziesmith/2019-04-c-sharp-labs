@@ -3741,6 +3741,171 @@ To store multiple items we have
 				var d = new Dictionary<int,string>();
 
 
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_46_dictionary
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            var d = new Dictionary<int, string>();
+            d.Add(10, "hi");
+            d.Add(20, "there");
+            d.Add(30, "amazing");
+            d.Add(40, "C# coders");
+
+            // forbidden
+            //d.Add(40, "some more data");
+            
+            // iterate : loop over items
+            foreach(var key in d.Keys)
+            {
+                Console.WriteLine($"Index is {key} and value is {d[key]}");
+            }
+
+
+            
+        }
+    }
+}
+
+
+```
+
+
+
+
+
+
+
+## Friday : going over a few topics which we have not yet covered
+
+## Naming Conventions
+
+Javascript on the web uses a very simple naming convention
+
+	camelCase
+
+		firstLetterIsLowerCaseAndEveryOtherWordHasCapitalLetter
+
+		doThis();
+
+Websites tend to use hyphens to separate words
+
+	my-website-here.com
+
+	mydomain.com/folder1/folder2/file.htm
+
+	all lower case, multiple-words-like-this.html
+
+	(kebab case)
+
+SQL
+	my_data_field_01    snake case with underscore
+
+
+C#
+
+	private variables camelCaseLikeThis
+
+		_private   also  (underscore prefix)
+
+	Public variables : PascalCase - first letter capitalised
+
+		DoThis()
+		CustomerName   
+
+	Class should be a Noun
+
+		class Car
+		class Dog
+
+	Method should be a verb
+
+		Accelerate()
+		Grow()
+
+	const int x = 1000;
+
+		const int THIS_FIELD_DOES_NOT_CHANGE = 1000;
+
+
+	Environment.NewLine  in place of \n
+
+	Path.DirectorySeparatorChar   in place of   //  \\   $" ... / .... "
+
+	AsyncDoThis();   any method which is going to take a long time to finish
+
+
+
+
+## Break And Continue In Loops
+
+continue will just finish this loop and begin next loop
+
+break will finish all loops and move on to the next coding block
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_47_break_continue
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 5 || i == 6)
+                {
+                    continue;
+                }
+
+                
+                Console.WriteLine(i);
+            }
+
+            int counter = 0;
+            while (counter < 10)
+            {
+                if (counter == 8)
+                {
+                    break;
+                }
+                Console.WriteLine(counter);
+                counter++;
+            }
+        }
+    }
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
