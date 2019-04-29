@@ -1,4 +1,4 @@
-﻿# 2019-04-c-sharp-labs
+# 2019-04-c-sharp-labs
 
 This repository holds teaching notes and labs for C#
 
@@ -3893,6 +3893,395 @@ namespace lab_47_break_continue
 
 
 ```
+
+## Return
+
+Another way of breaking out of a method is to use the 'return' keyword
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_48_return
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string output = DoThis(10);
+            Console.WriteLine(output);
+        }
+
+        static string DoThis(int x)
+        {
+            if (x < 10) return "Your number is low";
+            if (x < 20) return "Your number is medium";
+            if (x < 30) return "Your number is high";
+            return "Your number is off the charts!";
+        }
+    }
+}
+
+
+```
+
+
+## Exiting A Loop Or Method By Throwing An Exception!
+
+Another way of exiting a loop or method is by determining that the program should 'throw' or declare an error (exception)
+
+```cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_49_throw
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int counter = 0;
+
+            while (true)
+            {
+                counter++;
+                if (counter > 100000)
+                {
+                    throw new Exception("Number is too big");
+                }
+            }
+        }
+    }
+}
+
+```
+
+## Goto
+
+Never use!!!
+
+```cs
+
+goto a;
+
+// some code skipped over
+
+a:
+
+// program continues here
+
+```
+
+
+## Try..Catch..Finally
+
+When we write a computer program we have two types of fault
+
+	1) Error
+
+			If you get a bank loan and they overcharge your interest, this is an error in the banking code!!!  Computer will work fine!!!
+
+	2) Exception
+
+			Something has happened which crashes the computer
+
+				StackOverflowException : numbers too big / out of memory
+				DivideByZeroException
+				FileNotFound
+
+
+### Handled vs Unhandled Exception
+
+	With exception we don't want user to get a nasty 'program has crashed' message
+
+	Handled 		we detect exception and handle this 'gracefully'
+
+	Unhandled 		computer crashes; user sees nasty message
+
+
+### try.catch.finally
+
+```
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_50_exceptions
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try {
+                // something can go wrong here
+            }
+            catch(Exception e) {
+                // process the 'exception' ie 'handle it'
+                Console.WriteLine(e);
+                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
+            }
+            finally {
+                // always do this code regardless if exception or not
+            }
+
+            // divide by zero
+            int x = 10, y = 0;
+
+
+
+            try {
+                int z = x / y;
+            }
+
+            // catch divide by zero exception only
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine("Error - division by zero");
+                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
+                System.IO.File.WriteAllText("errorlog.txt", "major malfunction" + DateTime.Now);
+            }
+            // catch every exception of all types
+            catch (Exception e) {
+                Console.WriteLine("OOPS! SNAP! Something went wrong!");
+                Console.WriteLine(e.Data);
+                Console.WriteLine(e.Message);
+            }
+            finally {
+                Console.WriteLine("but program is still working");
+            }
+
+            Console.WriteLine("Program still works here");
+        }
+    }
+}
+
+
+```
+
+
+
+### Throwing An Exception
+
+We can generate our own exceptions 
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_51_throw
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try {
+                var output = TryThis();
+                if (output == -1){
+                    throw new Exception("Hey something really badly went wrong");
+                }
+            }
+            catch (Exception e){ 
+                Console.WriteLine(e.Message);
+            }
+            finally {
+                Console.WriteLine("But program still works!");
+            }
+        }
+
+        static int TryThis()
+        {
+            return -1;
+        }
+    }
+}
+
+
+```
+
+
+## WPF Grid
+
+Let's build a 3x3 WPF grid to show you how to lay out a game!
+
+```cs
+<Window x:Class="lab_52_wpf_grid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_52_wpf_grid"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--   -->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Button01" Background="#b3caef" 
+                Grid.Row="0" Grid.Column="0" 
+                Click="Button01_Click" />
+        <ListBox x:Name="ListBox01" Grid.Row="3" Grid.Column="0" 
+                 Background="#c9cfd8" />
+        <ListBox x:Name="ListBox02" Grid.Row="3" Grid.Column="1" 
+                 Background="#c9cfd8" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="ID - {0} - Name {1} - City - {2}">
+                                <Binding Path="CustomerID " />
+                                <Binding Path="ContactName" />
+                                <Binding Path="City" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
+
+
+```
+
+
+## Reference Type And Value Type
+
+In a computer we have TWO DIFFERENT AREAS OF MEMORY
+
+	STACK
+
+	HEAP
+
+We have two different types of way to store data
+
+	VALUE TYPES (LIVE ON THE 'STACK')
+
+	REFERENCE TYPES (LIVE ON THE 'HEAP')
+
+
+Stack memory
+
+	We have already discussed STACK a litle bit
+
+
+
+          ...Method03(){  int z = 500; }
+    ...Method02()
+	Method01(){  // int a=10, int b=20, bool c=false }
+	Main() Method==========================
+
+
+	When Method03 finishes it will peel off the top of the stack
+
+
+    ...Method02()
+	Method01(){  // int a=10, int b=20, bool c=false }
+	Main() Method==========================
+
+	Any variables (with data) are created and destroyed together
+
+	STACK : RUNNING PROGRAMS & FAST DATA TYPES
+
+		VALUE TYPES = PRIMITIVE TYPES : DATA STORED WITH VARIABLE
+
+		int
+		char
+		bool
+		float
+		double
+		byte
+		short
+		long
+
+	Copy one of these variables : create brand new unrelated instance
+
+		x=10;
+		y=x;    y,x unrelated.
+
+
+	Future learning : 'structs' belong here also!
+
+
+## Reference Types
+
+Value types are SMALL
+
+For larger data items eg an array it may hold a million items!!
+
+Can't put a million items onto a very fast 'STACK MEMORY'
+
+Create HEAP MEMORY
+
+	Hold larger items
+
+		ARRAYS, QUEUE, LIST, DICTIONARY ETC
+
+		STRING is an ARRAY of CHARACTERS!!!     "hello world"
+
+
+		shortcut to MyArray ===============> MyArray[10,11,12,13.....,1000000]
+		int x=12;
+
+		FAST STACK 							SLOWER HEAP 	
+
+
+		Because STACK holds SHORTCUT, if we create a copy then we don't affect the
+			source item held in HEAP MEMORY
+
+
+			shortcut01 to MyArray ===============> 
+			shortcut02 to MyArray ===============> MyArray[10,11,12,13.....,1000000]
+			shortcut03 to MyArray ===============> 
+
+
+### Code Example : Copy 1) Value Type 2) Reference Type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
