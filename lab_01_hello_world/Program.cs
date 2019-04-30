@@ -10,6 +10,9 @@ namespace lab_01_hello_world
     {
         static void Main(string[] args)
         {
+
+            #region maincode
+
             Console.WriteLine("First application");
 
             System.Threading.Thread.Sleep(5000);
@@ -31,6 +34,7 @@ namespace lab_01_hello_world
             }
 
 
+            #endregion
 
             Console.ReadLine();
 

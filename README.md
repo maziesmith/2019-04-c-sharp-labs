@@ -4305,6 +4305,328 @@ namespace lab_53_reference_value_type
 
 ```
 
+Snap Labs
+
+Build an array, queue, list, stack and dictionary.  Pass in 3 numbers to the array.  Pass the numbers in turn to the queue, list, stack and dictionary, and whenever you transfer a number also multiply it by 2.  
+
+Return the total.
+
+dictionary
+
+		KEY    			VALUE
+
+		1  				X
+		2				Y
+		3				Y
+
+
+FOREACH( var key in myDictionary.keys){
+	//	myDictionary[1]  ==> yield X
+	myDictionary[key] ==> add to a total
+}
+
+PRINT TOTAL
+
+
+
+
+## Monday - Week 4 - Revision
+
+try{}
+catch(DivisionByZeroException e){}  specific
+catch(Exception e){}   // general, all exceptions
+finally{}
+try{
+	throw new Exception("something went wrong");
+}
+
+try{
+	try{}
+	catch{  throw; }   // puts exception back to parent
+}
+catch{
+	
+}
+
+value type      FAST STACK MEMORY  "PRIMITIVES"
+					int,bool,char,byte
+
+reference type  HEAP MEMORY        LARGER ITEMS
+					array, string,class, collection
+
+int x=10
+switch(x){
+	case 1:
+		break;
+	case 10: 
+		break;
+	default:
+		break;
+}
+
+overload   : different parameters
+	DoThis()
+	DoThis(int x)
+
+						DoThis()
+						DoThis(10)
+
+override
+
+	Polymorphism
+
+				PARENT  (BASE)        virtual  HaveAParty(){   // parent party }
+
+				  CHILD1  (DERIVED)   override HaveAParty(){ // swim party } 
+				  CHILD2                                     // tramopoline
+				  CHILD3                                     // out with friends
+
+
+				PARENT METHOD     virtual DoThis(){}
+
+				CHILD METHOD      override DoThis(){}
+								  new      DoThis(){}
+
+
+///  
+
+WPF Image
+
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="/lab_52a_WPF;component/Images/snakes-and-ladders.jpg"  />
+                <!--   <ImageBrush ImageSource="pack://application:,,,/Images//>    -->
+
+
+
+StackPanel.SendToBack()
+          .BringToFront()
+          .Hide()
+          .Show()
+
+
+Visual Basic : came first : no longer official supported
+Visual C# : current
+
+
+Random Number 1 to 6
+Download from internet six different dice pictures
+Create 6 buttons one one grid space
+switch(diceRoll)
+	case 1:
+		pic1.show();
+		pic2.hide();
+		pic3.hide();
+
+
+
+
+
+## Tuesday - Week 4 - Revision
+
+ #region
+
+# arrays
+
+```cs
+            int[] array1D = new int[] { 10, 20, 30 }; // literal
+            var array1Da = new int[10];
+            Console.WriteLine(array1Da[0]);  // first
+            Console.WriteLine(array1Da[array1Da.Length-1]);  // last
+
+            int[,] array2D = new int[5, 5];  // 5x5 grid
+            // 2nd row and 3rd column
+            // 2nd row has index 1, 3rd column has index 2
+            Console.WriteLine(array2D[1,2]);
+
+            int[,,] array3D = new int[5, 5, 5]; // cube
+            // row3 col4 height 5
+            Console.WriteLine(array3D[2,3,4]);
+
+```
+
+### static vs instance variables
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_55_revision
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // create object which is called 'instance'
+            var d1 = new Dog();
+            d1.Bark();
+            d1.Age = 5;
+            // can't reach STATIC using d1 - use Dog!!!
+            Console.WriteLine(Dog.numLegs);  //4 
+            // dogfactory
+            List<Dog> doglist = new List<Dog>();
+            for (int i = 0; i < 100000; i++)
+            {
+                doglist.Add(new Dog());
+                // or
+                var d = new Dog();
+                d.Age = -4;
+                doglist.Add(d);
+            }
+        }
+    }
+
+
+    // class is a blueprint for creating dogs (objects which we call dog)
+    class Dog
+    {
+        // field
+        public int _private;
+        // attached to DOG CLASS !!!  STATIC !!!!
+        // access via Dog.numLegs
+        public static readonly int numLegs = 4;
+        // property
+        public int PublicSomething { get; set; }
+        // property with validation code
+        public int Age {
+            get {
+                return Age;
+            }
+            set {
+                if (Age > 0)
+                {
+                    this.Age = value;
+                }
+            }
+        } // field // instance field
+        public void Bark() { }  // instance method
+    }
+}
+
+```
+
+Summary
+	
+	Class => Instance with new() keyword
+		var d = new Dog();
+
+	but static variables are accessed 
+		Class.myStaticField
+
+
+# Events
+	
+	Old computing ==> script ==> events normally limited to people typing in text
+
+	OOP => screen objects ==> button can 'listen' for events
+
+			click
+			dblclick
+			hover
+			keypress
+			keydown
+			keyup
+
+	Typically an event look like this : screen events
+
+		public static void Button01_Click(object Sender, eventArgs e){
+
+
+		}
+
+			object Sender ==> button
+			eventArgs object is array of strings which can be sent with the event to provide information
+
+
+
+```cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_56_event
+{
+    class Program
+    {
+        // delegate : says that our event can only trigger methods which
+        // have a set pattern
+        delegate void MyDelegate();   // pattern : method must be void ... ()  
+        // event now uses this delegate
+        static event MyDelegate myEvent;   // create event; when it triggers any methods must match this pattern
+
+
+        static void Main(string[] args)
+        {
+            // goal : replace manually calling 3 methods with 1 event which triggers
+            // these methods 
+            MyMethod01();
+            MyMethod02();
+            MyMethod03();
+
+            // attach methods to our event
+            myEvent += MyMethod01;
+            myEvent += MyMethod02;
+            myEvent += MyMethod03;
+            myEvent += MyMethod01;
+            // call the event
+            myEvent();
+        }
+
+
+        static void MyMethod01()
+        {
+            Console.WriteLine("Doing Something 01");
+        }
+        static void MyMethod02()
+        {
+            Console.WriteLine("Doing Something 02 ");
+        }
+        static void MyMethod03()
+        {
+            Console.WriteLine("Doing Something 03");
+        }
+    }
+}
+
+```
+
+Events : Summary
+
+	1) Delegate ==> pattern for methods 
+
+			void MyDelegate();
+			void MyDelegate(int x);
+			string MyDelegate(int x);
+
+	2) event MyDelegate MyEvent;          
+
+	3) add methods  :    MyEvent += Method01; etc
+
+	4) call event   :     MyEvent();
+
+
+
+
+
+
+
+
+
+	 if(counter>36)
+	 	 counter = 36 + (36-counter)
+
+	 	 39    ==> 36 + (-3) = 33
+
+
+
+
+
 
 
 

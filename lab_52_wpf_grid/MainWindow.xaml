@@ -5,40 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab_52_wpf_grid"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto">
+        Title="MainWindow" Height="Auto" Width="Auto" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <!--   -->
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="Button01" Background="#b3caef" 
-                Grid.Row="0" Grid.Column="0" 
-                Click="Button01_Click" />
-        <ListBox x:Name="ListBox01" Grid.Row="3" Grid.Column="0" 
-                 Background="#c9cfd8" />
-        <ListBox x:Name="ListBox02" Grid.Row="3" Grid.Column="1" 
-                 Background="#c9cfd8" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="ID - {0} - Name {1} - City - {2}">
-                                <Binding Path="CustomerID " />
-                                <Binding Path="ContactName" />
-                                <Binding Path="City" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </Window>
