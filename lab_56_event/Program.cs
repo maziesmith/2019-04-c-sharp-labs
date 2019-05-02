@@ -24,7 +24,7 @@ namespace lab_56_event
             MyMethod03();
 
             // attach methods to our event
-            myEvent += MyMethod01;
+            myEvent += MyMethod01;  
             myEvent += MyMethod02;
             myEvent += MyMethod03;
             myEvent += MyMethod01;

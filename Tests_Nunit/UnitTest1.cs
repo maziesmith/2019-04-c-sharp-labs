@@ -1,6 +1,11 @@
 using NUnit.Framework;
 using lab_42_testme;
 using lab_102_homework;
+using lab_103_hw_classes;
+using lab_104_hw_Stopwatch;
+using lab_105_hw_Polymorphism;
+
+
 
 namespace Tests
 {
@@ -51,6 +56,25 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(-1,-1,-1,-1)]
+        public void Lab_103_hw_Classes_Test(int initialAge, int initialHeight,
+            int finalAge, int FinalHeight)
+        {
+            // arrange
+            var expected = -1;
+            var instance = new Dog();
+
+            // assert
+            var actual = instance.Grow(out int finalheight);
+
+            // act
+            Assert.AreEqual(expected, actual);  // age
+            Assert.AreEqual(expected, actual);  // height
+        }
+
+        // repeat this model for labs 104 and 105, passing in the right parameters 
+        // and testing the right data is output.  
+        // Create at least 3 tests per lab
 
 
     }
