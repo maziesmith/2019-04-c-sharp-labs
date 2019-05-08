@@ -10,6 +10,9 @@ namespace lab_103_hw_classes
     {
         static void Main(string[] args)
         {
+            if (null == null) {
+                Console.WriteLine("null equals null");
+            }
         }
     }
 
@@ -23,5 +26,11 @@ namespace lab_103_hw_classes
             height = -1;
             return -1;
         }
+
+
+
+
+
+
     }
 }

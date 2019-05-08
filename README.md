@@ -1110,6 +1110,26 @@ Meetings : invitees, agenda, minutes, actions
 
 # C# #
 
+# Programming
+
+CPU : instruction set : raw binary commands which make cpu operate
+
+Machine code : raw instructions sent to CPU
+
+Assembly Language : low level
+
+CIL half-way-house 
+
+High level languages : C#, C++, Java, Javascript, Python 
+
+	C,C++ very fast as direct memory access etc
+
+
+
+
+
+
+
 Structure of an application
 
 .sln
@@ -4328,6 +4348,582 @@ FOREACH( var key in myDictionary.keys){
 PRINT TOTAL
 
 
+# Git and Github
+
+Let's look at Git and GitHub a little more seriously
+
+Dev structure online
+
+	Repo = Repository = your global set of code pushes ie all branches combined
+
+	Master Branch : final production code
+
+		Locked!  Cannot 'push' to this directly
+
+		Dev : code in progress : sum of all developer accumulated, approved code 'pushes'
+
+			Push ==> from local to an internet held storage 'branch' or 'repository'
+
+			Feature : New features introduced into code 
+
+			BugFix : fixing faults
+
+
+When developer finished work, push to 'feature' branch or 'bugfix' branch
+
+	Larger projects : both 'master' and 'dev' branches locked out.
+
+	Dev ==> feature => push when done to internet
+
+		Collaborator : another developer or manager etc
+
+		Developer creates a 'pull request' and the collaborator must approve this
+			and 'pull' the work of the developer up from the feature branch and into
+			the working 'dev' combined branch.
+
+		At end of project or sprint, when the combined 'dev' work has been approved,
+			it too can be 'pulled' into the master branch (production-ready code)
+
+
+
+### Quick summary of commands : git in 'local' realm on your PC!
+
+git -version    installed
+
+git init 		create a new project locally, then push it to the internet
+
+					((prefer to create online first))
+
+git status 		shows any changed files ready to commit
+
+git add file.txt   track this file so we can commit changes (and roll back if necessary)
+
+git add .       track all files
+
+git reset file.txt   un-track this file so changes are not recorded	
+
+.gitignore 		Don't track files/folders at all in here
+
+git clone   	https://github.com/philanderson888/deletemetest01
+
+Adding your text editor to your PATH
+	
+	PATH is a SET OF FOLDERS checked automatically when there is no ABSOLUTE PATH
+
+		ABSOLUTE PATH BEGINS  C:\....    OR  / on Linux
+
+		RELATIVE PATH myfile.txt 
+
+	Open 'Environment Variables'
+
+		Add path to Chrome or Sublime Text 3 into your PATH (system) 
+
+	Close Powershell and reopen
+
+
+# Push To Internet
+
+We now have a local repo.
+
+git remote
+
+git push
+
+git pull
+
+git config
+
+
+# git remote
+
+git remote
+
+git remote -v  show any remote url configured
+
+git remote add origin https://github.com/philanderson888/deletemetest01
+
+then 
+
+git push -u origin master
+
+
+## git pull
+
+use to pull down remote changes
+
+
+## git config
+
+git config --global -l     	lists user account and email
+
+// add details
+
+git config --global user.name philanderson888
+git config --global user.email philanderson888@hotmail.com
+
+
+
+## git branch
+
+```bash
+# list all branches
+git branch
+# create
+git branch dev 
+# start working in that branch
+git checkout dev 
+# combine two commands in one
+git checkout -b dev 
+# work in master
+git checkout master
+```
+
+Let's push up DEV changes
+
+```bash
+git checkout dev
+# make changes
+git add .
+git commit -m "some changes"
+git push
+```
+
+## Lock master so can't push directly
+
+Github.com => settings => branches => add rule
+
+## Pull request from dev to master
+
+Add collaborator
+
+Pull request : add reviewer and wait for response
+
+## Pull down changes from master
+
+```bash
+git checkout master
+git pull
+```
+
+## changes in master : from someone else : use `git merge` to merge master into our dev
+
+Fake this by editing Master
+
+```bash
+git checkout master
+# work from other developers (approved into master)
+git pull # into our master
+git checkout dev
+git merge  # merge master into our local dev also
+```
+
+```bash
+# seb : pushes from dev
+# seb : creates pull reqest
+# luitzen : approve and pull changes into master (online)
+# everyone else : git checkout master & git pull 
+# everyone else : git checkout dev & git merge 
+# now sebastian's changes are now in my master and dev
+# start work again
+```
+
+# git log
+
+# git reset --soft
+
+# git reset --hard
+
+
+# Adding SSH keys to your GitHub account
+
+1) Make changes using SSL or HTTPS or TLS (newer) : Encrypted HTTP traffic
+
+	(default)
+
+2) Make changes using SSH with a KEY stored on your machine
+
+```bash
+# create key
+ssh-keygen -t rsa -b 4096
+# start service
+eval $(ssh-agent -s)
+# add key to my account
+ssh-add ~/.ssh/id_rsa
+# copy key to clipboard
+clip < ~/.ssh/id_rsa.pub
+# log in to GitHub : Settings : Add key, paste in details
+# change to use SSH
+git remote set-url origin git@github.com:philanderson888/deletemetest01.git 
+git checkout dev
+git push origin dev
+```
+
+
+
+# SQL
+
+Structured Query Language
+
+We can run SQL from
+
+	Visual Studio
+
+	or
+
+	SQL Server but this is a big install!
+
+		We can create a 'container' to run SQL server inside it - will do, for interest sake
+
+## Basic commands
+
+```bash
+use Northwind
+
+create databasetestdb
+
+drop database testdb  : completely erase structure and any tables inside 
+
+create database [Dont Create Databases With Spaces In The Name]
+
+create table table01(
+ id int identity not null primary key,
+ name nvarchar(50)
+)
+
+# Data types available#
+int 
+nvarchar(50)  : very common for strings of length up to 50 characters UNICODE 16 bit
+varchar  8 bit characters
+char(5)  fixed length string : same every time
+tinyint  same as byte 0 to 255
+bit 0, 1 or null 
+decimal 
+float 
+date / time / datetime 
+
+```
+
+
+
+### alter
+
+We can alter a table although often best practice is to drop and recreate from scratch with a script
+
+alter table table01 alter column name varchar(10) not null;
+
+
+### insert into
+
+insert into table01 (id,name) values (8,'dave')
+select * from table01
+
+### update
+
+UPDATE TABLE01 SET name='bill' where id=4
+select * from table01
+
+### delete
+
+delete from table01 where id=6
+select * from table01
+
+
+## Types Of SQL command
+
+DML Data Manipulation Language   	SELECT  INSERT  UPDATE  DELETE
+
+DDL Data Definition Language 		CREATE ALTER DROP TRUNCATE
+
+DCL Data Control Language 			GRANT REVOKE (Permissions)
+
+TCL Transaction Control Language 	COMMIT ROLLBACK SAVEPOINT  (multiple transactions)
+
+
+## Best practice
+
+COMMANDS HAVE CAPITALS
+
+names_underscore_separator
+
+
+## RAW DATA : AND STRUCTURE
+
+SP_HELP
+SP_HELP table01
+
+(first command)
+
+
+### Normal Form
+
+1st  single item : single field
+
+	mobile phone    -   07777771234
+
+2nd  fields depend on primary key
+
+3rd  fields have no other inter-relationships with each other
+
+
+### Ways to store data
+
+
+10 minutes : create a database structure for blogging system
+
+Bloggers : create posts
+
+Users : read and comment
+
+Comments 
+
+Posts
+
+
+
+
+
+
+
+
+
+
+## SQL revision session
+
+DML Data Manipulation : Select, Insert, Update, Delete
+
+DDL Data Definition : Create, Drop, Alter, Truncate
+
+DCL Data Control : Permissions Grant, Revoke
+
+TCL Transaction Control : Multiple related transactions : all to succeed or all to fail
+
+		COMMIT, ROLLBACK, SAVEPOINT  (mid-point of transaction)
+
+ALTER
+
+UPDATE table01 SET name='fred' WHERE id=1
+
+INSERT INTO table01 (1,'fred')
+
+INSERT INTO table01 (id,name) VALUES (1,'FRED')
+
+INSERT INTO table01('fred')      if IDENTITY set (ie auto-increment the ID)
+
+CRUD  CREATE         READ       UPDATE      DELETE
+SQL   INSERT INTO    SELECT     UPDATE      DELETE
+
+Normal Form
+1 one item per field
+2 depend on primary key
+3 no inter-relationship between fields
+
+DBMS : DB Management System
+
+	Access, PHPMyAdmin, MySQL, Oracle, SQLite, PostGres	
+
+Flat file
+	.txt
+	.csv
+	.log
+	.dat
+			raw plain text files storing data line by line, in order
+			to get to your data you have to read every line
+
+	CONFIG ==> CONFIGURATION
+
+		RUNTIME ==> ALTERED WITHOUT HAVING TO RECOMPILE YOUR APPLICATION
+
+	.sql    LISTS OF SQL INSTRUCTIONS IN ORDER - 'SEED' DATABASE IS TO PUT DATA INTO IT
+
+JSON
+
+	Big Data is UNSTRUCTURED key/value pairs
+
+	NOSQL is UNSTRUCTURED key/value pairs
+
+
+
+
+## SQL Day 2 : Querying Your Database : Simple and Advanced Query Syntax
+
+```sql
+use northwind
+select * from customers
+/* select all employees in london */
+select * from Employees where city='london'
+/* select title of courtesy from employees  */
+select distinct titleofcourtesy from employees
+/* select all employees with title 'Dr' */
+select * from Employees where titleofcourtesy='Dr.'
+/* select all Products which are discontinued */
+select * from products
+select * from products where Discontinued=1
+
+```
+
+### select top 5
+
+select top 5 * from customers 
+/* last 5  : order by .... descending */
+select top 5 * from customers order by CustomerID desc
+
+
+
+### SELECT .. WHERE .. AND ...
+
+```sql
+/* SELECT products where categoryid=1 and not discontinued */
+select * from products where CategoryID=1 and Discontinued=0
+/* SELECT name,price,cat, discontinued from 
+products where categoryid=1 and not discontinued */
+select ProductName,UnitPrice,CategoryID,Discontinued
+from products where CategoryID=1 and Discontinued=0
+```
+
+### Operators
+
+AND
+
+OR
+
+`<>`   `!=`         NOT EQUAL TO
+
+`>`  `<`
+
+<=  >=
+
+Using products table create a query with these operators
+
+```sql
+/* select productname and price where item is in stock 
+and price > 29.99, ordered by price */
+select productname,unitprice, UnitsInStock from products 
+where UnitPrice > 29.99 
+and UnitsInStock > 0
+order by UnitPrice desc
+```
+
+### distinct
+
+```cs
+/* distinct */
+select distinct country from customers
+select distinct city from customers 
+```
+
+### wildcards
+
+LIKE ... keyword
+
+%   0 or more
+
+_ 	substitute for one single character
+
+[ABC]    contains these letters
+
+^[ABC]   does not contain
+
+abc%     starts with abc
+
+%xyz     ends with xyz
+
+
+### LIKE %...%
+
+LIKE - we can check for partial matches of text eg 'contains this text'
+
+### Starts With 'abc%'
+
+```sql
+/* products starting with Ch */
+select productname from products 
+where productname LIKE 'Ch%'
+select * from products where productname LIKE 'Ch%'
+```
+### using % wildcard and _ single letter wildcard
+
+```sql
+/* customers where region ends a */
+select * from customers where region like '%a'
+/* customers where region contains a    %a%     */
+select * from customers where region like '%a%'
+/* customers where region has 2 characters only, ending a  _a    */
+select * from customers where region like '_a'
+select * from customers where region like 'a_'
+```
+
+### OR query 
+
+### IN query
+
+both do same thing, more efficient 'IN'
+
+```sql
+/* customers where region = WA or SP */
+select * from customers where region='wa' or region='sp'
+select * from customers where region in ('wa','sp')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Monday - Week 4 - Revision
@@ -4626,14 +5222,139 @@ Events : Summary
 
 
 
+### Games Week : Top-Up Tech !!!
+
+Methods
+Overload : same name different parameters
+Override : Virtual in parent, override in child
+Override : same name different code implementation
+	
+		Class BaseParent{
+			virtual DoThis(){  // some code}
+		}
+
+		Class DerivedChild{
+			override DoThis(){  // different code }
+		}
+
+Polymorphism : Different implementations at runtime
+
+Abstract
+	abstract class GreatIdea{
+		abstract void TravelPlans();
+	}
+
+	class RealHoliday:GreatIdea{
+		override void TravelPlans(){  // real code}
+	}
+
+Testing : 3 types
+	MSTest : native Visual Studio
+	NUnit  : **
+	XUnit : latest
+
+		Create our project and have class/method accessible ==> we can test
+
+Polymorphism 
+	BaseParent : virtual DoThis(){}
+	DerivedChild : override DoThis(){}
 
 
+4 Pillars Of Object Oriented Code
+
+	Abstraction   : code is hidden behind (encpsulated) but user can interact with it using
+					PUBLIC PROPERTIES  
+
+		Both encapsulate (hide) key code but also reveal or expose desired 'Properties'
+		Properties ==> {get;set;}  ==> allows public access
+
+			CAR : engine inner workings are encapsulated (hidden)
+			      steering, clutch, accelerator are PUBLIC PROPERTIES ACCESSIBLY BY END USER
 
 
+	Encapsulation  
+
+		hide code which does not need to be revealed to outside world
+
+			CAR ENGINE : deep inner workings hidden from general user
+
+			CODE : private keyword for this
+
+				4 options with keywords are called 'ACCESS MODIFIERS'
+
+				ACCESS MODIFIERS 
+					private 		encapsulates (hides) code from outside
+									access : code ONLY IN THIS CLASS ONLY!!!
+					public 			accessible from any code
+					protected 		access : from code in THIS CLASS AND ALL DERIVED CHILD
+																 CLASSES ALSO
+					internal 		access : from any code inside the compiled .exe or .dll
+									file which is produced for this project ('Assembly')
+
+	Polymorphism : poly = many, morph = type: polymorphism : can have one 'master' instruction but in the child classes, each child (derived) class may have its own implementation
+
+			FAMILY : PARENT : Each child has own idea of how to throw a party!
+
+	Inheritance
+
+		Parent (Base) Class
+
+			Child (Derived) Class
 
 
+Sparkhire : video interview : standardise : objective 
+	
+	pause : INDEFINITELY
+	CLICK
+		30 seconds to READ
+		60 seconds to REPLY
+		no going back!
+	pause INDEFINITELY ..
 
+Tips : 
+	Use mobile phone
+	Use friend
+	Work in pairs in class
+	Be able to articulate simple tech concepts
 
+Tell us about yourself
+Why did you join Sparta?
+Why did you choose tech?
+How do you see yourself in group?
+Talk about successes / problems & give example
+What do other people say about you?
 
+Agile : basics
+Waterfall : all-in-one
+Agile: DELIVER VALUE FOR MONEY (WORKING CODE) IN INCREMENTS (SPRINT)
+Sprint : dev team + product owner (talk to customer) + scrum master (runs 'scrum/sprints' : enabler : servant leader)
+backlog = list of features which we are going to build
+user stories : 'humanise' tech features which we're going to build 'Joe clicks on 'users' , 'new' , enter new user and submit
+sprint backlog = mini-list of features just for this sprint
+SQL : basics
+C# : all core features  : data types, if.. , switch, loops (for, foreach, while, do.while)
+OOP meaning
+4 pillars of OOP
+class
+method
+overload
+override
+virtual
+abstract class
+abstract method
+sealed class : has no child classes (useful for security)
+static keyword : attached to class
+collection
+array (fixed) vs collection(resize)
+list 
+queue : enqueue dequeue
+stack : push pop 
+stack memory (fast) 
+Note : Stack<int> is a place to store integers
+	 : Stack memory is a fast place in our computer where we store running programs
+heap memory (larger)
+value type : int char bool
+reference type : string array list  
+char[] array is same as string
 
 
