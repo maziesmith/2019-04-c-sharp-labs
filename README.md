@@ -4585,6 +4585,9 @@ drop database testdb  : completely erase structure and any tables inside
 
 create database [Dont Create Databases With Spaces In The Name]
 
+	eg [Order Details] in Northwind!!!  must use square brackets
+				as the table name has 2 words
+
 create table table01(
  id int identity not null primary key,
  name nvarchar(50)
@@ -4863,6 +4866,248 @@ both do same thing, more efficient 'IN'
 select * from customers where region='wa' or region='sp'
 select * from customers where region in ('wa','sp')
 ```
+
+### between
+
+```sql
+/* BETWEEN */
+select * from products where unitprice between 10 and 20
+select * from EmployeeTerritories where TerritoryID between 06800 and 09999
+```
+
+### count
+
+```sql
+/* COUNT */
+select count(productName) from products where Discontinued=0
+select count (*) from customers   /* 91 */
+/* remove duplicates with distinct */
+select count (country) from customers   /* 91 */
+select count(distinct country) from customers   /* 21 */
+```
+
+### exercises
+
+```sql
+/* products cheaper than 5 per unit */ 
+select * from products where UnitPrice < 5
+/* products starting with B or S */
+select * from products where ProductName LIKE 'b%' or ProductName LIKE 's%'
+/* orders from employees with ID 5 and 7 combined */
+select * from orders where employeeid in (5,7)
+/* count orders from employees with ID 5 and 7 combined */
+select count(*) from orders where employeeid in (5,7)
+```
+
+
+### AS
+
+```sql
+select 
+customerid as id, 
+contactname as name, 
+address + ' ' + city as address
+from customers 
+
+select 
+customerid as id, 
+contactname as name, 
+address + ' ' + city as 'lives here'
+from customers 
+```
+
+We can even omit the 'as' keyword and get the same results
+
+```sql
+select 
+customerid id, 
+contactname name, 
+address + ' ' + city 'lives here'
+from customers 
+```
+
+### Null
+
+Filter by `null` or `not null`
+
+```sql
+/* select customers depending if region is null or not null */
+select * from customers where region is not null
+select * from customers where region is null
+```
+
+### Arithmetic Operators
+
+Select `col1*col2` as 'description',....
+
+Use the following
++
+-
+*
+/
+%  remainder after division (modululs)
+
+```sql
+select unitprice, quantity, discount, 
+unitprice*quantity as 'Gross Value Of Order' from [Order Details]
+/* now get the NET PRICE!!! (keep gross price) */
+select unitprice, quantity, discount, 
+unitprice*quantity as 'Gross Value Of Order',
+unitprice*quantity*(1-discount) as 'Net Value Of Order'
+from [Order Details]
+/* order by new column - just use the new name */
+select unitprice, quantity, discount, 
+unitprice*quantity as 'Gross Value Of Order' from [Order Details]
+/* now get the NET PRICE!!! (keep gross price) */
+select unitprice, quantity, discount, 
+unitprice*quantity as 'Gross Value Of Order',
+unitprice*quantity*(1-discount) as 'Net Value Of Order'
+from [Order Details] order by 'net value of order' desc
+```
+
+## String Manipulation
+
+### CharIndex : find the (FIRST) index of a character inside a string
+
+	(( remember a STRING is an ARRAY OF CHARACTERS ))
+
+CharIndex('g',string)  // find location of 'g' in the string
+
+```sql
+select * from customers where PostalCode LIKE '%[a-z]'
+/* get index of 'space' character ie ' ' in postcode */
+select *,PostalCode, CHARINDEX(' ',PostalCode) as 'Index' from customers
+where PostalCode LIKE '%[a-z]'
+select Address,CHARINDEX('a',Address) as 'Index' 
+from customers where PostalCode LIKE '%[a-z]'
+select SUM(CHARINDEX('a',Address)) as 'Total' 
+from customers where PostalCode LIKE '%[a-z]'
+```
+
+### Substring
+
+We can extract part of a string from another string
+
+SUBSTRING(string,startIndex,length)
+
+	SUBSTRING('cheese',2,2) return 'he'
+	SUBSTRING('cheese',2,3) return 'hee'
+	SUBSTRING('cheese',2,4) return 'hees'
+	SUBSTRING('cheese',3,3) return 'ees'
+
+Let's work on the postcode
+
+Simple way : select first 4 characters - job done!
+
+```sql
+select PostalCode, SUBSTRING(postalcode,1,4) as 'first part' from Customers 
+where PostalCode LIKE '%[a-z]'
+```
+
+More profesional way - select up to the 'space' character
+
+```sql
+select PostalCode, 
+CHARINDEX(' ',PostalCode) as 'index',
+SUBSTRING(postalcode,1,(CHARINDEX(' ',PostalCode)-1)) as 'first part' 
+from Customers 
+where PostalCode LIKE '%[a-z]'
+```
+
+### left and right
+
+We can also use `left` and `right` to select the first x or last x characters
+
+LEFT('hello',2)   ==> 'he'
+RIGHT('hello',2)  ==> 'lo'
+
+and use this to select the last part of the postcode
+
+```sql
+select PostalCode, 
+CHARINDEX(' ',PostalCode) as 'index',
+SUBSTRING(postalcode,1,(CHARINDEX(' ',PostalCode)-1)) as 'first part' ,
+RIGHT(PostalCode,3) as 'last part'
+from Customers 
+where PostalCode LIKE '%[a-z]'
+```
+
+### LTRIM (RTRIM) remove spaces from start or end
+
+### LEN is length of string
+
+```sql
+select LEN('hello')            
+select LEN('   hello')         
+select LEN('          hello           ')         
+select LEN(LTRIM(RTRIM('      hello      ')))  
+```
+
+### replace
+
+replace(`some text here`,` `,`_`)   ==> `some_text_here`
+
+### upper/lower
+
+upper('Hello')  return 'HELLO'
+lower('Hello')         'hello'
+
+
+### Homework
+
+create some queries using these  keywords on the Northwind database
+
+1. sum
+
+2. avg
+
+3. Min/max
+
+4. count
+
+5. group by ???
+
+6. having ???
+
+7. inner join
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5357,4 +5602,78 @@ value type : int char bool
 reference type : string array list  
 char[] array is same as string
 
+
+
+## Wed : Revision (break from SQL)
+
+50 terms??
+
+constructor
+
+class Dog{
+	public int Height {get;set}	
+	public Dog(){}
+	public Dog(int Height){
+		this.Height=Height;
+	}
+	    			       overload : same method different 
+						input paramaters
+}
+
+  var dog = new Dog();
+  var dog2 = new Dog(100);       // creating a new instance
+
+Inheritance
+
+	public class Parent{}
+	public class Child : Parent{}
+
+Encapsulation
+
+	private fields and methods are completely hidden from outside world
+
+Access Modifiers
+
+	private : this class
+	public : any class
+	protected : can see from this class and all child derived classes 
+	internal : can see from any code inside final compiled 'exe' or
+				'dll' ASSEMBLY
+	protected internal = protected plus internal scope
+
+### Polymorphism
+	
+Each child overrides parent code
+
+	Parent : virtual
+	Child : override
+
+```cs
+    class Parent {
+        public virtual void HaveParty() { Console.WriteLine("parent fun"); }
+    }
+
+    class Child1 : Parent {
+        public override void HaveParty() { Console.WriteLine("child1 fun"); }
+    }
+    class Child2 : Parent {
+        public override void HaveParty() { Console.WriteLine("child2 fun"); }
+    }
+    class Child3 : Parent {
+        public override void HaveParty() { Console.WriteLine("child3 fun"); }
+    }
+```
+
+int
+int16  short
+int32  int
+int64  long
+uint32 unsigned
+
+4 pillars of OOP
+	encapsulation : hiding private code
+	polymorphism : unique ways to override parent code in child class
+	inheritance : fields from parent also in child
+	abstraction : hiding (encapsulation) private fields         hidden engine
+			      exposing               public PROPERTIES      revealed clutch, accelerator
 
