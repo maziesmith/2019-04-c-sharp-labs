@@ -5149,32 +5149,186 @@ With SQL the order of commands matters
 SELECT
 DISTINCT
 FROM
-WHERE
+WHERE     ::: only works on existing columns
 GROUP BY
-HAVING 
+HAVING    ::: can use this to filter by columns we have just created
 ORDER BY
 
+### Having
+
+Let's filter the last query on the column we have just created
+
+```sql
+select 
+CategoryId,
+avg(ReorderLevel) as 'reorder level',
+avg(UnitsOnOrder) as 'units on order'
+from products
+where CategoryID>3 
+group by CategoryID
+having avg(UnitsOnOrder) > 4
+order by 'reorder level' desc
+```
+
+## JOINS
+
+Select data from multiple tables
+
+INNER JOIN
+
+```sql
+SELECT fields 
+FROM table1 
+INNER JOIN table2 
+ON table1.field=table2.field
+```
+
+	student 						course
+
+	studentid 						courseid
+	name 							coursename
+	courseid 
+
+select all students and display their course name
+
+1. all students
+2. all courses
+3. all students inner join courses : get course name
+
+```sql
+select * from student
+
+select * from course 
+
+select studentid,name,student.CourseId,coursename 
+from student 
+inner join course 
+on student.courseid = course.courseid 
+```
+	
+### Use Alias to Shorten Queries
+
+
+```sql
+select studentid,name,s.CourseId,coursename 
+from student s
+inner join course c
+on s.courseid = c.courseid 
+```
+
+
+### Quiz
+
+Select average (units on order) 
+from products
+group by supplier
+
+Add in the supplier name also
+
+```sql
+select * from suppliers
+
+select * from products 
+
+select companyName, avg(unitsonorder) as 'average units'
+from products p
+inner join Suppliers s
+on p.SupplierID = s.SupplierID
+group by CompanyName
+having avg(p.unitsonorder)>0
+order by 'average units'
+```
+
+
+### Selecting Data From 3 Tables
+
+1. Let's select all products with their Unit Price.
+
+2. Let's get the supplier name (who supplies the product)
+
+```sql
+select p.ProductName, p.UnitPrice, s.CompanyName as 'Supplier'
+from products p
+inner join suppliers s
+on p.SupplierID = s.SupplierID
+```
+
+3. Let's add in the Product Categories table in order to get the Product Category Name
+
+```sql
+select p.ProductName, p.UnitPrice, 
+s.CompanyName as 'Supplier', 
+p.CategoryID,
+c.CategoryName
+from products p
+inner join suppliers s on p.SupplierID = s.SupplierID
+inner join Categories c on p.CategoryID = c.CategoryID
+
+```
 
 
 
+### Methodologies : Scrum and Agile
+
+Methodology = way of working
+
+	SDLC Software Dev Life Cycle
+
+		Waterfall
+
+			Linear method of building code
+
+				Analysis
+					Talk with customer
+					Feasibility study : is this project feasible?
+						Initial calculations, research etc
+						Basic project plan, financial plan ==> CAN IT WORK???
+
+							RISKS => FINANCIAL, COMPETITORS, MARKET MOVEMENTS,
+							         UNFORESEEN NATURAL EVENTS, FRAUD, 
+							         HACKING (INTERNAL & EXTERNAL), LEGAL FROM
+							         SUING YOU(ADVERTISING, PRODUCT ACCURACY, CATER FOR 'ACCESSIBILITY')
+
+					Requirements Engineering
+						Obtain list of customer 'requirements'
+						    ((this becomes our 'BACKLOG' in development))
+
+						Specify (because testing becomes more and more 
+							important today) 'User Acceptance Tests' ie
+							what user deems the conditions under which they 
+							will say we have completed the work
+
+				'Big Picture' Architecture of our project
+				
+					$$$Highest earners sit here$$$
+
+					Hardware?  Software? IDE? Language? Legacy buy-in (code
+						which we have to talk to)
+					
+					Cloud provider?  AWS Amazon?  Azure? Google?
+
+					Business : Manpower (people), resources (buildings, 
+						access to datacenters, local computing power)
+						Timescale
+						Budget    overall cost
+						CashFlow  company to stay 'afloat' ie have money to 
+									pay bills
+
+					Risks  :    % chance .... will happen 
+											          * impact (consequence)
+					
+						Mitigate : reduce risk (Take action, do nothing, 
+									insure, take alternative action)					
+
+					Greenfield : project from scratch (very rare)
+					Brownfield : merge existing with new work (norm)
+
+					==> Produce 'Project Plan'
+
+						Gantt Chart : all tasks on big 'timescale' board
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+						
 
 
 
@@ -5836,11 +5990,126 @@ REPLACE(string,remove,insert)    ('abc','a','z')  => zbc
 
 
 
+### GitHub lab 
+
+Please can you run the following
+
+Create GitHub repo 'username-test'
+
+Add visual studio .gitignore
+
+Add licence
+
+Add README
+
+git clone to local computer  (( C:\ is good place to keep these repos))
+
+Create 2 files to add
+
+Create folder also and add one test file in it 
+
+Push to github : check all working
+
+===============================================
+
+locally : create branch 'dev' and also 'feature-new-styling' branch
+	git branch dev
+	git branch feature-new-styling
+
+checkout to feature branch
+
+add new file 'extra styling.txt'
+
+push this to GitHub : ensure you are pushing to right branch ie 'feature-new-styling' branch
+
+lock the master branch and add philanderson888 as a collaborator and create a rule that at least one collaborator must approve pull requests to master branch
+ 
+repeat for dev to master branch and get philanderson888 to approve changes
+
+==================================================
 
 
 
 
+### 20 minutes flash review
 
+4 pillars
+Inheritance : Base to Derived class
+	YES Inherit public/protected/internal 
+			FIELDS, PROPERTIES, METHODS
+	NO Don't inherit constructor ==> always create    .... Base()  refer to base constructor
+Constructor : used with new... keyword 
+Instantiate :   var p = new Parent();
+const SOMETHING_LIKE_THIS_NEVER_CHANGE
+READ ONLY
+
+```cs
+        static void Main(string[] args)
+        {
+            var d = new Dog();
+            var d1 = new Dog(10);
+            var s = new Spaniel(10);
+            //var s1 = new Spaniel(10);   // CONSTRUCTOR IS NOT INHERITED
+            d.Grow();
+            s.Grow();    // METHOD IS INHERITED 
+            const int DONT_CHANGE_ME= 500;
+            // DONT_CHANGE_ME = 600;
+            //d.NumLegs = 5;
+            Console.WriteLine(EngineeringConstants.Constant01);
+        }
+
+        void DoThis(int a, int b, int c,int zebra, int cobra) {
+            // deal with a PRIVATELY IN HERE
+        }
+    }
+
+    public class Dog {
+        public int Age { get; set; }
+        public readonly int NumLegs = 4;
+        // constructor
+        public Dog(int Age)
+        {
+            this.Age = Age;
+        }
+        public Dog() { }
+        public void Grow() { Age++; }  // yes this is inherited
+    }
+    class Spaniel : Dog {
+        // Constructor must be made here also
+        public Spaniel(int anyvariable) {
+            this.Age = anyvariable;
+        }
+
+    }
+
+    public static class EngineeringConstants
+    {
+        public static readonly double Constant01 = 2.45793;
+    }
+
+```
+
+Static keyword
+
+Regular class : can instantiate
+
+
+Static class : cannot be instantiated
+
+	eg Math.floor
+
+	Static field
+
+	Static method  : attached to class
+
+
+static class Luton{
+	static method SayHi(){}
+}
+
+Main(){
+	Luton.SayHi();
+}
 
 
 
