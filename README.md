@@ -5072,15 +5072,87 @@ create some queries using these  keywords on the Northwind database
 7. inner join
 
 
+### SQL Day 3
 
+### Count, Sum, Avg, Min, Max
 
+```sql
+select * from [Order Details]
 
+/* 2156 items */
+select count(OrderId) as count from [Order Details]
 
+select count(OrderId) as count, 
+sum(UnitPrice*Quantity) AS 'total stock value',
+avg(UnitPrice) as 'average',
+min(UnitPrice),max(UnitPrice)
+from [Order Details]
+```
 
+### Group By
 
+Main col
+	sub col  
 
+```sql
+select 
+sum(UnitsOnOrder) as sum,
+avg(UnitsOnOrder) as avg,
+min(UnitsOnOrder) as min,
+max(UnitsOnOrder) as max
+from Products
+```
 
+Now sort by Supplier ID
 
+```sql
+select 
+sum(UnitsOnOrder) as sum,
+avg(UnitsOnOrder) as avg,
+min(UnitsOnOrder) as min,
+max(UnitsOnOrder) as max
+from Products
+where UnitsOnOrder>0 
+GROUP BY SupplierID
+```
+
+### Quiz
+
+Select average reorder level and average units on order from Products
+Group by CategoryID  (have to add this as a column also)
+
+```sql
+select 
+CategoryId,
+avg(ReorderLevel),
+avg(UnitsOnOrder)
+from products
+group by CategoryID
+```
+
+Sort by average reorder level descending
+
+```sql
+select 
+CategoryId,
+avg(ReorderLevel) as 'reorder level',
+avg(UnitsOnOrder) as 'units on order'
+from products
+group by CategoryID
+order by 'reorder level' desc
+```
+
+### order of commands
+
+With SQL the order of commands matters
+
+SELECT
+DISTINCT
+FROM
+WHERE
+GROUP BY
+HAVING 
+ORDER BY
 
 
 
@@ -5676,4 +5748,100 @@ uint32 unsigned
 	inheritance : fields from parent also in child
 	abstraction : hiding (encapsulation) private fields         hidden engine
 			      exposing               public PROPERTIES      revealed clutch, accelerator
+
+
+
+### Thursday : Morning review
+
+4 Pillars Of OOP : APIE !!!!
+Encapsulation : hiding private data  eg date of birth ((use 'private' keyword))
+Abstraction : both hide private data and expose public properties eg car : gear shift 
+	Create and design correct methods to allow user interaction in the correct manner
+Inheritance : Features (properties and methods) inherited by DERIVED CLASS FROM BASE CLASS
+Polymorphism : Parent method is OVERRIDDEN by the Child method
+				Parent : virtual DoThis(){}
+				Child  : override DoThis(){}  optional
+	Polymorphism : action in child is similar but not necessarily exactly the same as parent base class 
+What is scripting? Code run 'line by line' in order from top to bottom
+Compiled code ==> create (build) .exe (.dll) then run it
+Interpreted code : Powershell with individual lines run one by one, in turn
+	CMD old fashioned command line
+	BASH linux
+	POWERSHELL
+	ZSH advanced linux
+What is OOP?  Object Oriented
+	Old computers : program start line 1 and run to end
+	GUI : screen objects eg button, list, label also internal objects from database like
+		array, dictionary.
+	OOP ==> attach code to OBJECTS EG button_click() method  hover()...  
+		array.sort()
+	Code is called as required : EVENTS initiate the process (eg button click)
+
+	Object {}
+		int inherits from object
+
+High Level : Slower to run on computer because there's lots of extra code in there
+			 to make it easier for human to understand!
+	CIL : intermediate 
+Low Level  : raw syntax/commands sent directly into computer for processing
+	ASSEMBLY LANGUAGE
+
+High level : Java, C#, Python, Javascript
+Low level : Assembly language
+
+Agile : build incrementally from simple to more complex
+	Goal : each increment is unit of 'WORKING CODE' which adds value to customer
+	Good for real world where requirements can change in 3 months
+	Can be hard to control 'big picture' and costs
+		SPRINTS : focused blocks of work
+		LIST OF REQUIREMENTS : BACKLOG
+			SPRINT : SPRINT BACKLOG : mini-list for just this sprint
+
+Waterfall : traditional : ANALYSE DESIGN BUILD TEST IMPLEMENT in order
+	Not good for flexible projects 
+
+SQL
+Order by
+Select distinct
+... as ...
+LIKE
+LIKE '%a'    ends a
+LIKE 'a%'    starts a
+LIKE '%a%'   contains a
+IN(a,b)   both a and b
+count(field)
+sum
+avg
+min/max
+between
+substring(string,startIndex,numCharacters)
+charIndex('char',string)          ('a','abc') ==> 1
+			                      ('b','abc') ==> 2
+LTRIM
+RTRIM
+null
+is null
+is not null
+field1 + field2 as title
+LEN(string)
+UPPER
+LOWER
+REPLACE(string,remove,insert)    ('abc','a','z')  => zbc
+[Order Details]
+% operator   :  modulus : remainder
+100/8   (integer) ==> 12
+100%8                 4
+	100 is  8 x 12   +   4
+
+
+
+
+
+
+
+
+
+
+
+
 
