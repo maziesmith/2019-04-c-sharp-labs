@@ -5328,9 +5328,205 @@ Methodology = way of working
 						Gantt Chart : all tasks on big 'timescale' board
 
 
-						
+				Design : in detail
+
+					1. Analysis ==> requirements
+					2. Architecture ==> big picture
+					3. Design : technical spec for developers
+
+					GUI Graphical Design
+
+					Data Structure
+
+						Classes
+							FIELDS
+							PROPERTIES
+							METHODS
+
+							===> diagram called 'UML'  unified markup language
+
+						Data Diagram
+
+							ERD Entity Relationship Diagram
+
+				4. Build 'units' of code
+
+				5. Testing
+				
+					UNIT TESTING ==> test blocks of code built by dev team
+
+					INTEGRATION TESTING  ==> join units together, test as such
+
+					SYSTEM TESTING ==> entire system together including join to 
+										remote systems / databases
+
+					ALPHA RELEASE : first working version, by invitation only
+									(press, journalist, authors, marketing...)
+
+					BETA RELEASE  : almost-ready software, released for free to public
+									==> without any legal consequence ('disclaimer')
+
+									public inform company of all bugs (for free!)
+
+					REGRESSION : when you go live and fix a bug then you must also
+									check you haven't broken anything afresh!!!
+
+					TEST COVERAGE : % of your code base that your TESTS ACTUALLY TEST!
+
+										50% not good
+
+				6. Release to deployment (production)
+
+						DEV 				in progress
+
+						STAGING  			ready to go
+
+						PRODUCTION 			live 
+
+						Note : critical to have a 'flip-switch' so when go live, if 
+								things do go wrong, quickly back out and regress back
+								to old version which was live
+
+				7. Ongoing support 
+
+						Helpdesk
+
+							Log faults
+
+						New features
 
 
+				8. Documentation !!!
+
+		Waterfall
+			Fixed, linear stucture IN ORDER
+				Good for projects which will not change
+					BRIDGE, DAM, HIGH TOWER
+				Good for military where ROBUST 
+				Good for mission critical eg Power station, electricity, 
+					water treatment
+				Good for budgeting!  
+
+		V-model
+			used for military or mission-critical systems where perhaps life is at
+			stake
+
+				fire system
+				ambulance system
+				helicopter software
+
+
+				analysis (list of requirements)		===>  	UAT USER ACCEPTANCE TEST
+															(does user agree our app
+															does meet their needs)
+
+					architecture                    ===>    SYSTEM TESTING
+						high level design           ===>    INTEGRATION TEST
+						design 	(individual spec)   ===>    UNIT TEST!!
+
+							            build
+
+
+### History Of Agile
+
+There have been some spectacular 'fails' in big software projects 
+
+People tried different ways of working
+
+	XP : extreme programming
+	Pair programming
+	Spiral 
+	RAD Rapid Application Development
+
+	Agile
+
+	Scrum
+
+### Agile Methodology
+
+	Online 'agile manifesto'
+
+		Value : 
+
+			Individuals 					over  			Following A Process
+			   (value is in human beings)                 
+
+
+			Working software                over 			Documentation
+			
+			   ((Sprint : goal is to produce 
+			   	one fresh 'iteration' ie incremental
+			   	build of new part of our software))	
+
+			Collaboration : working with your     over      Negotiation ('us' and 
+			   customer as if they are part of 				'them') mentality
+			   your 'team' 
+
+
+			Embrace change  							over  fixed plans
+				Aware that today, changes in society
+				and business and tech products and
+				tech tools can happen in short time-
+				scales
+
+
+				Consider Amazon : 2-hour grocery deliveries
+								  same-day parcel deliveries		
+
+
+### Scrum Methodology
+
+Agile : theory model
+Scrum : practical outworking of this model
+
+
+Scrum : create 'sprints' which are individual units / blocks of work
+
+	'EPIC' 			overall big picture 'architecture of our project'
+
+	'FEATURE' 		major goal
+
+	'SPRINT'  		choose next 'iteration' or 'minor build' of our software
+
+					Agile : theory : start simple and build gradually more complex
+					Sprint 0 : setup
+					Sprint 1 : early prototype
+					Sprint 2 : first working model
+					       3 : add functionality
+
+					Goal : every sprint : working software to show customer
+
+					Timescale : 1-4 weeks
+
+					Meetings : 
+
+						1. Sprint Planning : set goals and timescale
+						2. Daily 'standup'
+								a) did yesterday?
+								b) doing today?
+								c) impediments/blockers to progress?
+						3. Sprint Review : invite customer to see our work at the end
+						4. Sprint Retrospective : internal 
+
+
+	Scrum teams
+
+		Product owner 		Person who liaises closely with the client/customer
+
+						 	In charge of the 'backlog' list of requirements to be
+						 	built	
+
+		Scrum master 		In charge of making sure the whole 'scrum methodology'
+							works and flows on a daily basis; help to remove blockers
+							etc.
+
+		Dev team 			3-9 developers
+							multi-skilled, cross-functional
+							jointly take ownership of responsibility for commitments
+							made
+
+
+https://github.com/JacobLRL/Tests
 
 
 
@@ -6110,6 +6306,273 @@ static class Luton{
 Main(){
 	Luton.SayHi();
 }
+
+
+
+
+
+Sparkhire Prep
+
+	Press 'go'
+		Question : 30 secs display 
+		Answer   : 60 secs no repeat
+	Everlasting pause until you press 'go' again 
+
+Secrets of answering a question well
+
+1. Get a blank sheet of paper
+
+2. From scratch, your own mind, write down all you can remember about the key questions and the answers you will have to give.
+
+3. Repeat again from scratch 2, 3, perhaps 4 times until you feel a flow in your own mind exactly what you want to say, so let the phrases flow.
+
+
+
+
+
+
+
+
+
+
+
+Verbal Prep
+
+Tell me a little bit about yourself in 60 seconds
+What degree do you have and why did you choose it?
+In a team setting what part do you play?  How do you see yourself?
+Do you have any work experience?  What have you done in the area of paid work?
+Before Sparta talk about 2 challenges that you have overcome
+What have been your biggest challenges here at Sparta?
+
+60 second questions
+
+Struct : mini class with fully public fields
+
+	struct Point{
+		public int X;
+		public int Y;
+		public Point(int x, int y){
+			this.X=x;
+			this.Y=y;
+		}
+	}
+
+		var p01 = new Point(10,20);
+
+	Struct is a VALUE TYPE like an INT : very fast
+
+Memory types
+	STACK : FAST : int, bool,char and STRUCT!!!!
+	HEAP  : SLOWER : classes, collection, array, strings
+
+Sealed class
+
+	class Parent{}
+	class Child:Parent{}
+	sealed class GrandChild:Child{}   // cannot derive below this point
+
+		sealed class : good for IT security : can't inherit and create vulnerabilities
+
+Overload  :  Methods have SAME NAME with DIFFERENT PARAMETERS
+				DoThis(int x)
+				DoThis(string y)
+
+Override  :  Base Parent class has a method with code; Child derived class
+				has same method with different code
+
+					Override : Same method but different code (in derived 
+										child class)
+
+		virtual DoThis(){}      parent
+		override DoThis(){}     child
+
+Override vs New
+	Override : replaces
+	New : just 'hides' parent so can still call with 'base' keyword
+
+Abstract class
+
+	abstract class Parent{
+		abstract void DoThis();      // missing 'code implementation'
+	}	
+
+	class Child : Parent{
+		override void DoThis(){  // code }
+	}
+
+
+Polymorphism :   virtual in parent, override in child (optional)
+
+Abstract     :   abstract in parent, override in child (mandatory)
+
+class MyClass{
+	private int _ field01;           // FIELD  UNDERSCORE, LOWER CASE
+	int _ field02;                   // PRIVATE BY DEFAULT
+	public int SomeDataItem{get;set;}        // PROPERTY PascalCase 
+	public void DoSomething(){}
+}
+
+class Person{
+	private int _ age;               // encapsulate hidden field
+	// public GETTER to GET _ age
+	public int GetAge(){             // abstraction : reveal with get/
+		return _ age;                // set what we want
+	}
+	public void SetAge(int Age){
+		this._ age=Age;
+	}
+}
+
+ref    pass in integer into method; stays global in that method
+
+			int x=100;
+			void DoThis(ref int x){
+				x++; // affect global x
+			}
+
+objects, collections, arrays, classes are already treated as 'reference' type which updates the global reference anyway
+
+	        int[] array = {1,2,3}
+	        void DoThis(int[] array){
+	        	// update array
+	        }
+
+REFERENCE TYPE  stored in HEAP memory  (shortcut in STACK memory )
+										(COPY : just copy the shortcut)
+
+VALUE TYPE      stored in STACK memory
+
+class Dog{
+	
+}
+
+	INSTANTIATE : var dog = new Dog();
+
+class Dog{
+	public int Age{get;set;}
+	public Dog(int Age){
+		this.Age=Age;
+	}
+}
+	INSTANTIATE : var dog = new Dog(10);
+
+class Dog{
+	static int NumLegs=4;
+}
+
+	ACCESS STATIC VARIABLE : Dog.NumLegs;  
+
+		Static BELONGS TO THE CLASS 
+
+Array
+	int[] array = new int[10];
+	int[] array = new int{1,2,3};
+	var ....
+List
+	var l = new List<char>();
+		Add('c')
+		Remove()
+Stack
+	var s = new Stack<int>();
+		Push(10)
+		Pop()
+Queue
+	var q = new Queue<string>();
+		Enqueue('hi');
+		Dequeue();
+
+Dictionary<int,string>()    int = index (unique)
+
+   foreach(var (key,value) in mydict.keys){}
+
+4 Access Modifiers  : encapsulate (hide) code 
+	public
+	private
+	protected  :  class and children
+	internal   :  inside final compiled .exe (assembly)
+
+
+### Interface
+
+3 levels of class inheritance
+
+	1.   Regular class   Parent ==> Child
+
+			Polymorphism works here  
+
+						virtual in Parent .... override in Child
+
+						class Parent{
+							virtual void DoThis(){}
+						}
+						class Child:Parent{
+							override void DoThis(){}
+						}
+
+	2.   Abstract class  Parent ==> Child
+
+			Abstract parent has to have a child class.
+
+					abstract class Parent{
+						abstract void DoThis();
+					}
+
+				    class Child:Parent{
+				    	override void DoThis(){}  // code 
+				    }
+
+
+    3.   Interfaces
+
+    	Problem with classes is that we can only inherit from 1 class
+
+    		Think natural family : you can only belong to one family 
+
+    	Interface is a structure that allows us to 'use' code from more than one place
+
+    		Think garden shed : tools which we can 'implement' or 'use'
+
+    		Class ==> Inherit 			ONE
+    		Interface ==> Implement  	MANY 
+
+    	interface IUseThisTool01{
+    		// no fields
+    		// yes properties
+    		int number01{get;set}    // ASSUMED PUBLIC 
+    		// yes methods
+    		void DoThis(){}          // ASSUMED PUBLIC
+    	}
+
+    	class MyClass : IUseThisTool01{
+    		public int number01{get;set;}
+    		public override void DoThis(){}  
+    	}
+    				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Luitzen question
+
+	struct Point{
+		public int X;
+		public int Y;
+		public Point(int x, int y){
+			this.X=x;
+			this.Y=y;
+		}
+	}
 
 
 
