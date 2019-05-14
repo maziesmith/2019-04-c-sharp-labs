@@ -22,7 +22,7 @@ namespace lab_57_revision
 
             object o;
             int i;
-            i.
+            
 
         }
     }

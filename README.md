@@ -6,6 +6,161 @@ The notes cover C# from basic to more advanced including ASP.NET and .NET Core, 
 
 The labs are ordered in numbered sequence in ascending order of difficulty, starting at the most easy and progressing to the harder labs and concepts.
 
+## Table Of Contents
+
+
+- [2019-04-c-sharp-labs](#2019-04-c-sharp-labs)
+  - [Installed Apps](#installed-apps)
+    - [Rapid Business Skills Exam Prep](#rapid-business-skills-exam-prep)
+    - [Extra Exam Prep](#extra-exam-prep)
+- [C#](#c)
+- [Programming](#programming)
+  - [Simple Programming](#simple-programming)
+  - [Operators](#operators)
+    - [Increment operators](#increment-operators)
+    - [NOT OPERATOR](#not-operator)
+    - [Bodmas / Bidmas](#bodmas--bidmas)
+  - [Data Types](#data-types)
+    - [bytes](#bytes)
+    - [raw object data type](#raw-object-data-type)
+    - [Casting](#casting)
+    - [OOP Object Oriented Programming](#oop-object-oriented-programming)
+    - [Scripting](#scripting)
+    - [.bat](#bat)
+    - [.ps1](#ps1)
+    - [Linux computer 'BASH' shell does similar work](#linux-computer-bash-shell-does-similar-work)
+    - [OOP](#oop)
+  - [Methods](#methods)
+  - [Finish off day with some more simple coding](#finish-off-day-with-some-more-simple-coding)
+    - [if..else if .. else](#ifelse-if--else)
+    - [Ternary operator](#ternary-operator)
+  - [Random Notes And Topics](#random-notes-and-topics)
+- [Week 2 : Tuesday : Review Of Terms](#week-2--tuesday--review-of-terms)
+  - [List<T>](#listt)
+  - [Stacks](#stacks)
+  - [Summary so far](#summary-so-far)
+  - [Queue](#queue)
+  - [Review Of Classes with Fields And Properties](#review-of-classes-with-fields-and-properties)
+  - [Methods](#methods-1)
+    - [Return type](#return-type)
+    - [Parameters](#parameters)
+    - [Out parameter for methods](#out-parameter-for-methods)
+    - [Optional parameters](#optional-parameters)
+    - [Named Parameters](#named-parameters)
+    - [Constructor Methods](#constructor-methods)
+    - [Overloading](#overloading)
+    - [Summary](#summary)
+    - [Passing integers into a method `by reference`](#passing-integers-into-a-method-by-reference)
+    - [Passing an OBJECT into a method](#passing-an-object-into-a-method)
+  - [Polymorphism](#polymorphism)
+    - [Overload vs Override](#overload-vs-override)
+  - [Abstract Classes](#abstract-classes)
+  - [Homework End Of OOP Day 2](#homework-end-of-oop-day-2)
+  - [Wednesday Term Review](#wednesday-term-review)
+  - [Testing](#testing)
+  - [Working With Databases](#working-with-databases)
+    - [Continuation of Entity](#continuation-of-entity)
+    - [Summary of actions so far](#summary-of-actions-so-far)
+    - [Summary Of Entity : 4 CRUD Operations (Create, Read, Update, Delete)](#summary-of-entity--4-crud-operations-create-read-update-delete)
+  - [File Operations](#file-operations)
+  - [Files : Summary So Far](#files--summary-so-far)
+  - [Collections](#collections)
+  - [Friday : going over a few topics which we have not yet covered](#friday--going-over-a-few-topics-which-we-have-not-yet-covered)
+  - [Naming Conventions](#naming-conventions)
+  - [Break And Continue In Loops](#break-and-continue-in-loops)
+  - [Return](#return)
+  - [Exiting A Loop Or Method By Throwing An Exception!](#exiting-a-loop-or-method-by-throwing-an-exception)
+  - [Goto](#goto)
+  - [Try..Catch..Finally](#trycatchfinally)
+    - [Handled vs Unhandled Exception](#handled-vs-unhandled-exception)
+    - [try.catch.finally](#trycatchfinally)
+    - [Throwing An Exception](#throwing-an-exception)
+  - [WPF Grid](#wpf-grid)
+  - [Reference Type And Value Type](#reference-type-and-value-type)
+  - [Reference Types](#reference-types)
+    - [Code Example : Copy 1) Value Type 2) Reference Type](#code-example--copy-1-value-type-2-reference-type)
+- [Git and Github](#git-and-github)
+    - [Quick summary of commands : git in 'local' realm on your PC!](#quick-summary-of-commands--git-in-local-realm-on-your-pc)
+- [Push To Internet](#push-to-internet)
+- [git remote](#git-remote)
+  - [git pull](#git-pull)
+  - [git config](#git-config)
+  - [git branch](#git-branch)
+  - [Lock master so can't push directly](#lock-master-so-cant-push-directly)
+  - [Pull request from dev to master](#pull-request-from-dev-to-master)
+  - [Pull down changes from master](#pull-down-changes-from-master)
+  - [changes in master : from someone else : use `git merge` to merge master into our dev](#changes-in-master--from-someone-else--use-git-merge-to-merge-master-into-our-dev)
+- [git log](#git-log)
+- [git reset --soft](#git-reset---soft)
+- [git reset --hard](#git-reset---hard)
+- [Adding SSH keys to your GitHub account](#adding-ssh-keys-to-your-github-account)
+- [SQL](#sql)
+  - [Basic commands](#basic-commands)
+    - [alter](#alter)
+    - [insert into](#insert-into)
+    - [update](#update)
+    - [delete](#delete)
+  - [Types Of SQL command](#types-of-sql-command)
+  - [Best practice](#best-practice)
+  - [RAW DATA : AND STRUCTURE](#raw-data--and-structure)
+    - [Normal Form](#normal-form)
+    - [Ways to store data](#ways-to-store-data)
+  - [SQL revision session](#sql-revision-session)
+  - [SQL Day 2 : Querying Your Database : Simple and Advanced Query Syntax](#sql-day-2--querying-your-database--simple-and-advanced-query-syntax)
+    - [select top 5](#select-top-5)
+    - [SELECT .. WHERE .. AND ...](#select--where--and-)
+    - [Operators](#operators-1)
+    - [distinct](#distinct)
+    - [wildcards](#wildcards)
+    - [LIKE %...%](#like-)
+    - [Starts With 'abc%'](#starts-with-abc)
+    - [using % wildcard and _ single letter wildcard](#using--wildcard-and-_-single-letter-wildcard)
+    - [OR query](#or-query)
+    - [IN query](#in-query)
+    - [between](#between)
+    - [count](#count)
+    - [exercises](#exercises)
+    - [AS](#as)
+    - [Null](#null)
+    - [Arithmetic Operators](#arithmetic-operators)
+  - [String Manipulation](#string-manipulation)
+    - [CharIndex : find the (FIRST) index of a character inside a string](#charindex--find-the-first-index-of-a-character-inside-a-string)
+    - [Substring](#substring)
+    - [left and right](#left-and-right)
+    - [LTRIM (RTRIM) remove spaces from start or end](#ltrim-rtrim-remove-spaces-from-start-or-end)
+    - [LEN is length of string](#len-is-length-of-string)
+    - [replace](#replace)
+    - [upper/lower](#upperlower)
+    - [Homework](#homework)
+    - [SQL Day 3](#sql-day-3)
+    - [Count, Sum, Avg, Min, Max](#count-sum-avg-min-max)
+    - [Group By](#group-by)
+    - [Quiz](#quiz)
+    - [order of commands](#order-of-commands)
+    - [Having](#having)
+  - [JOINS](#joins)
+    - [Use Alias to Shorten Queries](#use-alias-to-shorten-queries)
+    - [Quiz](#quiz-1)
+    - [Selecting Data From 3 Tables](#selecting-data-from-3-tables)
+    - [Methodologies : Scrum and Agile](#methodologies--scrum-and-agile)
+    - [History Of Agile](#history-of-agile)
+    - [Agile Methodology](#agile-methodology)
+    - [Scrum Methodology](#scrum-methodology)
+  - [Monday - Week 4 - Revision](#monday---week-4---revision)
+  - [Tuesday - Week 4 - Revision](#tuesday---week-4---revision)
+- [arrays](#arrays)
+    - [static vs instance variables](#static-vs-instance-variables)
+- [Events](#events)
+    - [Games Week : Top-Up Tech !!!](#games-week--top-up-tech-)
+  - [Wed : Revision (break from SQL)](#wed--revision-break-from-sql)
+    - [Polymorphism](#polymorphism-1)
+    - [Thursday : Morning review](#thursday--morning-review)
+    - [GitHub lab](#github-lab)
+    - [20 minutes flash review](#20-minutes-flash-review)
+    - [Interface](#interface)
+    - [Coding Prep Exercise](#coding-prep-exercise)
+  - [Luitzen question](#luitzen-question)
+
 ## Installed Apps
 
 	* Visual Studio 2017/2019
@@ -5880,11 +6035,169 @@ Events : Summary
 
 
 
+### Docker
 
-	 if(counter>36)
-	 	 counter = 36 + (36-counter)
+Please create an account with 'Docker Desktop For Windows' then download and install Docker!
 
-	 	 39    ==> 36 + (-3) = 33
+	https://hub.docker.com/editions/community/docker-ce-desktop-windows
+
+Also download SQL Management Studio
+	
+	https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017
+
+Docker can create a 'virtual space' which we call a container - it's like a mini-linux-operating system in only a few hundred MB compared to several GB for a typical OS install (either Windows or Linux)
+
+	Install Docker
+
+	Download and run a 'container' with built-in SQL server and Northwind already running
+
+# ASP with Northwind
+
+Let's work ahead of time and just show you quickly some of the capabilities of ASP.NET
+
+Demo 
+
+	Install ASP MVC website
+
+	Connect Entity To ASP website
+
+	Add in individual pages and 'scaffold' our website for us.
+
+
+# Docker 
+
+1. Reboot Laptop, Tap 'Escape' to enter BIOS and make changes -> Turn on Virtualisation
+
+2. Windows - Control Panel, Add Windows Features ==> Turn on HyperV
+
+3. Install Docker
+
+4. Computer Management ==> Must add your user account to the Docker Users group
+
+5. Run Docker Desktop
+
+Docker is a command line tool
+
+```bash
+docker
+docker -v
+```
+
+Docker is a command line tool which enables 'virtualisation' on a very small scale.
+
+	Regular virtualisation
+
+		HyperV
+		ESX-i
+		VirtualBox
+
+			==> run complete operating systems eg Linux, Win10 etc, 
+													Server2016
+		Parallels (on Apple)
+
+		Typical OS is huge : several GB in size
+
+	Container virtualisation
+
+		Container Instances, Unique, Shielded from each other
+		Kernel   (core of operating system, shared)
+		Hardware (shared)
+
+		Typical container size is a few hundred MB
+
+Lab : find on internet a pre-built 'container', download and run it 
+
+	Connect to the SQL server on it using SQL Management Studio
+
+1. Pull docker image
+
+```bash
+docker pull kcornwall/sqlnorthwind
+```
+Have you got a valid docker image yet?
+
+```
+docker ps -a
+```
+
+If not let's first create and run the image
+
+```bash
+docker run -d --name sql -p 1433:1433 kcornwall/sqlnorthwind
+```
+
+Is your image running?
+
+```bash
+# is image running?
+docker ps
+# list running and non-running images
+docker ps -a  
+```
+Status of your docker container? Is it running?
+
+```bash
+docker ps 
+```
+
+Can start and stop image
+
+```bash
+docker start sql 
+docker stop sql 
+```
+
+Next stage  : docker image is running : it's hosting an SQL server.  Let's connect to it.
+
+Credentials
+
+	Server 				localhost, 1433
+
+	Authentication 		SQL Server
+
+	User 				SA
+
+	Password			Passw0rd2018
+
+
+Now let's move on to the next phase
+
+	1. Docker with SQL
+	2. Connect with SSMS SQl Server Mgt Studio
+	3. Connect with Visual Studio using raw SQL connection string
+
+
+```cs
+using System.Data.SqlClient;
+
+@"Data Source=localhost;Initial Catalog=Northwind;Persist Security Info=True;User ID=SA;Password=Passw0rd2018"
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6516,11 +6829,17 @@ Dictionary<int,string>()    int = index (unique)
 
 					abstract class Parent{
 						abstract void DoThis();
+						void AlsoDoThis(){} // ok
+						void AndThis(){} // ok
 					}
 
 				    class Child:Parent{
 				    	override void DoThis(){}  // code 
 				    }
+
+
+			Note that abstract classes must have at least one abstract method but may
+			contain any number of regular methods.
 
 
     3.   Interfaces
@@ -6546,9 +6865,85 @@ Dictionary<int,string>()    int = index (unique)
 
     	class MyClass : IUseThisTool01{
     		public int number01{get;set;}
-    		public override void DoThis(){}  
+    		public void DoThis(){}  
     	}
     				
+
+
+Class 
+
+	Picture : Class is like the architectural blueprint which an architect creates
+		as a plan for a building.  It's not a building but a builder can turn the plan
+		into a real object.
+
+	Computing : Class is a template for creating real objects
+
+		Class Parent{}
+
+							var p = new Parent();    p is real object INSTANCE created from
+														class template
+
+
+Class : blueprint or template from which we create real objects using `new` keyword (this is called instantiation)
+
+	Class : template
+	new   : instantiate real object
+
+
+
+
+
+
+
+4 Pillars Of OOP
+
+	Encapsulation : Hiding private fields/methods
+	Abstraction : Hide private fields and Reveal public properties
+	Inheritance : Base Parent => Derived Child
+	Polymorphism : poly=many, morph=type
+		Polymorphism allows many 'types' to exist
+				Parent ==> method
+				Child  ==> overide that method with its unique code
+
+				Multiple children ==> poly (many) unique implementations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Coding Prep Exercise
+
+Can you build
+
+A Parent-class system with a field, property, and method.
+
+An abstract parent and a real (concrete) child class which can be instantiated.  Make sure there is one abstract method in there and one real method.
+
+A static class system with a static property and static method.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

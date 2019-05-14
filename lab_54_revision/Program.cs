@@ -12,7 +12,7 @@ namespace lab_54_revision
         {
             var p = new Parent();
             p.HaveAParty();
-            p.
+            
             var c1 = new Child1();
             c1.HaveAParty();
             var c2 = new Child2();
