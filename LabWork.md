@@ -154,16 +154,16 @@ The output that I would like also is to create a text file with a `.csv` file ex
 
 	Time (seconds)		Population
 
-	1 					1
-	2 					2
-	3 					8
-	4 					16
+	1 			1
+	2 			2
+	3 			8
+	4 			16
 
 
 	Line 1			Time(seconds),Population   		(header)
-	Line 2          1,1
-	Line 3          2,2
-	Line 4          3,8
+	Line 2			1,1
+	Line 3			2,2
+	Line 4			3,8
 
 
 
