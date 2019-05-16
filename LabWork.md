@@ -1,5 +1,7 @@
 # Lab Work
 
+
+
 ## Quizzes
 
 40-question test on Proprofs - please complete and submit the score and if it's below 90% please repeat until you can obtain a 90% score and let me know how long each test took also.
@@ -94,11 +96,14 @@ What is SSH?  How does it secure our web communications?
 
 What does SQL distinct do?
 
-what does SQL LIKE search for?
-
-What would SQL LIKE %a% find?   a%  ?         %a    ?
-
+What does SQL LIKE search for?
  
+What would SQL "LIKE '%a%' " find?  
+
+What would SQL "LIKE 'a%' " find?  
+
+What would SQL "LIKE '%a' " find?  
+
 
 ## C# Data Types
 
@@ -167,7 +172,11 @@ The output that I would like also is to create a text file with a `.csv` file ex
 	Line 4			2,2
 	Line 5			3,8
 
+### Running Microsoft Excel To Display This File Automatically
 
+Can you add a line 'Process.Start()' which will then run Excel to open this .csv file automatically?
+
+https://www.c-sharpcorner.com/UploadFile/1e050f/process-class-in-C-Sharp/
 
 
 ### Controlling The Population With Rabbit Death
