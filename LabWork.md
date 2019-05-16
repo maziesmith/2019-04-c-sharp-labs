@@ -154,6 +154,7 @@ The output that I would like also is to create a text file with a `.csv` file ex
 
 	Time (seconds)		Population
 
+	0			0
 	1 			1
 	2 			2
 	3 			8
@@ -161,9 +162,10 @@ The output that I would like also is to create a text file with a `.csv` file ex
 
 
 	Line 1			Time(seconds),Population   		(header)
-	Line 2			1,1
-	Line 3			2,2
-	Line 4			3,8
+	Line 2			0,0
+	Line 3			1,1
+	Line 4			2,2
+	Line 5			3,8
 
 
 
