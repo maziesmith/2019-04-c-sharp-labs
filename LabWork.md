@@ -4,7 +4,15 @@
 
 ## Quizzes
 
+### C# Technical Quiz
+
 40-question test on Proprofs - please complete and submit the score and if it's below 90% please repeat until you can obtain a 90% score and let me know how long each test took also.
+
+### Interview Quiz
+
+This has a mix of interview and basic C#, OOP, Agile and SQL questions to help you prepare for an interview.
+
+https://www.proprofs.com/survey/t/?title=interview-thoughts-and-prep-c-agile-sql-oop-covered
 
 ## Quiz Questions
 
