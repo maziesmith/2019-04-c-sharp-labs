@@ -1,3 +1,4 @@
+
 # 2019-04-c-sharp-labs
 
 This repository holds teaching notes and labs for C#
@@ -171,18 +172,16 @@ The labs are ordered in numbered sequence in ascending order of difficulty, star
 
 	Notion Desktop
 
-		((Microsoft OneNote))
+	Microsoft OneNote
 
-	* Microsoft Office : 	
+	Microsoft Office 	
+	
+	VSCode : web development : Microsoft
+
 	
 
-	???
-		VSCode : web development : Microsoft
 
-	
-
-
-Lifelong learner
+## Be A Lifelong learner !!!
 
 	Mornings!!!		2-3 hours on fresh brain : incredibly productive
 
@@ -206,7 +205,7 @@ Lifelong learner
 
 		
 
-Communication : Email
+## Communication In A Business
 
 Business Email
 
@@ -319,7 +318,7 @@ Delicate or sensitive matters
 
 
 
-Time Management
+## Time Management
 
 	Under-promise, over-deliver
 
@@ -401,7 +400,7 @@ Time Management
 
 
 
-Progress At The Academy
+## How Your Progress Is Measured At The Academy
 
 	Lominger 	
 
@@ -471,6 +470,8 @@ Progress At The Academy
 		Knowledge
 
 		Elocution : how you speak		
+
+
 	Project work
 
 		Awareness of 'deliverables' (what you have to do!)
@@ -482,6 +483,7 @@ Progress At The Academy
 		Problem solving
 
 		Communication
+
 	Interview
 			
 		Appearance
@@ -492,7 +494,7 @@ Progress At The Academy
 
 
 
-Communications
+## Communication Skills
 
 	Onsite
 
@@ -583,7 +585,7 @@ Communications
 
 
 
-Presentation Skills
+## Presentation Skills
 
 	
 	Why?
@@ -634,7 +636,7 @@ Presentation Skills
 	
 
 
-Project Management
+## Project Management
 
 	BAU Business As Usual		Regular run-of-mill-work
 
@@ -673,7 +675,9 @@ Project Management
 
 		
 
-IT Projects : Examples of SDLC = Software Development Life Cycle
+## IT Project Methodologies : Waterfall vs Agile
+
+SDLC = Software Development Life Cycle
 
 	Waterfall : simple, fixed projects
 
@@ -741,7 +745,7 @@ IT Projects : Examples of SDLC = Software Development Life Cycle
 
 
 
-Advanced Communication
+## Advanced Communication
 
 NLP Neuro		First responses ('first mental map'
 			ie how you encounter world around you
@@ -800,7 +804,8 @@ Bias
 		Blue		rational decision	
 
 
-CV
+## CV
+
 	Profile Statement
 
 		Best opportunity to 'sell yourself'
@@ -829,78 +834,7 @@ CV
 			xxxx no !!!  party/drinking / friends
 	
 
-Goals
-
-	Today 	Powerpoint & deliver it well 		
-
-	Profile  100% overnight : reads well, spelling, grammar, facts
-
-		Email to me !!!  '
-
-		==>  Practice on INTERVIEW TECHNIQUES : TOMORROW YOU 
-				HAVE TO 'PASS' AN INTERVIEW WITH ME!!!
-
-	Are you : ready for this? keen ? motivated? energised? aware of
-			practically what is ahead? 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-
-
-
-
-
-	== pause overnight ==
-
-
-	For..each loop
-
-	Treehouse
-
-	Create github account online 
-		create new repository 'repo'
-		git clone 
-
-		https://gitforwindows.org/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Programming Puzzle : Fizz-Buzz
+## Programming Puzzle : Fizz-Buzz
 
 	Count to 100
 
@@ -932,7 +866,7 @@ Programming Puzzle : Fizz-Buzz
 
 
 
-Thursday : Review of work 
+## Thursday : Review of work 
 
 Loops
 	For, Foreach, Do, Do..While
@@ -1066,22 +1000,12 @@ Listen types
 	Deep
 
 	
-
-
-
-
-
-
 TDD
 BDD
 
 	
 	
-
-
-
-
-### Rapid Business Skills Exam Prep
+## Rapid Business Skills Exam Prep
 
 Paragraphs : Rule of 5 : Start, Background, Transition, Details, Conclusion
 
@@ -1142,7 +1066,7 @@ Project Roles :
 Stakeholders
 	
 
-### Extra Exam Prep
+## Extra Exam Prep
 
 TDD Test Driven Development : tests written in code
 BDD Behaviour Driven Development : tests written in plain english
@@ -1186,8 +1110,7 @@ Stakeholders
 
 
 
-Exam Prep
-
+## Exam Prep
 
 Presenation : CMADE Confidence Manner Attitude Diligence Enthusiasm
 
@@ -1265,7 +1188,7 @@ Meetings : invitees, agenda, minutes, actions
 
 # C# #
 
-# Programming
+## High And Low Level Programming
 
 CPU : instruction set : raw binary commands which make cpu operate
 
@@ -1285,7 +1208,7 @@ High level languages : C#, C++, Java, Javascript, Python
 
 
 
-Structure of an application
+## Structure of an application
 
 .sln
 	Solution
@@ -1301,7 +1224,7 @@ Structure of an application
 				1) .exe  running application 
 				2) .dll  library (dynamic link library)  
 
-Referencing files
+### Referencing files
 
 	From one project to another, we can 'use' or 'reference' files (normally we call them 'classes') from one project in another project.
 
@@ -1313,7 +1236,7 @@ Referencing files
 			((Add a reference to achieve this))
 
 
-CSC C Sharp Compiler
+### CSC C Sharp Compiler
 
 To 'compile' is to take code from readable .cs to .exe running code
 
@@ -1343,7 +1266,7 @@ To 'compile' is to take code from readable .cs to .exe running code
 				CLR runtime 
 
 
-.CSC compiling a single file
+### .CSC compiling a single file
 
 	The C Sharp compiler can compile just one file, without Visual Studio
 
@@ -1354,7 +1277,7 @@ To 'compile' is to take code from readable .cs to .exe running code
 			==> create myapp.exe  
 
 
-.NET vs .NET Core
+## .NET vs .NET Core
 
 Windows computers are built with a programming language called 'C'.  This has developed into modern C++.  ((Linux/Apple/Android/Windows all have 'C' at heart))
 
@@ -1384,7 +1307,7 @@ Windows computers are built with a programming language called 'C'.  This has de
 		OPEN SOURCE ==> ANYONE CAN CONTRIBUTE
 
 
-Namespace
+## Namespace
 
 	Useful for creating a 'container' for our code
 
@@ -1446,7 +1369,7 @@ namespace phil2 {
 		UWP Universal Windows Platform : Windows 10 'Store' apps 
 
 
-Args array
+## Args array
 
 	When we run a program the Main() method gives us access to the 'Args' array
 
@@ -1807,7 +1730,7 @@ Loop : break; continue; switch; return
 
 
 
-Tuesday : Review Of Monday
+## Tuesday : Review Of Monday
 
 ```cs
             // DATA TYPES
@@ -2185,7 +2108,7 @@ const string DONT_CHANGE_ME = "I don't change";
 ```
 
 
-### Casting
+## Casting
 
 C# is 'strongly typed' so int, double are 'different'
 
@@ -2233,7 +2156,7 @@ int jjj = (int)ooo;
 
 
 
-AND/OR/XOR
+## AND/OR/XOR
 
 Truth table
 
@@ -2286,7 +2209,7 @@ OR OPERATOR
 
 
 
-### OOP Object Oriented Programming
+## OOP Object Oriented Programming
 
 Intro to OOP!!!
 
@@ -2315,7 +2238,7 @@ Run file with ./myScript.ps1
 ### Linux computer 'BASH' shell does similar work
 
 
-### OOP 
+## OOP 
 
 With GUI (Graphic User Interface) all of a sudden users interact with screen 'objects' eg button, inputs etc
 
@@ -2542,64 +2465,9 @@ Console.WriteLine(Cube(12));
 
 
 
+## Collections
 
-
-
-## Random Notes And Topics
-Main()  ==> Method ==> START POINT OF EVERY PROGRAM
-
-	Class Program {  static void Main(){  
-			// PROGRAM STARTS HERE!!!! 
-		}
-   }
-
-public ==> exposes code to be visible publicly (by all code)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Week 2 : Tuesday : Review Of Terms
-
-Class is a blueprint to create objects
-Class Parent{}
-Class Child : Parent{}
-Class MyClass{
-	public int Field01;       
-	public string Field02;    // fields
-	private bool _ isEnabled;   // normally private ofen with _ prefix
-	public int Property01 {get; set;}   // property 
-}
-
-
-
-
-
-
-
-
-## List<T> 
+### List<T> 
 
 List<int>
 List<string>
@@ -2640,7 +2508,7 @@ Yes it is possible to do List<List<int>>
         }
 ```
 
-## Stacks
+### Stacks
 
 Stack<int>
 Stack<string>
@@ -2665,7 +2533,7 @@ Methods : Push() and Pop()
 		Peek : inspect top item without removal
 
 
-## Summary so far
+### Summary so far
 
 	List : good thing is that we can extend and it has an index
 
@@ -2674,7 +2542,7 @@ Methods : Push() and Pop()
 	Array : fixed size but easily fastest for Read/Write operations
 
 
-## Queue
+### Queue
 
 Queue uses FIFO structure : First in first out
 
@@ -3052,12 +2920,7 @@ Overloading allows us to call the SAME METHOD WITH DIFFERENT PARAMETERS
 ```
 
 
-### Summary
-Methods
-	optional params
-	named params
-	constructor methods
-	overloading
+
 
 ### Passing integers into a method `by reference`  
 
@@ -6175,24 +6038,133 @@ using System.Data.SqlClient;
 ```
 
 
+# ASP websites
+
+## Introduction
+
+Most of the world build websites using regular
+
+	HTML
+
+	CSS
+
+	Javascript
+
+	However
+
+		These operate inside a 'browser' to display to the user
+
+The job of a 'web server' is to 
+
+	Store fixed pages, images, scripts etc
+
+	Generate dynamically computer-generated pages etc
+
+		Question is - which language can we run on the server which will generate
+		HTML to send back ?
+
+		client                                       facebook
+
+		10.11.12.13 	---> http request -->    	67.68.69.70
+
+		                   << http response ---
 
 
+			Many sites traditionally use PHP to generate HTML at the server
+
+			Java can be used (but not so much now)
+
+			Python, Ruby (RubyOnRails) can be used
+
+			Google has 'Go'
+
+			...
+
+			Someone worked out how to run JAVASCRIPT on the server also.  They called it
+			NODEJS and it has changed forever web devlopment
+
+			    client : HTML CSS JS              server : NODE (Javascript) 
+			                                               + HTML / CSS
+
+			Microsoft servers run a special language called ASP.NET
+
+				<html>....
+					<asp:runat="server">....button...
 
 
+				ASP Active Server Pages
+				ASPX = newer XML version
+
+	Traditional ASP has this format
+	
+		Display Page   .aspx    xml file
+
+			Code-behind    .cs      cs  code behind the XML
 
 
+							((Seen this in WPF already))
+
+	Razor Page
+
+	  .cshtml with both regular html on the page plus
+
+		@{
+
+			// put in here C# code 
+		}			
 
 
+	Visual Studio we can build several different types of Web App
+
+		1. Blank
+		2. ASP Web Form
+		3. ASP MVC Model View Controller
+		4. API 
+
+	First demo ==> Regular ASP (not MVC)
+
+		Flat file structure, Each page has .aspx and .cs file to make it		
+
+	Second demo ==> ASP MVC site
+
+		M   Model  			Data
+
+		V   View  			What the user sees
+
+								.cshtml pages
+
+		C   Controller  	Sorts out your request, decides which page you want to see,
+							gets the data from the model and sends it to the view
+							for display
 
 
+							http://mysite.com/Controller/Action
+
+							http://mysite.com/api/Customers/            all customers
+
+							                     /Customers/ALFKI       one customer
+
+							                    /Home                   controller
+
+							                    /Home/About      Home controller, About
+							                    				Action which retrieves
+							                    				the About View
+
+Controller : deciding which View to use
+
+	Home 
+
+		Index       DEFAULT 
+
+			Returns View page and look for page called Index.cshtml
 
 
+Pass data from Controller to View
 
+	We have seen the default ViewBag/ViewData but let's add to this
 
-
-
-
-
+	var string01 = "..."
+	return View("Index",string01);
 
 
 
@@ -6924,15 +6896,123 @@ Class : blueprint or template from which we create real objects using `new` keyw
 
 
 
-### Coding Prep Exercise
+Comment on:
 
-Can you build
+Class
 
-A Parent-class system with a field, property, and method.
+Struct mini class, stored as a fast 'value' type on the stack memory so is a very fast item
 
-An abstract parent and a real (concrete) child class which can be instantiated.  Make sure there is one abstract method in there and one real method.
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-A static class system with a static property and static method.
+namespace lab_62_struct
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var p01 = new Point();   // default constructor
+            p01.X = 10;
+            p01.Y = 11;
+            var p02 = new Point(10, 11);   // with constructor
+            var p03 = new Point(11, 12);
+        }
+    }
+
+    class Parent {
+        public int height { get; set; }
+    }
+
+    // Points on line : want very fast, not much detail inside (X,Y)
+    struct Point
+    {
+        public int X;  // public fields no hiding
+        public int Y;
+        public Point(int X, int Y)
+        {
+            this.X = X;
+            this.Y = Y;
+        }
+    }
+}
+
+```
+Enum
+
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_63_enum
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Fruit.banana);
+            // use the numeric value also
+            Console.WriteLine((int)Fruit.banana);
+            // even add a count 
+            Console.WriteLine($"There are {(int)Fruit.count} types of fruit");
+            // add an invalid type with -1
+            // Common example is days of week & months of year
+            var d = DateTime.Now;
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.Day);
+            Console.WriteLine((int)d.DayOfWeek);
+            d = d.AddDays(-2);
+            Console.WriteLine((int)d.DayOfWeek);
+            d = d.AddDays(-1);
+            Console.WriteLine((int)d.DayOfWeek);
+
+            var fruityfruit = Fruit.plum;
+    }
+
+    // Enum is a structure to hold values which are not expected to 
+    // change , ever
+    // days of week or months of year or staff codes in a company
+    enum Fruit
+    {
+        invalid=-1,banana,apple=1,pear=2,plum,peach,grape,count
+    }
+}
+
+```
+
+OOP
+4 Pillars
+Waterfall
+Agile
+Scrum
+Product Owner
+Scrum Master
+
+
+Dev Team
+
+
+Kanban : think non-stop factory : production never ceases.  
+
+		backlog(todo)   selected    in development    for review     done
+
+
+		                            max 5 items
+
+
+	Kanban : from Toyota : 'just-in-time' model where want to deliver items on time continuously - get the 'flow' right.  At any one time we LIMIT AMOUNT OF ITEMS
+	WE ARE WORKING ON.  Think bath plug - water leaves better if you limit amount of 'stuff' trying to escape the plughole
+
+
+Scrum : start-stop : discrete stages 'iterations' of a product
+
+Kanban : continuous flow of work, limiting active items at any one time
 
 
 
@@ -6941,34 +7021,172 @@ A static class system with a static property and static method.
 
 
 
+XP Extreme Programming / Pair Programming
+Sprint
+SDL Software Dev Lifecycle stages
+
+Risk is chance % possibility that something will happen * impact if it did take place
+	
+	20% possiblity this week my shoe laces come loose ==> no impact ....
+
+	0.0000001 of asteroid causing damage ....
+
+
+	10% chance project delayed 2 months     £10,000 penalty
+
+
+
+Mitigation of risk
+
+	Ways to reduce risk
+
+		Avoid...do something else
+		Insure (Transfer)
+		Do nothing (Accept)
+		Mitigate (spend money to reduce risk)  ((think potholes on roads))
+
+
+Abstract class
+Virtual keyword
+Override keyword
+Overload
+
+### .Base() in method
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_64_base
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // parent : dothis
+            var p1 = new Parent();
+            p1.DoThis();
+            // child : dothis
+            var c1 = new Child();
+            c1.DoThis();
+        }
+    }
+
+
+    class Parent {
+        public virtual void DoThis() {
+            Console.WriteLine("I'm in the parent");
+        }
+    }
+    class Child : Parent {
+        public override void DoThis()
+        {
+            base.DoThis();
+            Console.WriteLine("I'm in the child");
+        }
+    }
+}
+
+
+```
+
+
+### base keyword in Constructor
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_64_base
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // parent : dothis
+            var p1 = new Parent();
+            p1.DoThis();
+            // child : dothis
+            var c1 = new Child();
+            c1.DoThis();
+        }
+    }
+
+
+    class Parent {
+        public virtual void DoThis() {
+            Console.WriteLine("I'm in the parent");
+        }
+    }
+    class Child : Parent {
+        public override void DoThis()
+        {
+            base.DoThis();
+            Console.WriteLine("I'm in the child");
+        }
+    }
+}
+
+```
+
+
+While vs Do..While()
+Collection
+Faster - Array or collection?
+x++;
+break;
+continue;
 
 
 
 
 
 
+	What is a method return type?
+	What is a method parameter?
+	What is Pascal Case?
+	What is Camel Case
+	What is Snake Case?
+	What is Kebab Case?
+	What is an 'out' parameter
+	What does 'passing by reference' mean?
+	What is a reference type?
+	What is a value type
+	What is the Heap?
+	What is the Stack?
 
+	OOP
+	What is a constructor?
+	When do we use the 'new' keyword?
+	What is instantiation?
+	What is an instance?
+	Can we instantiate an abstract class?
+	Can we instantiate a sealed class?
+	What is NUNIT?
+	What is Entity Framework?
+	What is CRUD?
+	What does Try..Catch..Finally.. do?
+	What is a coding error?
+	What is an Exception?
+	Give some examples of exceptions
 
+	Can you create a github repo?  Write down about 10 things that you would do in order to create a master branch, then a dev branch, then push to the dev branch, then create a pull request to pull the dev branch into the master branch
 
+	How would  you view all your commits on a local system?
 
+	What does git reset do?  hard? soft?
 
+	What is HTTPS SSL?
+	What is SSH?
 
-
-
-
-
-
-## Luitzen question
-
-	struct Point{
-		public int X;
-		public int Y;
-		public Point(int x, int y){
-			this.X=x;
-			this.Y=y;
-		}
-	}
-
-
+	What does SQL distinct do?
+	what does SQL LIKE search for?
+	What would SQL LIKE %a% find?   a%  ?         %a    ?
 
 
