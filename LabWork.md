@@ -146,6 +146,8 @@ Note that I am not just looking for integers to be multiplied; I would actually 
 
 The goal would be to create the test with NUNIT then code this out firstly in a console app, then also a WPF app, then possibly as a 'stretch' exercise to code this as a web application starting out with straightforward 'Web Forms' app (not MVC at present)
 
+You can also set an upper population limit and test how long it will take to reach this population limit!
+
 ### Graph Of Rabbit Population Produced As A CSV file
 
 The output that I would like also is to create a text file with a `.csv` file extension with this structure
@@ -157,13 +159,14 @@ The output that I would like also is to create a text file with a `.csv` file ex
 	3 					8
 	4 					16
 
-Line 1			Time(seconds),Population   		(header)
-Line 2          1,1
-Line 3          2,2
-Line 4          3,8
+
+	Line 1			Time(seconds),Population   		(header)
+	Line 2          1,1
+	Line 3          2,2
+	Line 4          3,8
 
 
-You can also set an upper population limit and test how long it will take to reach this population limit!
+
 
 ### Controlling The Population With Rabbit Death
 
