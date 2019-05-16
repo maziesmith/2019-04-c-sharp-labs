@@ -153,6 +153,11 @@ The goal would be to create the test with NUNIT then code this out firstly in a 
 
 You can also set an upper population limit and test how long it will take to reach this population limit!
 
+### Goal For Today
+
+Create a test which sets a population limit and correctly iterates for x seconds to reach this population limit, in 1) Console App 2) WPF app 3) Web forms app.  Forget .CSV until you have done this but when done add the .CSV to the Console app.
+
+
 ### Graph Of Rabbit Population Produced As A CSV file
 
 The output that I would like also is to create a text file with a `.csv` file extension with this structure
@@ -187,3 +192,7 @@ If a rabbit dies after 5 seconds, how long does it now take to reach the upper p
 ### Rabbit Population Explosion With Foxes Reducing The Population Growth
 
 Add foxes and this will correspondingly reduce the rabbit population !!! If we introduce foxes which multiply at half the rate of rabbits (ie 1 every seconds), how long will it take to reach the rabbit population limit?
+
+### Setting Random Rabbit Properties
+
+We can read random rabbit properties from https://www.json-generator.com/ using C# 
