@@ -184,6 +184,6 @@ https://www.c-sharpcorner.com/UploadFile/1e050f/process-class-in-C-Sharp/
 If a rabbit dies after 5 seconds, how long does it now take to reach the upper population limit?
 
 
-### Rabbit Population Explosion With Foxes Decimating The Population
+### Rabbit Population Explosion With Foxes Reducing The Population Growth
 
-Or add foxes and this will correspondingly reduce the rabbit population !!!  Once we have reached the population limit of rabbits, if we introduce foxes which multiply at half the rate of rabbits.  How long will it take to decimate the population of rabbits to zero?
+Add foxes and this will correspondingly reduce the rabbit population !!! If we introduce foxes which multiply at half the rate of rabbits (ie 1 every seconds), how long will it take to reach the rabbit population limit?
