@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\lab_102_homework\lab102_homework.csproj" />
+    <ProjectReference Include="..\lab_102_homework\hw_102_homework.csproj" />
     <ProjectReference Include="..\lab_103_hw_classes\lab_103_hw_classes.csproj" />
     <ProjectReference Include="..\lab_104_hw_Stopwatch\lab_104_hw_Stopwatch.csproj" />
     <ProjectReference Include="..\lab_105_hw_Polymorphism\lab_105_hw_Polymorphism.csproj" />

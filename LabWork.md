@@ -1,9 +1,10 @@
 # Lab Work
 
-## Contents.
+## Contents
 
 
 - [Lab Work](#lab-work)
+	- [Contents](#contents)
 	- [Quizzes](#quizzes)
 		- [C# Technical Quiz](#c-technical-quiz)
 		- [Interview Quiz](#interview-quiz)
@@ -12,6 +13,10 @@
 	- [C# Operators](#c-operators)
 	- [C# Loops](#c-loops)
 	- [Codewars](#codewars)
+	- [GitHub Lab](#github-lab)
+		- [GitHub Lab : Creating Dev And Feature Branches](#github-lab--creating-dev-and-feature-branches)
+		- [GitHub Lab : Creating A Pull Request From Feature To Dev](#github-lab--creating-a-pull-request-from-feature-to-dev)
+		- [GitHub Lab : Pulling From Feature To Dev To Master Branch](#github-lab--pulling-from-feature-to-dev-to-master-branch)
 	- [SQL Lab Work](#sql-lab-work)
 		- [SQL Exam Answer Verification Application](#sql-exam-answer-verification-application)
 	- [OOP Lab Work](#oop-lab-work)
@@ -156,6 +161,54 @@ Code out a `switch` statement
 ## Codewars
 
 In any spare time, level up with Code Wars.  Let this be an excellent teacher for your raw C# learning as the beauty of this website is that once you have `cracked` a solution then all of the other ways that other people have `cracked` it will become visible to you, so you can learn from other programmers.
+
+
+
+## GitHub Lab
+
+Please can you run the following
+
+Create GitHub repo 'username-test'
+
+Add visual studio .gitignore
+
+Add licence
+
+Add README
+
+git clone to local computer  (( C:\ is good place to keep these repos))
+
+Create 2 files to add
+
+Create folder also and add one test file in it 
+
+Push to github : check all working
+
+### GitHub Lab : Creating Dev And Feature Branches
+
+locally : create branch 'dev' and also 'feature-new-styling' branch
+
+	git branch dev
+
+	git branch feature-new-styling
+
+### GitHub Lab : Creating A Pull Request From Feature To Dev
+
+On master branch and add philanderson888 as a collaborator and create a rule that at least one collaborator must approve pull requests to master branch
+ 
+checkout to feature branch `git checkout feature-01`
+
+Create some changes on the feature branch.  Push changes to GitHub.  Online now create a pull request to pull from Feature to Dev branch.  Pull this yourself.
+
+checkout to dev branch locally `git-checkout-dev`
+
+pull down new changes `git pull`
+
+### GitHub Lab : Pulling From Feature To Dev To Master Branch
+
+repeat the above process ie make changes in feature branch and pull to dev branch.  Then create a pull request from dev to master branch and get philanderson888 to approve changes
+
+
 
 ## SQL Lab Work
 

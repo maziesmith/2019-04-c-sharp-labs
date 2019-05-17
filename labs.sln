@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_19_casting", "lab_19_ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_20_truth_tables", "lab_20_truth_tables\lab_20_truth_tables.csproj", "{1E3F0F5A-F86A-48A8-93D1-C81583DA6BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab101_basic_coding", "lab_101_basic_coding\lab101_basic_coding.csproj", "{C6E0645F-2DA4-4CFE-9CA9-0A72595BE002}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_101_basic_coding", "lab_101_basic_coding\hw_101_basic_coding.csproj", "{C6E0645F-2DA4-4CFE-9CA9-0A72595BE002}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_21_review", "lab_21_review\lab_21_review.csproj", "{2D842A0D-0EE0-4B4F-954A-1DBF81EE9B19}"
 EndProject
@@ -99,7 +99,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_45_file_operations", "l
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_46_dictionary", "lab_46_dictionary\lab_46_dictionary.csproj", "{AE3D7828-F772-412B-A787-8D7D0F770751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab102_homework", "lab_102_homework\lab102_homework.csproj", "{CFA0485F-7455-4EE4-B153-C07AE042F96E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_102_homework", "lab_102_homework\hw_102_homework.csproj", "{CFA0485F-7455-4EE4-B153-C07AE042F96E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_47_break_continue", "lab_47_break_continue\lab_47_break_continue.csproj", "{538B0FBD-65BF-4230-BECE-C03EFC79C658}"
 EndProject
@@ -115,7 +115,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_53_reference_value_type
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_103_homework", "lab_103_homework\lab_103_homework.csproj", "{D7DDBE53-735D-473F-B0E0-54892DFF0DCF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab_hw_103_loops", "lab_hw_103_loops\lab_hw_103_loops.csproj", "{5C0CE91E-1F83-4C9E-9B41-4A2720C7872D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hw_103_loops", "lab_hw_103_loops\hw_103_loops.csproj", "{5C0CE91E-1F83-4C9E-9B41-4A2720C7872D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_52a_WPF", "lab_52a_WPF\lab_52a_WPF.csproj", "{B3E12CB4-F1A7-4566-8AAA-7B99AC93AFB2}"
 EndProject
@@ -164,6 +164,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_68_api", "lab_68_api\lab_68_api.csproj", "{D21FF9E8-579E-4C11-AF4E-54C0FC2E6EFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Population_Explosion_Web_01", "Project_Population_Explosion_Web_01\Project_Population_Explosion_Web_01.csproj", "{24F2772E-5A45-4023-A420-F2D7FF85027A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_104_WPF_Northwind_Entity", "hw_104_WPF_Northwind_Entity\hw_104_WPF_Northwind_Entity.csproj", "{D2F15C18-CA91-4D08-B7AF-946CFF6DED5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -495,6 +497,10 @@ Global
 		{24F2772E-5A45-4023-A420-F2D7FF85027A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F2772E-5A45-4023-A420-F2D7FF85027A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F2772E-5A45-4023-A420-F2D7FF85027A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F15C18-CA91-4D08-B7AF-946CFF6DED5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F15C18-CA91-4D08-B7AF-946CFF6DED5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F15C18-CA91-4D08-B7AF-946CFF6DED5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F15C18-CA91-4D08-B7AF-946CFF6DED5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
