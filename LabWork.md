@@ -1,6 +1,28 @@
 # Lab Work
 
+## Contents
 
+
+- [Lab Work](#lab-work)
+	- [Quizzes](#quizzes)
+		- [C# Technical Quiz](#c-technical-quiz)
+		- [Interview Quiz](#interview-quiz)
+	- [Quiz Questions](#quiz-questions)
+	- [C# Data Types](#c-data-types)
+	- [C# Operators](#c-operators)
+	- [C# Loops](#c-loops)
+	- [Codewars](#codewars)
+	- [SQL Lab Work](#sql-lab-work)
+		- [SQL Exam Answer Verification Application](#sql-exam-answer-verification-application)
+	- [OOP Lab Work](#oop-lab-work)
+		- [Rabbit Population Explosion](#rabbit-population-explosion)
+		- [Goal For Today](#goal-for-today)
+		- [Graph Of Rabbit Population Produced As A CSV file](#graph-of-rabbit-population-produced-as-a-csv-file)
+		- [Running Microsoft Excel To Display This File Automatically](#running-microsoft-excel-to-display-this-file-automatically)
+		- [Controlling The Population With Rabbit Death](#controlling-the-population-with-rabbit-death)
+		- [Rabbit Population Explosion With Foxes Reducing The Population Growth](#rabbit-population-explosion-with-foxes-reducing-the-population-growth)
+		- [Setting Random Rabbit Properties](#setting-random-rabbit-properties)
+	- [HW_LAB_104 WPF Application Using Entity And Northwind](#hw_lab_104-wpf-application-using-entity-and-northwind)
 
 ## Quizzes
 
@@ -208,7 +230,7 @@ We can read random rabbit properties from https://www.json-generator.com/ using 
 
 
 
-## WPF Lab Work
+## HW_LAB_104 WPF Application Using Entity And Northwind
 
 Create some buttons across the top of your application - Customers, Employees, Products and Suppliers.
 
