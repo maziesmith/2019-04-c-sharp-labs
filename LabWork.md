@@ -204,3 +204,32 @@ Add foxes and this will correspondingly reduce the rabbit population !!! If we i
 ### Setting Random Rabbit Properties
 
 We can read random rabbit properties from https://www.json-generator.com/ using C# 
+
+
+
+
+## WPF Lab Work
+
+Create some buttons across the top of your application - Customers, Employees, Products and Suppliers.
+
+Link these buttons to displaying a StackPanel object.  Each StackPanel object should be the same size and overlap.  Clicking on one button brings that StackPanel eg the Customers one to the front, and hide all the rest.
+
+For Employees just list all employees
+
+For Suppliers just list all suppliers.
+
+For Products just list all products.
+
+Also create a second list of top selling products.  In order to discover the top selling products we will need to cumulatively total up the gross value of sales for each product, and then sort in descending order.  If you want to go really advanced you can add a date field and have the top selling products since that date.  Or to make it a bit easier you can have the top selling products in the last 3 months, and the last 1 year.  Although Northwind might be a bit out of date so you might have to adjust these dates to suit.
+
+For Customers display all customers.  
+
+When we click on a customer, we can display all of the orders of that customer.  
+
+Clicking on an order displays the order details including the product.
+
+If there are any other ideas you have to enhance your application, feel free to share with the rest of the class.
+
+Finally I will give 'cred' points to those who take the time and effort to add a touch of nice styling.
+
+This is the project for today and for the weekend.
