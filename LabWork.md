@@ -1,6 +1,6 @@
 # Lab Work
 
-## Contents
+## Contents.
 
 
 - [Lab Work](#lab-work)
