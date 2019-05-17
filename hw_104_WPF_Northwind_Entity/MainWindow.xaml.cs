@@ -20,9 +20,66 @@ namespace hw_104_WPF_Northwind_Entity
     /// </summary>
     public partial class MainWindow : Window
     {
+        static List<Customer> customers;
+        static List<Order> orders;
+        static List<Order_Detail> orderDetails;
+        static Customer customer;
+        static Order order;
+        static Order customerOrders;
+
         public MainWindow()
         {
             InitializeComponent();
+            Initialize();
         }
+        void Initialize()
+        {
+            using (var db = new NorthwindEntities())
+            {
+                customers = db.Customers.ToList();
+                ListBoxCustomers.DisplayMemberPath = "ContactName";
+                ListBoxCustomers.ItemsSource = customers;
+            }
+        }
+
+
+
+        private void ListBoxCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBoxCustomerOrders.ItemsSource = null;
+            using (var db = new NorthwindEntities())
+            {
+                customer = (Customer)ListBoxCustomers.SelectedItem;
+              //  orders = db.Orders.Where(order=>order.CustomerID==customer.CustomerID).ToList<Order>();
+
+                orders =
+                    (from order in db.Orders
+                     where order.CustomerID == customer.CustomerID
+                     select order).ToList<Order>();
+                ListBoxCustomerOrders.DisplayMemberPath = "OrderID";
+                ListBoxCustomerOrders.ItemsSource = orders;
+
+            }
+        }
+
+        private void ListBoxCustomerOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            order = (Order)ListBoxCustomerOrders.SelectedItem;
+            ListBoxOrderDetails.ItemsSource = null;
+            using (var db = new NorthwindEntities())
+                orderDetails = db.Order_Details.Where(od => od.OrderID == order.OrderID).ToList();
+                
+                
+               
+                ListBoxCustomerOrders.DisplayMemberPath = "OrderID";
+                ListBoxCustomerOrders.ItemsSource = orders;
+
+            }
+        }
+
+
+        
+
+
     }
 }

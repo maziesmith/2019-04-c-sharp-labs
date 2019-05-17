@@ -6174,7 +6174,7 @@ Pass data from Controller to View
 
 
 
-### Games Week : Top-Up Tech !!!
+### Revision During Games Week : Top-Up Tech !!!
 
 Methods
 Overload : same name different parameters
@@ -6348,7 +6348,7 @@ Access Modifiers
 				'dll' ASSEMBLY
 	protected internal = protected plus internal scope
 
-### Polymorphism
+### Revision : Polymorphism
 	
 Each child overrides parent code
 
@@ -6386,7 +6386,7 @@ uint32 unsigned
 
 
 
-### Thursday : Morning review
+### Revision : Thursday : Morning review
 
 4 Pillars Of OOP : APIE !!!!
 Encapsulation : hiding private data  eg date of birth ((use 'private' keyword))
@@ -6468,46 +6468,6 @@ REPLACE(string,remove,insert)    ('abc','a','z')  => zbc
 100%8                 4
 	100 is  8 x 12   +   4
 
-
-
-
-### GitHub lab 
-
-Please can you run the following
-
-Create GitHub repo 'username-test'
-
-Add visual studio .gitignore
-
-Add licence
-
-Add README
-
-git clone to local computer  (( C:\ is good place to keep these repos))
-
-Create 2 files to add
-
-Create folder also and add one test file in it 
-
-Push to github : check all working
-
-===============================================
-
-locally : create branch 'dev' and also 'feature-new-styling' branch
-	git branch dev
-	git branch feature-new-styling
-
-checkout to feature branch
-
-add new file 'extra styling.txt'
-
-push this to GitHub : ensure you are pushing to right branch ie 'feature-new-styling' branch
-
-lock the master branch and add philanderson888 as a collaborator and create a rule that at least one collaborator must approve pull requests to master branch
- 
-repeat for dev to master branch and get philanderson888 to approve changes
-
-==================================================
 
 
 
@@ -7188,5 +7148,43 @@ continue;
 	What does SQL distinct do?
 	what does SQL LIKE search for?
 	What would SQL LIKE %a% find?   a%  ?         %a    ?
+
+
+### Weekend Homework
+
+Try and build this application again from scratch
+
+WPF
+
+Read Customers, Orders, Get OrderDetails and from this display the ProductName
+Read Employees
+Read Products
+Read Suppliers
+
+Can you select one Employee to display the Employee Name (in a text box) and edit it and update the database (Press a button to save changes)
+
+	employee=(Employee)ListBox.SelectedItem
+
+	TextBox01.Content = "Fred"
+
+	ButtonUpdate.Click(){
+		employee.FirstName=TextBox01.Content;
+		db.SaveChanges();
+	}
+
+Can you select one Employee and delete it?
+
+	employee=(Employee)ListBox.SelectedItem
+
+	ButtonDelete.Click(){
+		db.Remove(employee);
+		db.SaveChanges();
+	}
+
+Can you add a new employee?
+	employee = new Employee(){
+	FirstName = "fred",
+}
+Reminder : we have done all this in the CONSOLE ALREADY SO FIND THE CONSOLE CODE AND USE THE SAME CODE BUT JUST HAVE TO ADD WPF DISPLAY ITEMS IN.
 
 
