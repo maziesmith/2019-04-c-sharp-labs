@@ -308,3 +308,28 @@ If there are any other ideas you have to enhance your application, feel free to 
 Finally I will give 'cred' points to those who take the time and effort to add a touch of nice styling.
 
 This is the project for today and for the weekend.
+
+```cs
+Click on Customer
+
+	Customer ==> CustomerID
+
+		Search through all orders 
+
+			OrderID
+			CustomerID  (placed the order)
+
+			Find all orders placed by this customer : 
+
+				Match 1) CustomerID from selected customer 
+				with  2) all orders which have this CustomerID in them
+
+				orders = db.Orders.Where(o=>o.CustomerID==customer.CustomerID).ToList<Order>();
+
+				orders = db.Orders.Where(order=>order.CustomerID==customer.CustomerID).ToList<Order>();
+             
+                orders =
+                    (from order in db.Orders
+                     where order.CustomerID == customer.CustomerID
+                     select order).ToList<Order>();
+```
