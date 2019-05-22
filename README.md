@@ -6170,6 +6170,226 @@ Pass data from Controller to View
 
 
 
+## SQLite
+
+SQLite is the most used database engine in the world because it's used on
+mobile devices and tablets
+
+Open source
+
+Download and extract
+
+```sql
+sqlite3
+```
+
+GUI tool : SQLite Studio 
+
+	https://sqlitestudio.pl/index.rvt
+
+### Summary of commands
+
+.databases   show all
+.open my.db  
+??? attach database 'my.db' as 'alias'
+sqlite3 my.db  ==> attach and open
+.tables	     show all
+create table myTable(
+	id integer primary key,
+	name varchar(50)
+);
+insert into myTable values ("bob");
+.output file.txt
+.exit   exit   (Ctl-C)
+
+```
+// Create and/or connect
+./sqlite3 my.db
+```
+
+```
+.open my.db
+```
+
+```
+// show any tables
+.tables
+```
+
+add data
+```
+insert into mytable values ('bob');
+```
+
+.quit   ==> EXIT
+.exit   
+
+
+// from powershell
+./sqlite3 test.db
+
+// from inside sqlite
+.open test.db
+
+
+### SQLite With Northwind
+
+Download .sql script specifically for SQLite for Northwind
+
+Import with
+
+```bash
+./sqlite3 Northwind.db < InstallNorthwind.sql
+```
+
+
+## .NET Core
+
+.NET core is a stripped-down version of .NET
+
+Useful as it's cross-platform and now open source
+
+.NET Framework is huge (4.2GB) and Windows only
+.NET Core is Windows/Linux/MAC
+
+### Adding Entity to .Net Core
+
+Let's add these packages
+
+```
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.SQLite
+```
+
+### Working with Nuget console
+
+Nuget : graphic utility
+Improve as programmer ==> efficient with command line
+
+### See what's installed
+
+Get-Package
+
+
+### Find packages on internet
+
+Find-Package EntityFramework
+
+### Install 
+
+Install-package Microsoft.EntityFrameworkCore.SqlServer -ProjectName lab_77_entity_core
+
+
+### Build code
+
+Now we have to build our code - but this time from raw!!!  Quite a lot of work!!!
+
+GitHub : Philanderson888 : c-sharp : Entity_10_Core_Northwind
+
+Products
+
+	Categories  (related table)
+
+	One product will belong to one category
+
+[Above Certain Columns : add Description or Type or Change of Name]
+
+### Relationships
+
+Table relationships expressed with
+
+class Category {
+	// properties
+
+
+	// end : relationship
+    public virtual ICollection<Product> Products { get; set; }
+}
+
+### Configure The Database
+
+class Northwind : DbContext{
+	
+	public DbSet<Category> Categories {get;set;}          // CREATE TABLE 
+
+}
+
+
+FluentApi is name given to overridden method which sets database constraints
+
+
+
+
+
+
+## Overnight Lab : Build Your Own ToDo Application In WPF
+
+Goal 
+
+	Users    'UserID'  'UserName'     'Bob', 'Bill', 'Fred'
+
+	Categories   'CategoryID'  'CategoryName'    Home', 'Work', 'Family'
+
+	Tasks   'TaskID' 'TaskName' 'DateCreated' 'DateDone' 'Done' 'CategoryID' 'UserID'
+
+Build an app which
+
+	Populated from manually run script (either SQL or C# Code-First)
+
+	Populates database with initial data
+
+	Correctly relates tables : One task has one user and one category
+
+	Minimum : List/Add/Remove Tasks
+	Maximum : Full CRUD ie List/Add/Remove/Update   Tasks+Users+Categories
+
+
+### Trainer Help : SQL Script
+
+```sql  (not SQLite)
+use Northwind;
+drop database ToDo
+go
+create database ToDo 
+go 
+use ToDo
+go 
+CREATE TABLE Categories(
+	CategoryID INT NOT NULL IDENTITY PRIMARY KEY,
+	CategoryName NVARCHAR(50) NULL
+);
+CREATE TABLE Users(
+	UserID INT NOT NULL IDENTITY PRIMARY KEY,
+	UserName NVARCHAR(50) NOT NULL
+);
+CREATE TABLE tasks(
+	TaskID INT NOT NULL IDENTITY PRIMARY KEY,
+	TaskDescription NVARCHAR(50) NULL,
+	Done Bit NULL,
+	DateStarted Date NULL,
+	DateCompleted Date NULL,
+	CategoryID INT NULL FOREIGN KEY REFERENCES Categories(CategoryID),
+	UserID INT NULL FOREIGN KEY REFERENCES Users(UserID)
+);
+```
+
+// Add data
+
+```sql
+INSERT INTO Categories ..  Users ... Tasks ...    // SAMPLE DATA 
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
