@@ -4,6 +4,10 @@ using lab_102_homework;
 using lab_103_hw_classes;
 using lab_104_hw_Stopwatch;
 using lab_105_hw_Polymorphism;
+using lab_hw_106_interview_prep;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 
 
@@ -75,6 +79,37 @@ namespace Tests
         // repeat this model for labs 104 and 105, passing in the right parameters 
         // and testing the right data is output.  
         // Create at least 3 tests per lab
+
+        [TestCase("hello",3,108)]
+        
+        
+        public void Lab_hw_106_ASCII_Tests(string input, int index, int expected)
+        {
+            // arrange
+            var instance = new lab_hw_106_interview_prep.ASCII();
+            // act
+            var actual = instance.ASCII_Return_Index_Of_String(input, index);
+            // assert
+            Assert.AreEqual(expected, actual);       
+        }
+        [TestCase(1,1,1)]
+        
+        public void Lab_hw_106_Exception_Tests(int x, int y, int expected)
+        {
+            var instance = new lab_hw_106_interview_prep.ThrowException();
+            var actual = instance.Throw_Exception_Test(x, y);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(400000000, 400000000)]
+        public void Lab_hw_106_Exception_Tests_Throw_Exception(int x, int y)
+        {
+            var instance = new lab_hw_106_interview_prep.ThrowException();
+            Assert.Throws<OverflowException>(() => {
+                instance.Throw_Exception_Test(x, y);
+            });
+        }
+
 
 
     }

@@ -27,6 +27,7 @@ namespace lab_63_enum
             Console.WriteLine((int)d.DayOfWeek);
 
             var fruityfruit = Fruit.plum;
+        }
     }
 
     // Enum is a structure to hold values which are not expected to 

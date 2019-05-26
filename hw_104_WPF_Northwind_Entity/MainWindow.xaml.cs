@@ -50,7 +50,7 @@ namespace hw_104_WPF_Northwind_Entity
             using (var db = new NorthwindEntities())
             {
                 customer = (Customer)ListBoxCustomers.SelectedItem;
-              //  orders = db.Orders.Where(order=>order.CustomerID==customer.CustomerID).ToList<Order>();
+                //  orders = db.Orders.Where(order=>order.CustomerID==customer.CustomerID).ToList<Order>();
 
                 orders =
                     (from order in db.Orders
@@ -68,18 +68,19 @@ namespace hw_104_WPF_Northwind_Entity
             ListBoxOrderDetails.ItemsSource = null;
             using (var db = new NorthwindEntities())
                 orderDetails = db.Order_Details.Where(od => od.OrderID == order.OrderID).ToList();
-                
-                
-               
-                ListBoxCustomerOrders.DisplayMemberPath = "OrderID";
-                ListBoxCustomerOrders.ItemsSource = orders;
 
-            }
+
+
+            ListBoxCustomerOrders.DisplayMemberPath = "OrderID";
+            ListBoxCustomerOrders.ItemsSource = orders;
+
         }
 
 
-        
 
+        private void ListBoxOrderDetails_SelectionChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -6383,6 +6383,109 @@ INSERT INTO Categories ..  Users ... Tasks ...    // SAMPLE DATA
 
 
 
+# SOLID Programming Principles
+
+Theoretical principles of good programming
+
+S 		Single Responsibility
+O  		Open / Closed
+L 		LISKOV substitution
+I 		Interface segregation
+D 		Dependency Inversion
+
+
+
+
+S 		Single Responsibility
+
+	Classes should only deal with one object
+
+		Maintenance of your code becomes much easier when individual classes
+		/modules/methods etc deal only with one function or 'reason for existence'
+
+		Update your code ==> only one single place for this to happen
+
+		 				     only affect one module
+
+
+			Monolith 
+
+				Full application with libraries, databases, attached to an operating system
+				- very big and bulky but also if you want to change it, there can be problems
+				with affecting rest of code.
+
+			Container
+
+				Small workspace in which we can put an application and all of
+				its dependencies so that we can publish it to the 'cloud' and 
+				it will not break when moved from development into production
+
+				App 				App               App
+ 				Libraries           Libraries         Libraries
+
+ 				======= host : shared operating system 'kernel' ============
+
+
+			DevOps :  TDD tests then build code to pass tests (RED tests fail, GREEN tests pass, REFACTOR efficient).  Once tests pass then push to production straight away
+
+				CI-CD  Continuous Integration, Continuous Deployment
+
+					Team of 50 : continually 1) tests 2) pass 3) push to production 4) everyone
+									else pull down changes 
+
+
+			Microservices Architecture  : large application built from many single decoupled elements
+
+			Decoupling : code not dependent on other code (valid unit tests by itself) 
+
+		Single Responsiblity : Code should be MODULAR and TESTABLE by itself (UNIT TESTS)
+
+
+O  		Open / Closed
+
+	Open for extension       : DERIVED (CHILD) classes : OK to inherit from parent and override 
+									behaviour etc
+
+	Closed for modification  : BASE (PARENT) class : finished (not modified)
+
+		Illustration : Visual Studio (parent)
+							NUGET    (plug-ins to modify behaviour)
+
+
+    Open / Closed ==> classes open for extension rather than modify root class
+
+
+
+L 		LISKOV substitution
+
+			Replace Parent with Child instances : in some situations
+
+
+I 		Interface segregation
+
+			Keep interfaces with a single responsibility 
+
+				In practice means ONE METHOD PER INTERFACE
+
+						IDisposable ==> Dispose()
+						IComparable ==> CompareTo()
+
+
+D 		Dependency Inversion
+
+			Create your code structure with Abstract classes at the top and inherit down with real
+			(concrete) classes below this level
+
+S Single Responsibility
+O Open for extension
+L LISKOV : parent/child substitution
+I Interfaces : one method only
+D Depend on abstract classes at top level
+
+
+
+
+
 
 
 
@@ -7406,5 +7509,341 @@ Can you add a new employee?
 	FirstName = "fred",
 }
 Reminder : we have done all this in the CONSOLE ALREADY SO FIND THE CONSOLE CODE AND USE THE SAME CODE BUT JUST HAVE TO ADD WPF DISPLAY ITEMS IN.
+
+
+
+### Review
+
+checked : throws an exception if your number gets too big or small
+
+	unchecked : turns off again (default)
+
+dynamic : turns off type checking at compile time
+
+	dynamic x = 10;  // int
+	x = true;        // bool
+
+	((Note : Javascript does this by default))
+
+Dynamic language : loose checking of types : even at runtime the type can possibly change as is the case with Javascript and also C# with 'dynamic' keyword.
+
+Statically typed / strongly typed language : types are strictly defined at compile time.
+
+	var keyword : type is still strictly inferred at compile time
+
+Javascript - loose type checking
+
+	Typescript - plug-in to Javascript where types are more strictly controlled
+
+	using strict;  is Javascript in 'strict' mode also prevents switching type
+
+	var x = 10;
+
+
+## Tasks
+
+Synchronous code runs line by line
+
+	A long task causes the program to 'hang' which is not good for the user experience
+
+Asynchronous code looks like this in C#
+
+	async void/<Task> DoThis(){
+		await ReadFileAsync("bigdatabasefile.txt")
+			  Http call to remote item 
+			  Network call to item on LAN network
+			  Database read
+			  Call to memory location 
+			  Task which is going to take a while
+	}
+
+1	Main(){
+2		Task t = DoThis();
+3		Console.WriteLine("hi");
+4		Console.ReadLine();
+        // run task t
+	}
+
+			Code will run 1, 2, 3 and then will pause at line 4.
+			While paused the async method will return and we could action it
+
+	Critical thing is that code does not STOP!!!!  Keeps going!!!!  Async task
+	returns whenever it wants to.
+
+
+
+### Tasks under the hood
+
+Main() thread ==> main process which is 'service' (user does not see) or application (user does see)
+
+Service : 24/7 in background : at startup : eg DNS name lookup on internet
+
+Application : foreground : at logon (user logs in) eg Outlook
+
+Main Thread
+
+	==> want to do a task which takes a long time
+
+		C# : Create 'Task' object and run it.
+
+			Operating system will control this task and its resources ie
+			memory and CPU allocated to it.
+
+Task manager
+	main 
+		sub-threads
+
+Terminology
+
+	service  24/7
+	
+	application at logon eg Outlook
+
+	process - running .exe file which takes up Operating System resources on computer
+						CPU
+						RAM
+						DISK
+						NETWORK
+	
+	task
+		separate process but linked to main process
+
+
+	thread
+		single block of code sent directly to CPU for execution now ie it's a single unit of code
+		being executed
+
+		ONE PROCESS
+			MANY THREADS
+
+	idle  
+		CPU is idle most of the time!
+
+
+
+## Practical Coding
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
+
+namespace lab_78_tasks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1
+            var s = new Stopwatch();
+            s.Start();
+            var t = new Task(
+                () => {
+                    Console.WriteLine("Starting Task Now at time " + s.ElapsedTicks);
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine($"Finishing task at time {s.ElapsedTicks}");
+                }
+            );
+
+            t.Start();
+     //       Thread.Sleep(700);
+            Console.WriteLine($"Program has finished at time {s.ElapsedTicks}");
+            Console.ReadLine();
+            // run this program with line 28 and then run it without line 28 - is there a difference?
+            // can you explain?
+
+            // declare and start with the Run() command
+            var t02 = Task.Run(
+                // this thing is a 'delegate' which is a 'placeholder' for a method
+                ()=> {
+                    Console.WriteLine($"Running Task t02 at time {s.ElapsedTicks}");
+                }
+            );
+
+            // older ways of declaring this
+
+            // Action Delegate
+            var t03 = Task.Run(
+
+                new Action(Method01)
+
+                );
+
+            // another older way : explicitly using the 'delegate' keyword
+            // anonymous delegate with the 'delegate' keyword
+            var t04 = Task.Run(
+                delegate
+                {
+                    Console.WriteLine($"In task t04 with anon delegate at {s.ElapsedTicks}");
+                }
+            );
+
+            // last older way : Task.Factory
+
+            var t05 = Task.Factory.StartNew(() => { Console.WriteLine($"In task 05");   });
+        }
+
+        static void Method01() {
+            Console.WriteLine("In Method01");
+        }
+
+    }
+}
+
+
+
+```
+
+
+### Task.Wait, WaitAny, WaitAll
+
+We can pause our code until one or all of our tasks are complete
+
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Diagnostics;
+
+namespace lab_79_task_wait
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Real life : array of tasks simulate batch jobs processed
+            // during night
+            var s = new Stopwatch();
+            s.Start();
+
+            var taskArray = new Task[3];
+            taskArray[0] = Task.Run(() => {
+                Thread.Sleep(500);
+                Console.WriteLine($"Task 01 finishing at {s.ElapsedTicks}");
+            });
+            taskArray[1] = Task.Run(() => {
+                Thread.Sleep(1500);
+                Console.WriteLine($"Task 02 finishing at {s.ElapsedTicks}");
+            });
+            taskArray[2] = Task.Run(() => {
+                Thread.Sleep(2500);
+                Console.WriteLine($"Task 03 finishing at {s.ElapsedTicks}");
+            });
+
+            var singleTask = Task.Run(() => {
+                Thread.Sleep(5000);
+                Console.WriteLine($"Single task is finishing at {s.ElapsedTicks}");
+            });
+           // Task.WaitAny(taskArray);  // wait until at least one task has completed
+            Task.WaitAll(taskArray);   
+            singleTask.Wait();
+            Console.WriteLine($"Program finished at {s.ElapsedTicks}");
+            Console.ReadLine();
+     
+        }
+    }
+}
+```
+
+
+
+### Interview Prep
+
+Loops
+Conditional if..else..
+Exception try..catch..finally
+String manipulate
+
+
+
+Pantheon
+	Equity -> Investment in a company which can take several forms, the most common of which
+			is buying shares  3567uik6
+	Shares : Public (traded on Stock Exchange)
+	       : Private 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Random
+
+RESTful API 
+
+	REST Representational State Transfer
+
+	HTTP REST API
+
+		Data is sent to the client in JSON format
+
+		{
+
+			"key":"value",
+			"key2":"value2"
+		}
+
+	Regular website : data is sent from server to client in HTTP format
+
+		<html>... website
+
+	Microsoft website : data is sent from ASP / ASPX web server to client as HTTP
+
+	REST API : data is sent from server to client as text data in JSON { ... data ... }
+				format
+
+			EG Postcode.io  API
+
+			   Northwind ASP API  where we used POSTMAN to inspect the data 
+
+		Note : in order to deliver multiple records we use an array
+
+		[
+			{ "key1" : "value1", "name":"fred","age":2 },    first
+			{ "key2" : "value2", "name":"bob","age":15 }     second
+		]
+
+
+AJAX
+
+	Asynchronous Javascript And XML
+
+	Ajax is very useful to put dynamic content onto a static web page
+
+		Page does not refresh but data does refresh behind the scenes.
+
+
+
+
 
 
