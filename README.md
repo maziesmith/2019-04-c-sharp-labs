@@ -6376,12 +6376,8 @@ CREATE TABLE tasks(
 // Add data
 
 ```sql
-INSERT INTO Categories ..  Users ... Tasks ...    // SAMPLE DATA 
+INSERT INTO Categories ..  Users ... Tasks ...    // SAMPLE DATA .
 ```
-
-
-
-
 
 # SOLID Programming Principles
 
@@ -6481,6 +6477,400 @@ O Open for extension
 L LISKOV : parent/child substitution
 I Interfaces : one method only
 D Depend on abstract classes at top level
+
+
+
+
+
+
+# ASP Web Core Project 
+
+Today we are going to build an ASP Core website from scratch.
+
+We are not going to do a lot of theory, but just build the website!
+
+Theory and detail will come later.
+
+Goal
+
+1) ASP Website (not MVC)
+
+2) Flat file structure
+
+3) Razor page 
+
+4) Use Model (puts data on page)
+
+
+### Build project (New ASP Core Web)
+
+### Folder Structure
+
+wwwroot
+	js   Javascript
+	css
+	images
+
+				FIXED FILES WITH NO SECURITY : COMPLETELY VISIBLE
+				ALL FILES, FULL PATH LOADED WITH SITE
+
+Pages/Shared/ _ Layout is our file shared across all pages
+
+Startup.cs
+
+	Services
+
+		==> Run our database from here!
+
+		AddMvc()  
+
+AppSettings.json
+
+	Can have database connection string sometimes
+
+
+Default page is 'Index'   (can be Default.htm)
+
+Page
+
+	Phil.cshtml     this is 'Razor' page
+
+		Phil.cshtml.cs    this is 'C#' code-behind page (real C#)
+
+
+### Passing data through from our C# code-behind to .cshtml View page
+
+We can create 'properties' in the C# page by using the 'class' it declares
+
+	class MyPage : PageModel {
+
+		public string Property01 {get;set;}
+
+	}
+
+
+### Code from 3 cshtml pages
+
+```html
+
+@page
+@model lab_80_asp_core_web.Pages.PhilModel
+@*
+    COMMENT
+*@
+
+@{
+    // code
+    // two ways of storing trivial strings : viewdata and viewbag
+    ViewData["Value"] = "Here is some data";
+    ViewBag.Value2 = "And some more data here - Viewbag";
+}
+
+<i>
+    <b>
+        <u>
+
+            We don't really use Bold Italic Underline any more
+
+        </u>
+    </b>
+</i>
+
+<p style="font-weight:bold">@ViewData["Value"]</p>
+
+<p style="font-style:italic">@ViewBag.Value2</p>
+
+<p>
+    We can also use 'em' for emphasis italic
+    <span><em>@ViewBag.Value</em></span>
+</p>
+
+<p>
+    We can also use 'strong' for emphasis bold
+    <span><strong>@ViewBag.Value</strong></span>
+</p>
+
+<p>'p' always starts a new line BLOCK ELEMENT <p>@ViewBag.Value</p></p>
+
+<p>So does H1 Header <h1>@ViewBag.Value</h1></p>
+
+<p>So does DIV I think!!!! <div>@ViewBag.Value</div></p>
+
+<p>
+    Finally to underline we use
+    <span style="text-decoration:underline">text-decoration:underline</span>
+</p>
+
+<h1>This is my amazing test web page</h1>
+
+<p>Some text</p>
+
+<h1>Using Razor</h1>
+
+<h2>The 'at' symbol can be used to write C# code raw on top of HTML</h2>
+
+<h3>@DateTime.Now</h3>
+
+@{
+    var d = DateTime.Now;
+    d = d.AddDays(2);
+}
+
+<h4>The date in 2 days time is @d.ToShortDateString()</h4>
+
+
+<ul>
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+</ul>
+
+<ol>
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+</ol>
+
+<ul>
+    @for (int i = 1; i <= 10; i++)
+    {
+        // notice that inside C# block we can intelligently use HTML as well
+        <li>Your item has number @i</li>
+    }
+</ul>
+
+
+
+<h2>This is also Bootstrap</h2>
+
+<button class="btn btn-success">Click Here</button>
+<button class="btn btn-danger">Click Here</button>
+<button class="btn btn-default">Click Here</button>
+<button class="btn btn-info">Click Here</button>
+<button class="btn btn-primary">Click Here</button>
+
+<h2>HTML table looks a bit 'rubbish'!</h2>
+
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-13pz {
+            font-size: 18px;
+            text-align: center;
+            vertical-align: top
+        }
+</style>
+<table class="tg">
+    <tr>
+        <th class="tg-13pz">some</th>
+        <th class="tg-13pz">text</th>
+        <th class="tg-13pz">here</th>
+        <th class="tg-13pz">in </th>
+        <th class="tg-13pz">this </th>
+        <th class="tg-13pz">table</th>
+    </tr>
+    <tr>
+        <td class="tg-13pz">also</td>
+        <td class="tg-13pz">here</td>
+        <td class="tg-13pz">.</td>
+        <td class="tg-13pz">.</td>
+        <td class="tg-13pz">.</td>
+        <td class="tg-13pz">.</td>
+    </tr>
+    <tr>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+    </tr>
+    <tr>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+    </tr>
+    <tr>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+    </tr>
+    <tr>
+        <td class="tg-13pz">on</td>
+        <td class="tg-13pz">the</td>
+        <td class="tg-13pz">bottom</td>
+        <td class="tg-13pz">row</td>
+        <td class="tg-13pz"></td>
+        <td class="tg-13pz"></td>
+    </tr>
+</table>
+
+
+<h2>Bootstrap Table</h2>
+
+<table class="table table-hover table-bordered table-striped">
+    <tr>
+        <th>header</th>
+        <th>goes</th>
+        <th>here</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>also</td>
+        <td>here</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>is</td>
+        <td>some</td>
+        <td>detail</td>
+    </tr>
+</table>
+
+```
+
+
+```cshtml
+@page
+@model lab_80_asp_core_web.Pages.UsingAModelModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<hr />
+<hr />
+<hr />
+
+<style>
+    div.block{
+        width:70%;  /* note that can use 50vw as well */
+        padding: 8vh 9vw;   /*  top right bottom left   */
+        background-color:green;
+        text-align:center;
+        font-size:1.3em;  /* one 'em' means standard size text */
+      /*  margin-left:15vw;  */
+        margin:auto;
+        margin-top:5vh;
+    }
+</style>
+
+<div class="block">
+    @Model.Property01
+</div>
+
+<div class="block">
+    @Model.Property01
+</div>
+
+<div class="block">
+    @Model.Property01
+</div>
+
+<div class="block">
+    @Model.Property01
+</div>
+
+<div class="block">
+    @Model.Property01
+</div>
+
+
+
+```
+
+
+```cshtml
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace lab_80_asp_core_web.Pages
+{
+    public class ListsModel : PageModel
+    {
+        public List<String> items = new List<string>();
+        public void OnGet()
+        {
+            items.Add("first");
+            items.Add("second");
+            items.Add("FiFteenth");
+            items.Add("fourth");
+            items.Add("odd one out");
+        }
+    }
+}
+
+```
+
+
+
+Homework
+
+Can you research and add to your page
+
+1) A Flexbox div, centered, 100 pixels square
+
+2) Can you import Microsoft.EntityFrameworkCore v2.1.8 into your project?
+
+3) Also  Microsoft.EntityFrameworkCore.SqlServer 
+
+4) Can you add a folder 'Models' to your project
+
+5) In it add two classes
+
+a) Customer
+
+b) Northwind : DbContext
+
+(trainer will give you files for 5a and 5b)
+
+6) using MyProject.Models;  at top
+
+7) using (var db = new Northwind()){  
+	  // create a list of customers and display them!
+   }
+
+8) Add code to Services method of Startup.cs
 
 
 
