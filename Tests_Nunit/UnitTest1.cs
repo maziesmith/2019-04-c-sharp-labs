@@ -81,8 +81,6 @@ namespace Tests
         // Create at least 3 tests per lab
 
         [TestCase("hello",3,108)]
-        
-        
         public void Lab_hw_106_ASCII_Tests(string input, int index, int expected)
         {
             // arrange
@@ -92,6 +90,7 @@ namespace Tests
             // assert
             Assert.AreEqual(expected, actual);       
         }
+
         [TestCase(1,1,1)]
         
         public void Lab_hw_106_Exception_Tests(int x, int y, int expected)
