@@ -19,7 +19,7 @@ namespace lab_81_EF6_update_database
             students.ForEach(s => {
 
                 Console.WriteLine(s.FirstName);
-
+                Console.WriteLine(s.DateOfBirth);
                 
                 });
         }

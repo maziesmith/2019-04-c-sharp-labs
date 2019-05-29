@@ -81,11 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="StudentsDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>StudentsDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="packages.config" />
     <None Include="StudentsDBModel.edmx.diagram">
       <DependentUpon>StudentsDBModel.edmx</DependentUpon>
     </None>
@@ -96,13 +96,13 @@
   <ItemGroup>
     <Content Include="StudentsDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StudentsDBModel.Context.cs</LastGenOutput>
       <DependentUpon>StudentsDBModel.edmx</DependentUpon>
+      <LastGenOutput>StudentsDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="StudentsDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StudentsDBModel.cs</LastGenOutput>
       <DependentUpon>StudentsDBModel.edmx</DependentUpon>
+      <LastGenOutput>StudentsDBModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
