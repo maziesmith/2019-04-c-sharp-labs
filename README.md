@@ -6880,6 +6880,312 @@ b) Northwind : DbContext
 
 
 
+# ASP and ASP Core
+
+Homework overnight will be to create a fresh website ASP Core of your choice.
+
+It should just use the standard Bootstrap menu but other than that feel free to customise as you wish.
+
+Build 3 pages
+
+Create a table
+
+Use a flexbox with perhaps 2 or 3 divs containing images in order to place them centrally on the page
+
+ASP does have a 'carousel' with rotating images (create optionally)
+
+
+As a warm-up to this, I want to re-create the TODO app using 
+	1) ASP
+	2) ASP Core
+
+In order to give you a base for adding in a custom database table into your app.  Perhaps 1, maybe 2 linked tables.
+
+### Reminder Of Differences Core vs Framework
+
+	.NET     			ASP   			Entity Framework 6  (EF6)
+
+	.NET Core    		ASP Core 		Entity Core
+
+		Difference betweeen Core and Non-Core?
+
+			Core
+				Cross-platform : MAC, Linux, Windows
+				Small
+				Light
+				New, fresh technologies
+				Cannot use WPF
+				Can't link to many 'heavy' native Windows libraries
+			Framework
+				.NET is big (4GB)  !!!
+
+
+### Azure / AWS 'DEVOPS'
+	
+	ASP Web app => can deploy to Azure
+	ASP Core web app ==> smaller, nimble ==> easier to port to Azure or AWS for hosting
+
+	DEVOPS :   Build=>Test=>Move Database To Cloud=>Push Code to Cloud for hosting
+
+		Can link to GitHub with automatic push to Azure 
+
+### ToDo via ASP MVC using Entity Framework (EF6 for short)
+
+ASP MVC ==> Import Entity => Scaffold pages ==> DONE  !!!
+
+
+### Migrating A Database
+
+Let's play around with a database.
+
+Before we do, we want to be sure we have captured old data before we make changes.
+
+First thing to be aware of is the location of the database!
+
+	MDF = Microsoft Database File
+
+
+
+```sql
+
+
+USE [Todo]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+DROP TABLE IF EXISTS [dbo].[Tasks];
+GO
+DROP TABLE IF EXISTS [dbo].[Categories];
+GO
+DROP TABLE if EXISTS [dbo].[Users];
+GO
+
+
+CREATE TABLE [dbo].[Categories] (
+    [CategoryID]   INT           IDENTITY (1, 1) NOT NULL,
+    [CategoryName] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([CategoryID] ASC)
+);
+
+CREATE TABLE [dbo].[Users] (
+    [UserID]   INT           IDENTITY (1, 1) NOT NULL,
+    [UserName] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC)
+);
+
+CREATE TABLE [dbo].[Tasks] (
+    [TaskID]          INT           NOT NULL,
+    [TaskDescription] NVARCHAR (50) NULL,
+    [Done]            BIT           NULL,
+    [DateStarted]     DATE          NULL,
+    [DateCompleted]   DATE          NULL,
+    [Category]        INT           NULL,
+    [UserID]          INT           NULL,
+    PRIMARY KEY CLUSTERED ([TaskID] ASC),
+    FOREIGN KEY ([Category]) REFERENCES [dbo].[Categories] ([CategoryID]),
+    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+Go
+
+
+SET IDENTITY_INSERT [dbo].[Categories] ON
+INSERT INTO [dbo].[Categories] ([CategoryID], [CategoryName]) VALUES (1, N'Family')
+INSERT INTO [dbo].[Categories] ([CategoryID], [CategoryName]) VALUES (2, N'Work')
+INSERT INTO [dbo].[Categories] ([CategoryID], [CategoryName]) VALUES (3, N'Personal')
+INSERT INTO [dbo].[Categories] ([CategoryID], [CategoryName]) VALUES (4, N'Admin')
+INSERT INTO [dbo].[Categories] ([CategoryID], [CategoryName]) VALUES (5, N'Leisure')
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+
+
+SET IDENTITY_INSERT [dbo].[Users] ON
+INSERT INTO [dbo].[Users] ([UserID], [UserName]) VALUES (1, N'Bob')
+INSERT INTO [dbo].[Users] ([UserID], [UserName]) VALUES (2, N'Bill')
+INSERT INTO [dbo].[Users] ([UserID], [UserName]) VALUES (3, N'Ben')
+SET IDENTITY_INSERT [dbo].[Users] OFF
+
+
+INSERT INTO [dbo].[Tasks] ([TaskID], [TaskDescription], [Done], [DateStarted], [DateCompleted], [Category], [UserID]) VALUES (1, N'test', 1, N'2018-12-12', NULL, 1, 1)
+INSERT INTO [dbo].[Tasks] ([TaskID], [TaskDescription], [Done], [DateStarted], [DateCompleted], [Category], [UserID]) VALUES (2, N'test', 0, N'2018-01-01', NULL, 2, 2)
+
+
+
+
+
+
+```
+
+
+
+### Updating Your Code
+
+In VS 2017 the Model automatically can update (as it should) 
+
+In VS 2019 the Model is not updating so you can manually add/remove fields from the model.
+
+Save changes to the .edmx file.
+
+Delete the relevant controller and re-add it again, it overwrites the Views with the new ones.
+
+
+### If problems with database update
+
+Delete both .tt files and run the 'Add Code Generation Item'.  
+
+Click on the .edmx file and click 'save'
+
+Delete the controller.
+
+Recreate the controller, with views.
+
+### If still not working
+
+If this fails, just completely delete .edmx file and re-add Entity.
+
+Delete then re-add the controller, with views.
+
+
+
+
+
+
+
+### LINQ
+
+Let's revisit LINQ and go through some more advanced features
+
+In Recap : 
+
+LINQ is Microsoft's way of talking to SQL database without the hassle of using raw SQL connection strings etc
+
+### select
+
+var customers = 
+	from c in db.customers
+	select c;
+
+### where
+
+var customers = 
+	from c in db.customers
+	where c.City == "Rome"
+	select c;
+
+### find
+
+// works on primary key
+var customer = db.Customers.Find("ALFKI");
+
+### orderby
+
+var customers = 
+	from c in db.customers
+	where c.City == "Rome"
+	orderby c.City ascending/descending
+	select c;
+
+### custom object
+
+var customers = 
+	from c in db.customers
+	select new 
+	{
+		Name = c.ContactName,
+		City = c.City,
+		CompanyName               // single valued item
+	}
+
+
+### custom object with class
+
+var customers = 
+	from c in db.customers
+	select new Custom
+	{
+		Name = c.ContactName,
+		City = c.City,
+		CompanyName               // single valued item
+	}
+
+class Custom{
+	public string Name {get;set;}
+	public string City {get;set;}
+	public string CompanyName {get;set;}
+}
+
+### GroupBy
+
+Can count stats per item eg Customers Per City.
+Have to 'GroupBy City' to make this work
+
+var customersByCity = 
+	from c in db.Customers
+	group c by c.City into cities
+	select new 
+	{
+		City = cities.key,
+		Count = cities.Count()
+	}
+
+
+### Lab
+
+1) OrderBy
+
+2) Custom Object 
+
+3) GroupBy
+
+==> Create 3 pages to display, use Northwind with ASP Core
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### join
+
+### IQueryable
+
+### IEnumerable
+
+
+
+
+
+
+
+
+
+
+
+
+### firstordefault
+
+var customers = (db.Customers)
+
+
+
+
+
+
 
 
 
