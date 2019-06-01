@@ -7193,6 +7193,197 @@ var customers = (db.Customers)
 
 
 
+
+
+## ASP Core Entity : Refresh
+
+Part 1 : Read Northwind
+Part 2 : Add To Northwind
+
+## Part 1 : Refresh : Read From Northwind
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using lab_83_asp_core_add_records.Models;
+
+namespace lab_83_asp_core_add_records.Pages
+{
+    public class NorthwindCustomersModel : PageModel
+    {
+        public List<Customer> customers;
+        
+        public void OnGet()
+        {
+            using (var db = new Northwind())
+            {
+                customers = db.Customers.Skip(10).Take(10).ToList();  // 11-20  
+            }
+        }
+    }
+}
+```
+
+
+```html
+@page
+@model lab_83_asp_core_add_records.Pages.NorthwindCustomersModel
+@{
+    ViewData["Title"] = "NorthwindCustomers";
+}
+
+<h2>NorthwindCustomers</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Company Name</th>
+        <th>Contact Name</th>
+    </tr>
+    @foreach (var c in Model.customers)
+    {
+        <tr>
+            <td>@c.CompanyName</td>
+            <td>@c.ContactName</td>
+        </tr>
+    }
+</table>
+```
+
+
+### Injected Customers
+
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using lab_83_asp_core_add_records.Models;
+
+namespace lab_83_asp_core_add_records.Pages
+{
+    public class InjectedCustomersModel : PageModel
+    {
+
+        private Northwind db;
+        public List<Customer> customers;
+
+        // Constructor to instantiate this db
+        // Instantiate Northwind just once : use for Get() and Post()
+        public InjectedCustomersModel(Northwind injectedContext)
+        {
+            db = injectedContext;
+        }
+
+        public void OnGet()
+        {
+            customers = db.Customers.Skip(20).Take(10).ToList();
+        }
+    }
+}
+```
+
+```html
+@page
+@model lab_83_asp_core_add_records.Pages.InjectedCustomersModel
+@{
+    ViewData["Title"] = "InjectedCustomers";
+}
+
+<h2>InjectedCustomers</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Company Name</th>
+        <th>Contact Name</th>
+    </tr>
+    @foreach (var c in Model.customers)
+    {
+        <tr>
+            <td>@c.CompanyName</td>
+            <td>@c.ContactName</td>
+        </tr>
+    }
+</table>
+```
+
+
+
+### Add Customers 
+
+1. Add customer object to CS page
+
+```cs
+// Bind Property is required for the POSTING of data from FORM
+        [BindProperty]
+        public Customer customer { get; set; }
+```
+
+2. Create form
+
+With a form there are two ways to submit it
+
+	1) GET
+
+		SUBMIT ==> Form and the data get sent COMPLETELY VISIBLE IN THE URL
+
+			www.mysite.com/path?name=Bob&company=sparta
+
+	2) POST
+
+		SUBMIT ==> Form data is sent as part of the PAGE BODY in JSON format
+			(key/value pair)
+
+<div class="row">
+    <p>Add a new customer</p>
+    <form method="POST">
+
+    </form>
+</div>
+
+
+3. Update Post() method to accept data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Revision During Games Week : Top-Up Tech !!!
 
 Methods
@@ -8540,6 +8731,64 @@ AJAX
 
 
 
+
+## Tuples
+
+When we declare a method we can only return one type as the output
+
+C#7 has created an easy way to return an anonymous type of whatever structure we want, with multiple fields inside it.
+
+  (int, string) MyMethod(){
+
+  	return 
+
+}
+
+
+
+
+
+## Review
+
+Inheritance : Base to Derived
+Members Which Are Inherited : Properties, Methods, Public/Protected/Internal Fields, 
+Access Modifiers : public private internal protected
+internal   in .exe  'Assembly'
+protected  Parent to Child 
+Abstract class   :   cannot instantiate, contains 1 or more abstract methods
+Regular method             int DoThis(string y){  // code }
+Abstract methods :         int DoThis(string y);
+Code body 'implementation'  is code inside braces  { // code }
+Instantiate : create object with 'new'
+Concrete class   :   can instantiate
+
+null coalescing operator
+??
+?.
+
+Interface       Fully public, fully abstract. Can't have FIELDS.  
+
+
+	IUseThisToolSet{
+		Tool01();
+		Tool02();
+		Tool03();
+	}  
+
+	Class RealClass : IUseThisToolSet{
+		Tool01(){}
+		Tool02(){}
+		Tool03(){}
+	}
+
+	IDisposable   enforce  Dispose()
+	IComparable            CompareTo()
+	IEnumerable            GetEnumerator()     // count over array
+
+SOLID 
+I : Interfaces single responsibility 
+
+Abstract Class  Mixture of real and abstract methods
 
 
 

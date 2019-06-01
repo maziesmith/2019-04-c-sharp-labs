@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab_82_tuple
 {
@@ -20,7 +16,31 @@ namespace lab_82_tuple
             var output2 = TupleThis();
             Console.WriteLine(output2.Item1);
             Console.WriteLine(output2.Item2);
+
+            var output3 = TupleThisAlso();
+            Console.WriteLine(output3.NumberA);
+            Console.WriteLine(output3.StringB);
+
+            
+            var output4 = null ?? "hi";         // returns  hi
+            var output5 = "data" ?? "hi";       // returns  data
+
+
+            var dataFromDatabase = "some data";
+            var output6 = dataFromDatabase ?? "default value";
+            // if data is null, will assign default value
         }
+
+        static (int NumberA, string StringB) TupleThisAlso()
+        {
+            return (33, "more text");
+        }
+
+        static Tuple<int,int> AndThis()
+        {
+            return new Tuple<int, int>(100, 100);
+        }
+
 
         static void DoThis() {
             Console.WriteLine("I am doing nothing");
@@ -41,6 +61,7 @@ namespace lab_82_tuple
         {
             return (22, "and some text");
         }
+
 
 
     }
