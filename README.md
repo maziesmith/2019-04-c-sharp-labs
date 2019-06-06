@@ -7354,6 +7354,544 @@ With a form there are two ways to submit it
 
 
 
+# Serialisation, Streaming And Encoding
+
+
+Encoding
+
+	Way we package data
+
+		File
+
+			start-of-file marker
+
+			end-of-file marker
+
+					help computer know where file starts / finishes
+
+			Signature
+
+				Group of characters at start of a file which tell any program
+				which cares to look the FILE TYPE
+
+					eg 	JPG  		always starts with   FF D8  
+
+									which is hexadecimal
+
+									and in the binary this looks like
+
+													decimal    binary    hexadecimal
+
+														1    	0001		1
+														2 		0010		
+														3 		0011
+														4		0100
+														5		0101
+														6		0110
+														7		0111
+														8		1000
+														9		1001		9
+														10		1010		a
+														11		1011		b
+														12		1100		c
+														13		1101		d
+														14		1110		e
+														15		1111		f
+
+
+							So this means  FF D8  for a JPG file has
+
+								1111 1111 1101 1000
+
+
+
+Encryption
+
+	Hiding data so it's obscured
+
+## Encoding
+
+	Way of laying down data in a structured manner so applications can read and write the data
+
+
+	Two main ways of encoding data
+
+		1) Binary Encoding
+
+		2) Character Based Encoding
+
+### Binary Encoding
+
+Examples of this are .exe or .dll
+
+	If we try and open a binary file we find that it's non-human-readable.  
+	In general only applications can read and write to binary files.
+
+Advantages of binary files is that because they are just raw 1's and 0's they are extremely fast, at the limit of the computer using them.
+
+	Data ==>   .bin
+
+	Audio/Video/Media ==> nearly all binary  eg .mov  
+
+### Character Based Encoding
+
+### ASCII
+
+	Primitive character set of first computers : simple English letters, numbers and characters
+		from 1 to 127
+
+		includes 'control characters' like escape
+			     'non-printing characters'
+
+			     				CR  carriage return
+			     				LF  line feed
+
+		ASCII runs from 0 to 127 which in binary takes 7 bits (2^7=128)
+
+### UTF-8
+
+	Default for web today
+
+	Simply ASCII plus using extra 'bit' in a standardised manner.
+
+	Now have 8 bits which computers like better
+
+### UTF-16
+
+	Default for C#
+
+	It's also default where we need to include languages globally with non-English
+	character sets
+		eg Chinese, Arabic
+
+	UNICODE is the name given to this encoding system.
+
+
+### Summary
+
+	File Signature  : file type
+	Encoding : lay down a file
+	ASCII  : 7 bits 				1111111
+	UTF8   : web : 8 bits          01111111
+	UTF16  : C#  : 16 bits    UNICODE     every language 
+
+
+
+# Streaming
+
+Streaming is sending data from one place to another
+
+	Main types of streaming are
+
+		1. To Network
+
+			http://  
+
+			https://
+
+			Another protocol
+
+				ftp:// files
+				ssh:// data to linux
+
+				smtp : send email
+				pop : receive
+				imap : receive
+				ldap : active directory 
+
+			Share
+
+				//server/share    UNC path
+
+						SMB   'Samba'    Server Message Block
+						CIFS  Common Internet Filing System
+						NFS   Network Filing System (Unix)
+
+		2. Filing System / Hard Disk
+
+			   ... File.. C# library
+
+	    3. Memory or RAM of our computer
+
+	    	  Fastest method of storing data because RAM is fastest storage we have
+
+	    	  	Use raw binary data which is fastest encoding possible
+
+	    	  	byte[] arrays : just blocks of 1 / 0
+
+	    	  		Buffer is name commonly given to the size of one byte[1024] array
+
+
+### Summary so far
+
+Streaming : sending data in blocks of a size determined by our 'buffer' which is an array 
+		of binary bytes[]    	  		
+
+
+## StreamReader
+
+```cs
+using System;
+using System.IO;
+using System.Text;
+using static System.Console;
+
+namespace lab_85_streaming
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] data = new string[] { "Some", "data", "here" };
+            File.WriteAllLines("file.txt", data);
+            File.AppendAllLines("file.txt", data);
+            File.AppendAllText("file.txt", "and some extra data here\n");
+            File.AppendAllText("file.txt", DateTime.Now.ToString());
+
+            // Several ways to read a file and determine
+            // file has been read
+                       
+            var reader01 = new StreamReader("file.txt");
+
+            // variable to hold data while being read in
+            string output = null;
+
+            // two things at once
+            // first++++ reading the next line of output => string
+            // checking that this line is not null
+            WriteLine("\n\nTesting For Output Not Null");
+            while ((output = reader01.ReadLine())  != null)
+            {
+                WriteLine(output);
+            }
+
+            // Second way of determining end of file has been reached
+            WriteLine("\n\nTesting For End Of Stream reached");
+            var reader02 = new StreamReader("file.txt");
+            while (!reader02.EndOfStream)
+            {
+                Console.WriteLine(reader02.ReadLine());
+            }
+        }
+    }
+}
+
+```		
+
+
+## StreamReader with Async..Await so main thread does not hang while we get data
+
+```cs
+
+using System;
+using System.IO;
+
+namespace lab_86_async_await_streaming
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string[] data = new string[] { "Some", "data", "here" };
+            File.WriteAllLines("file.txt", data);
+            File.AppendAllLines("file.txt", data);
+            File.AppendAllText("file.txt", "and some extra data here\n");
+            File.AppendAllText("file.txt", DateTime.Now.ToString());
+            for(int i = 0; i < 500; i++)
+            {
+                File.AppendAllText("file.txt", DateTime.Now.ToString() +"\n");
+            }
+
+            // Asynchronous method can take a long time
+            ReadFileAsync();
+            Console.WriteLine("Program Has Finished");
+            Console.ReadLine();
+        }
+
+        static async void ReadFileAsync()
+        {
+            // just for illustration
+            // string output = await File.ReadAllTextAsync("file.txt");
+            // Console.WriteLine(output);
+
+
+            // use StreamReader
+            string oneLine;
+            using (var reader = new StreamReader("file.txt"))
+            {
+                while (true)
+                {
+                    oneLine = await reader.ReadLineAsync();
+                    if (oneLine == null) break;
+                    Console.WriteLine(oneLine);
+                }
+            }
+
+
+        }
+    }
+}
+
+```
+
+
+### StreamWriter
+
+Much the same as streamreader
+
+
+
+
+
+# Serialization
+
+A serial stream is a single stream of data, in order, sent from A to B
+
+	1) To Disk
+	2) To RAM
+	3) To Memory
+
+Computing : serial wire allows electricity to carry one channel only (USB, SATA)
+
+Class Customer {
+	
+	private _hidden;
+
+	id
+	name
+	age
+
+	IncreaseAge(){}
+	GetBalance(){}
+}
+
+
+Send data about our customer across internet : how much should we include?  
+
+	Serialization : Choosing structure which we send
+
+
+# Serialization And Streaming : Picture
+
+	IKEA
+
+		
+		Furniture in store 						Real object (instance of class)
+		
+		Flat pack								Serialization (take some or all of members
+													ready for sending)
+
+		Send 									Streaming : text, xml, json
+
+													Lorry has max size : Computing 'buffer'
+																		filled with data
+
+		Reassemble it 							De-Serialize
+													Constructor : re-assemble the fields 
+			Instruction manual						Class : guide for re-assembling
+
+
+		Assembled at home
+
+
+
+
+### Serializing A Class
+
+We can use [Data Annotations] to let .NET know we are planning on serializing a class
+
+```cs
+    [Serializable]
+    class SendMeAcrossTheInternet
+    {
+        [NonSerialized]
+        private object DontSendMe;
+
+        public string SendMe { get; set; }
+
+    }
+```
+
+### 3 Main Types Of Serialization
+
+When we serialize an object there are 3 main output types:
+
+	1) Binary       (fastest, use to RAM MEMORY, useful in ENCRYPTION when storing ENCRYPTION
+									KEYS in memory)
+	2) XML          standard UTF8 : data in readable format
+	3) JSON  		UTF8 : data in readable format
+
+
+
+### Schematic Example : Just bare bones outline
+
+Scenario : Serialize as BINARY and send to File.bin file
+
+	STREAM : FILE STREAM 
+	SERIALIZE : BINARY 
+
+
+	var binaryFormatter = new BinaryFormatter();  // C#
+
+	using(var stream = new FileStream("File.bin")){
+		var customer = new Customer(){
+			CustomerID="ALFKI",
+			...
+		};
+		binaryFormatter.Serialize(stream, customer);
+	}
+
+
+		File.bin containing binary representation of customer
+
+### Deserialize
+
+	using (var stream = File.OpenRead("File.bin")){
+		var instance = formatter.Deserialize(stream) as MyClass;
+	}
+
+
+
+## Serialize To XML
+
+Exactly the same code and syntax; just different runtime methods to use XML instead of binary.
+
+SOAP Simple Object Access Model
+
+	Older version of XML designed to send data across web : not used so much now for real internet communications but definitely in use as we see here.
+
+
+Note that for custom objects we can create 2 methods : one to send and one to receive (constructor) which can customise fields sent/received.
+
+Note : .NET serialization above but also exists another web method for XML serialization.
+
+
+## Serialize To JSON
+
+Built-in .NET JSON Serializer
+
+Also DataContractJSONSerializer : more popular as faster
+
+More recently : 3rd party which is most popular (Newtonsoft JSON.Net)
+
+1. DataContractJSONSerializer
+
+	
+Class is OPT-IN for Serialization
+
+    [DataContract]
+    class BlogSite
+    {
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Description { get; set; }
+    }
+
+2. JSON.NET from NewtonSoft
+
+Must install from Nuget newtonsoft.json 
+
+	get-package 										installed
+	find-package *newton* 								search internet
+	install-package newtonsoft.json -projectname -...   install 
+
+
+
+
+
+
+# Entity
+
+## Creating A Database In Azure
+
+portal.azure.com
+
+	Trial : can use real email or use a secondary email for a throw-away trial
+
+	E5 Enterprise Azure Trial ==> sign up for free 30 days with £200 credit
+
+
+	Username : you make up (admin)
+
+	Password : Pa$$w0rdPa$$w0rd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8399,6 +8937,12 @@ Reminder : we have done all this in the CONSOLE ALREADY SO FIND THE CONSOLE CODE
 
 
 
+
+
+
+
+
+
 ### Review
 
 checked : throws an exception if your number gets too big or small
@@ -8642,20 +9186,6 @@ namespace lab_79_task_wait
 
 
 
-### Interview Prep
-
-Loops
-Conditional if..else..
-Exception try..catch..finally
-String manipulate
-
-
-
-Pantheon
-	Equity -> Investment in a company which can take several forms, the most common of which
-			is buying shares  3567uik6
-	Shares : Public (traded on Stock Exchange)
-	       : Private 
 
 
 
@@ -8684,9 +9214,16 @@ Pantheon
 
 
 
-### Random
 
-RESTful API 
+
+
+
+
+
+
+# Random Topics
+
+## RESTful API 
 
 	REST Representational State Transfer
 
@@ -8721,7 +9258,7 @@ RESTful API
 		]
 
 
-AJAX
+## AJAX
 
 	Asynchronous Javascript And XML
 
@@ -8789,6 +9326,211 @@ SOLID
 I : Interfaces single responsibility 
 
 Abstract Class  Mixture of real and abstract methods
+
+
+
+## Revision Session Friday 31/5/2019
+
+Class
+	class MyClass {
+		public int Property {get;set;}      // property
+		public MyClass(){}       			// constructor
+		DoThis(){} 							// method
+	}
+	Stored on the HEAP memory
+
+Struct
+
+	struct MyClass {
+		public int Property;		        // public field
+		public MyClass(){}       			// constructor
+		DoThis(){} 							// method
+	}
+
+	Struct : fields are ALL PUBLIC
+			 constructor : default one still present if create own
+
+	stored on the STACK memory
+Stack : fast, small eg int, bool
+Heap  : slower, larger items eg array, collection, string, class
+Value type      int, bool, char, struct
+reference type  string, class, array
+
+primitive = value type
+
+Interface
+	Fully abstract!
+	Fully public !
+	Can inherit many interfaces (we say 'implement' an interface)
+
+	Class Child : Parent, IDoThis, IDoThat {}
+
+SOLID : theoretical principles for best practice coding (larger projects)
+
+	S : single responsibility : one block of code does one thing
+	O : open for inheritance   (closed for modification)
+	L : liskov
+	I : Interfaces simple : single method
+	D : dependency inversion
+
+
+Interface : full abstract
+Abstract class : mix of regular methods and abstract methods
+	Cannot instantiate 
+	abstract class Idea{
+		void DoThis(){}
+		abstract void DoThat();
+	}
+
+	Class Child:Idea{
+		override void DoThat(){}
+	}
+
+Concrete = Non-abstract class (can instantiate)
+
+Static
+	
+		Main(){
+			Animal.Age = 2;
+			Animal.Grow(ref int Animal.Age);
+		}
+
+		Class Animal{
+			public static int Age;
+			public static void Grow(int age){
+				age++;
+			}
+		}
+
+
+Loop allows us repeat same bit of code over and over again.
+
+4 types
+
+	For ... fixed number of loops  (int i=0;i<10;i+=4)
+	Foreach .. every item in array/list/stack/queue/dictionary
+	While .. condition is true 
+	Do.While .. run code then check condition 
+
+
+
+
+
+## NHS Prep
+
+NCIP National Clinical Improvement Plan
+
+	Portal : single point of access
+
+GIRFT Get It Right First Time
+
+React is a JAVASCRIPT LIBRARY for placing HTML on the PAGE
+
+	REAL HTML : REAL 'DOM'  Document Object Model : way computer decides which HTML element goes where on the screen
+
+	React : Build a VIRTUAL OR IMAGINARY DOM : UPDATE PAGE : ONLY NEED TO CHANGE PARTS WHICH HAVE ACTUALLY CHANGED : MUCH FASTER 'RENDER' THE DOM
+
+	HTML : REAL DOM
+	React : Virtual DOM
+
+Class : Blueprint to create objects
+Instance : create object with new keyword
+Constructor : Special method inside class which is called with the new keyword
+
+	var instance = new MyClass();    // call constructor
+
+Overloading
+	Same name different parameters
+		Void Method01(int x)
+		void Method01(int x, int y)
+
+Access Modifier
+	affects 'visibility'
+	public 
+	private
+	protected   parent => child  (base=>derived)
+	internal    assembly (exe or dll)
+
+virtual in parent
+override in child
+					==> Polymorphism : many, type  
+
+					One method   DoThis(){}
+					Children     override DoThis() {  // DIFFERENT CODE }
+
+4 pillars
+POLYMORPHISM   virtual .. override
+INHERITANCE    Base > Derived
+ABSTRACTION   : hiding private fields + revealing public PROPERTY
+ENCAPSULATION : hiding private code/members
+
+Class member
+
+Class : Noun : Customer Supplier Product
+	FIELD          private int _ age;
+	PROPERTY       Public int Age {get;set;}
+	METHOD         Verb  DoThis()
+	EVENTS 
+
+POLYMORPHISM  virtual override        override is OPTIONAL 
+ABSTRACT      abstract override
+
+		Parent : abstract method   :     abstract void Method01();
+		Child  :                         override void Method01(){} // mandatory 
+
+ABSTRACT CLASS
+CONCRTE CLASS : NOT ABSTRACT
+
+ABSTRACT CLASS : USE TO FORCE A CERTAIN STRUCTURE IN YOUR CODE
+
+	Declare classes, methods which must be implemented ... coder has to code them
+
+		HOLIDAY : BARCELONA : idea : churches, beach , archaeology
+
+			GO!!!  ==> MUST BOOK TRAVEL, ACCOM, ITINERARY, CAR...
+
+INTERFACE : FULLY PUBLIC, FULLY ABSTRACT, CAN IMPLEMENT MANY
+
+	INHERITANCE : ONE PARENT
+	INTERFACE : TOOL : USE MANY TOOLS
+
+AGILE
+	Collaboration
+	Iteration
+	Increment
+	Embrace change
+	Working code
+SCRUM
+	MASTER    ensures flow of work , removes 'blockers'
+	DEV TEAM  3-9
+	PRODUCT OWNER   : with customer, manage backlog
+	
+SPRINT
+	BACKLOG
+		List of features to build (user stories)
+	STANDUP 15 mins
+		YESTERDAY
+		TODAY
+		BLOCKERS
+	DEFINITION OF 'DONE'  met criteria : agree on this 
+	4 MEETINGS
+		SPRINT PLAN (START)
+		DAILY SPRINT
+		SPRINT REVIEW (SHOW CUSTOMER OUR CODE)
+		SPRINT RETROSPECTIVE (GOOD/BAD INTERNALLY)
+
+KANBAN
+	continuous flow 'just in time'
+
+Class    reference type 
+Struct   value type     no inheritance  just public fields   small class
+
+
+
+
+
+
+
 
 
 

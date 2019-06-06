@@ -5,6 +5,7 @@ using lab_103_hw_classes;
 using lab_104_hw_Stopwatch;
 using lab_105_hw_Polymorphism;
 using lab_hw_106_interview_prep;
+using hw_109_linq_aggregate;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
@@ -108,6 +109,25 @@ namespace Tests
                 instance.Throw_Exception_Test(x, y);
             });
         }
+
+        [TestCase(new int[] { 1,2,3,4,5,6},21)]
+        public void Hw_109_LINQ_Aggregate(int[] array, int expected)
+        {
+            // pass in array and get back sum : check is valid
+            // arrange
+
+            // act
+            var actual = LINQAggregate.LINQAggregateSum(array);
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Repeat for Union
+
+        // Repeat for Intersection
+
+
+
 
 
 
