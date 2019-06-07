@@ -9185,6 +9185,245 @@ namespace lab_79_task_wait
 ```
 
 
+# XML
+
+XML is used by Microsoft
+
+XML is completely used to build Microsoft Office !!!!   .docx is actually a .zip file containing XML
+
+JSON is used by the rest of the world to send data
+
+{
+   field : "value",
+   field2 : 22,
+   ...
+}
+
+XML has a rigid structure
+
+Explore it today
+
+Goal 
+1) Create XML
+2) Read XML
+
+
+```cs
+using System;
+using System.Xml.Linq;
+
+namespace lab_92_XML_hello_world
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("\n\nHello World First Element\n");
+            var xml01 = new XElement("testElement", 100);
+            Console.WriteLine(xml01);
+
+
+            Console.WriteLine("\n\nAdd Sub Element\n");
+            var xml02 = new XElement("testElement", 
+                new XElement("subElement",200));
+            Console.WriteLine(xml02);
+
+            Console.WriteLine("\n\nAdd Multiple Elements\n");
+            var xml03 = new XElement("testElement",
+                new XElement("subElement", 200),
+                new XElement("subElement", 200),
+                new XElement("subElement", 200),
+                new XElement("subElement", 200),
+                new XElement("subElement", 200),
+                new XElement("subElement", 200),
+                new XElement("subElement", 200)
+                );
+            Console.WriteLine(xml03);
+
+
+
+            Console.WriteLine("\n\nAdd Multiple Elements\n");
+            var xml04 = new XElement("testElement",
+                new XElement("subElement", 
+                    new XAttribute("width",200),
+                    new XElement("SubSubElement",
+                    new XElement("SubSubSubElement",600)
+                    )
+                    ),
+                new XElement("subElement",
+                    new XAttribute("width", 200), 300),
+                new XElement("subElement",
+                    new XAttribute("width", 200), 300),
+                new XElement("subElement",
+                    new XAttribute("width", 200), 300),
+                new XElement("subElement",
+                    new XAttribute("width", 200), 300)
+                );
+            Console.WriteLine(xml04);
+        }
+    }
+}
+
+
+```
+
+
+## Serializing Northwind Products To XML
+
+Let's move on then to the next stage where we can serialize real objects and also put them in a loop to read many items.
+
+Let's begin with one simple case with just one item.
+
+### Northwind - Products And Categories
+
+Let's use Products and Categories
+
+To get the Models we must create a Framework project, add Entity "Code First", pull down the models then they can be copied to our core project.
+
+### Homework
+
+1) Jas and Li ==> Luitzen 'GroupRepo' : push/pull to FeatureBranch01/02/03 ==> Dev with pull requests - 3 times
+
+2) Luitzen / Seb ==> ASP Web project : each add 2 pages in turn : Luitzen 1, Seb 2, Luitzen 3, Seb 4 in that order with 4 separate pull requests - each time pull down
+
+3) Difficult : work and research as a group to Deserialize Products.xml file back to Products 
+
+	==> TIP ==> Remove version with Category Names in it, just use plain old CategoryID which will deserialize easily.
+
+### Azure Cli
+
+Download Azure Cli 
+
+```bash
+# verify install
+az
+# login
+az login 
+# Takes you to the browser to login
+```
+
+After successful login takes you to 
+
+https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
+
+```json
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "39ff3502-0a96-4f31-9d65-093ab484da57",
+    "isDefault": true,
+    "name": "MSDN Platforms",
+    "state": "Enabled",
+    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
+    "user": {
+      "name": "philanderson888@hotmail.com",
+      "type": "user"
+    }
+  },
+  {
+    "cloudName": "AzureCloud",
+    "id": "90e96ce7-8d14-437b-a53d-8a2e72487187",
+    "isDefault": false,
+    "name": "Pay-As-You-Go",
+    "state": "Disabled",
+    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
+    "user": {
+      "name": "philanderson888@hotmail.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+### Create 'bucket' to hold resources 'Resource Group'
+
+```powershell
+az group create --name ResourceGroup01 --location "West Europe"
+                 -n                     -l
+```
+
+```json
+{
+  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01",
+  "location": "westeurope",
+  "managedBy": null,
+  "name": "ResourceGroup01",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": null
+}
+```
+
+### Create Virtual Machine
+
+```powershell
+az vm create --name LinuxVirtualMachine01 -g ResourceGroup01 --image UbuntuLTS
+```
+
+```json
+# az vm create --name LinuxVirtualMachine01 -g ResourceGroup01 --image UbuntuLTS
+{
+  "fqdns": "",
+  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01/providers/Microsoft.Compute/virtualMachines/LinuxVirtualMachine01",
+  "location": "westeurope",
+  "macAddress": "00-0D-3A-2C-EB-AA",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "13.93.37.202",
+  "resourceGroup": "ResourceGroup01",
+  "zones": ""
+}
+```
+
+### Create SQL Server
+
+```powershell
+az sql server create --name philanderson888SqlServer01 --resource-group ResourceGroup01 --location "West Europe" --admin-user philanderson888admin04 --admin-password Pa$$w0rdPa$$w0rd22
+```
+
+```json
+
+ az sql server create --name philanderson888SqlServer01 --resource-group ResourceGroup01 --location "West Europe" --admin-user philanderson888admin04 --admin-password Pa$$w0rdPa$$w0rd22
+{
+  "administratorLogin": "philanderson888admin04",
+  "administratorLoginPassword": null,
+  "fullyQualifiedDomainName": "philanderson888sqlserver01.database.windows.net",
+  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01/providers/Microsoft.Sql/servers/philanderson888sqlserver01",
+  "identity": null,
+  "kind": "v12.0",
+  "location": "westeurope",
+  "name": "philanderson888sqlserver01",
+  "resourceGroup": "ResourceGroup01",
+  "state": "Ready",
+  "tags": null,
+  "type": "Microsoft.Sql/servers",
+  "version": "12.0"
+}
+
+```
+
+### List servers
+
+```powershell
+az sql server list
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -9524,6 +9763,398 @@ KANBAN
 
 Class    reference type 
 Struct   value type     no inheritance  just public fields   small class
+
+
+
+
+
+### Random Terms 5 June Thursday
+
+Serialize : 'flat-pack' an object ready to send
+De-serialize : construct your object at the other end using the 'flat-packed' data sent to you
+	Several ways to serialize an object
+		1) to Binary .bin .exe .dll (non-human-readable format)
+				Fast because raw 1 and 0
+		2) XML readable  <>
+		3) JSON readable {}
+
+Stream     sending data
+
+	Destination Types
+		1) Memory RAM (useful for encryption)
+		2) Remote server
+				http
+				https
+				smtp email  SEND
+				pop email   GET
+				imap email  GET
+				ldap
+				ssh  secure shell : port 22 LINUX SERVER
+		3) File system
+		4) SQL Server !!
+Buffer  single 'chunk' of data.  Data is packaged until it fills one buffer which gets send, then repeat until all data is sent.  Last buffer sent anyway even though not completely filled.
+Buffer is created using a byte[] array 
+byte[] array 
+
+API Application Programming Interface
+API used for delivering data in JSON/XML format for use by an application
+
+Website used for displaying web page using HTML
+Server : mix of HTML and other technologies
+Server : Render HTML/CSS/JS etc from server-side technologies eg C#/PHP 
+HTML : Hypertext markup language
+CSS
+Javascript
+
+IDE Integrated Development Environment
+IDE : build code 
+	Intellisense - pre-shows you suggestions when coding
+	Stucture for building 'solution' where can join projects together
+	Add testing
+	Add running your app
+	Add 3rd party libraries eg Nuget
+	Debugging
+	GitHub : deployment 
+Text Editor ==> plain text building code
+Encoding : write data eg to a file
+	binary (non-readable)
+	character based encoding
+		ASCII  7-bit       English characters
+		UTF8                ""
+		UTF16    			Any character in world
+		UNICODE = 16 bit 
+
+### Web Technologies In General
+
+Angular
+			{{ javascript right here }}
+
+			render pages/data right on page without rebuilding page
+
+	AngularJS ==> Original, old
+	Angular 2/3/4/5/6/7
+
+AJAX
+	new XmlHttpRequest() : allows us to 
+			GET 
+			POST
+					data to/from a URL (holding API) without reloading the page
+
+API : GET/POST data via URL
+
+React 
+	Virtual DOM : build some or all of our webpage and then just 'display' it
+	instantly without refreshing page.
+
+	Control over display.
+
+		Traditional HTML : page refresh
+		React : zero 'lag' : reload instantly
+
+State 
+	HTML and web by design are 'state-less'
+
+		Stateless  - no tracking of 'state' ie where you have been,
+											   where you are going
+											   logged in
+											   history
+		Stateful   - tracks history
+
+			Cookies : data sent on the back of every HTML page request
+
+					HTML ==> request ==> server
+							(send cookie also)
+
+					<<======reply==============(include cookie)
+
+							4kb max size
+
+Angular : Google
+React : Facebook
+Vue : one man 
+
+	Vue has 'taken off' as a supremely important library
+
+		Good things from angular / react  & removed not-so-good things
+
+Stack Overflow Developers Survey 2019
+
+ASP       Active Server Pages (old)
+ASPX      xml version (current)
+ASP Core  cross-platform
+ASP.NET
+ASP.NET Core
+
+
+
+## ASP History
+
+- ASP 1996
+- [ASP.NET](http://asp.net/) Web Forms 2002
+    Used in Sharepoint
+- WCF 2006
+    SOAP (complex, avoid)
+    REST
+- [ASP.NET](http://asp.net/) MVC 2009
+- [ASP.NET](http://asp.net/) WEB API 2012
+    HTTP REST simpler than SOAP
+- [ASP.NET](http://asp.net/) SignalR 2013
+    Websockets
+    Long Polling
+- [ASP.NET](http://asp.net/) Core 2016
+    MVC
+    Web API
+    SignalR
+- Kestrel Web Server
+    Open source
+    Cross Platform
+
+
+Web Forms : ASPX : no longer use
+Razor .cshtml current
+	         .cs code-behind
+
+MVC
+
+	Model View Controller
+
+	Model
+		Classes represent our data
+			Customer
+			Product
+		Context has instructions to connect to database
+			Startup.cs ==> inject database as a 'service'
+				(when injected as a service we don't have to re-instantiate every time)
+			Web.config ==> path to database string
+			appsettings.json ==> Link 'name' of database to path/connection string
+		FluentAPI ==> create relationships between data models
+			virtual Customer ... shows 1-many relationship
+		Entity Code-First : models locally : run code ==> generate database for us
+	View
+		Visual element which user sees
+	Controller
+		1) Look at path of HTML REQUEST COMING IN
+
+			http://mysite.com:45678/Home/Index
+
+				look at path coming in and split it up into components
+
+		   Be aware of other elements behind the scenes
+
+		   	HTML HEADERS
+
+		   		REQUEST 		GET	/ POST
+		   		Status 			200 OK
+		   					    404 Error
+		   		Content-Type    Application/json   /html   /text   /xml
+
+		   		{
+		   			"Content-Type":"application/json"
+		   		}
+
+		2) Run a method (Action)
+
+			   IActionResult OnGet(){
+			   	   return(View);
+			   }
+
+			   IActionResult OnPost(){
+			   		return(View);
+			   } 
+
+			        return(View, Model);
+			        return("NameOfADifferentView");
+
+MVC 
+	Model : data
+	View  : user sees
+	Controller : take request, pull down from data from Model and send to the View
+
+
+App.Config    WPF
+Web.Config    ASP
+
+	Both are XML files with RUNTIME information : change without re-compiling app
+
+	 	EG Database connection string
+
+System.Web.Security ==> Users/Groups/Permissions
+
+### MVC
+
+MVC basics : URL
+
+	http://localhost:12345/Controller/Action/ID
+					      /Home/Index    home page  (default)
+					      /                         shows same default page
+
+Stateless - no record of history or future
+Stateful - tracks progress
+IP which runs internet is by default stateless
+Send traffic : two types of internet traffic
+1) UDP stateless : fast : eg streaming music
+2) TCP stateful  : slow : guaranteed data eg banking 
+HTML default : stateless
+Cookies : add tracking to our website : text data sent with every page request / response
+Xamarin : build Android / iOS apps 
+Android Studio : XML framework using Java for building native Android apps
+XCode : MAC IDE for building IOS mobile apps
+UWP : Upgrade to WPF : Windows 10 (Desktop and Tablet) application
+JSON Web Token : method of authentication used on open web (open source applications)
+OAuth : Open Authentication : hooks your website up to Facebook, Google etc so users can log in to your site with Google credentials
+Hashes mathematically are ONE WAY ENCRYPTION ONLY IE  phil22 ==> Hash = e25c08e70d9869f5793f82492c6dd963
+		No way of reverse engineering hash e25c08e70d9869f5793f82492c6dd963 back to phil22
+Rainbow table : people store lists of hashes with passwords 
+AJAX Asynchronous Javascript And XML 
+	Javascript 		XmlHttpRequest
+	Jquery          $.ajax()  $.get()   $.post()
+		HTML page and inside it, a <div> with data which is fetched dynamically and can change live
+			on page while page just stays put.
+SPA single page application : uses exactly this thought ie loads skeleton which stays fixed and content inside can change as you navigate from page to page.  
+WASM : WebAssembly : new : compile programming code neatly inside a browser engine : opens up real doors of speed and flexibility.  Compiles down to native C++ lightning-fast speeds.
+Blazor pages : use WASM
+1) cloud in world : AWS  Amazon Web Service
+2) cloud          : Azure 
+3) cloud          : Google cloud
+Web worker : javascript working in background 
+Geolocation : track location
+Accelerometer
+
+REST API    : Representational State Transfer
+	send data over HTTP
+Rest methods
+	check out POSTMAN
+	GET     read
+						get  /customers   				all
+						get  /customers/ALFKI 			1
+	POST    
+						post /customers 				create 1
+						post /customers/ALFKI			edit 1	
+	PUT     			put  /customers/ALFKI           edit 1
+	DELETE              delete /customers/ALFKI         delete 1
+Low level      			talk to CPU
+High level  			C#, Java, C++
+MSIL         			Intermediate language 
+ILDASM 					tool to inspect your Intermediate Language code
+Runtime            		environment which runs your code
+Garbage Collector  		Remove data from HEAP MEMORY when finished using with 
+MVC 					Model, View, Controller
+Model 					Data
+						Context to connect to database
+View 					Visual page
+Controller 				Look at incoming request URL and analyse it
+
+								http://localhost:1234/Controller/ActionMethod/ID
+
+						Fetch data from model
+						Send data from model into view for display
+Razor 					Mix of HTML and C# all on one page @{  // csharp code here }
+Angular 				Render javascript quickly on page  {{ ..content..  }}
+React 					Build virtual 'DOM'
+DOM 					Document Object Model : all web pages have structure based on this
+
+						window
+							html
+								head
+								body
+									div
+										content
+Vue 				 	similar to React, newer
+Typescript 				forces Javascript to have fixed types like C#
+							file.ts  ==>  run the code, must compile 'transpile' down to javascript
+transpile				translate from one form of javascript to another 
+nodejs 					Chrome : strip out working parts and run as engine directly on computer
+
+Web server 				Stores and delivers web pages across the internet to web clients which request 
+						data
+Web client 				request web page
+Web browser 			display web page
+Web farm 				multiple web servers working together
+Load balance 			request for a web page is equally shared amongst multiple servers in a web farm
+IIS 					Internet Information Services : Microsoft free web server
+Apache 					Web server : free, open source (most popular)
+						Not linked to any language
+Language-agnostic       cross-platform : across all languages
+Nginx 					Web server, open source
+IP  					1.2.3.4 unique number given to a machine on internet
+Private IP    			192.168.x.y  : local
+Public IP   			on internet 
+Gateway 				links your private network to internet
+Port   					1-65000 : like a channel 
+Socket 					IP:Port    192.168.10.10:8080    ==> unique channel to send data to a computer
+Firewall  				Block IP traffic using both IP and port number mainly 
+Proxy 					Fake IP internally : internal computers link to it : web requests go to proxy.
+						Proxy get data from internet, send back to PC
+Reverse proxy 			PC on web, authorised by us, pull data directly from internal database servers
+HTTPS 					encrypted traffic
+SSL 					encrypts data (old)
+TLS 					new version of SSL 
+CICD 					Continuous Integration, Continuous Deployment : Push/Pull/Testing all the time
+Webpack 				Bundles right versions of libraries together 
+caniuse.com 			is this feature worth using?
+
+Controller 
+
+	http://localhost:1234/controller/action
+
+
+		                 /Home/About
+
+
+		                 Controller is HomeController
+		                 Method called inside controller is the About (('Action method'))
+		                 Return View()
+		                 	==> Fetch view inside /Home/ folder called About.cshtml
+
+Node
+
+	node -v
+	npm  -v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
