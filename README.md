@@ -1,4 +1,3 @@
-
 # 2019-04-c-sharp-labs
 
 This repository holds teaching notes and labs for C#
@@ -9290,141 +9289,169 @@ To get the Models we must create a Framework project, add Entity "Code First", p
 
 	==> TIP ==> Remove version with Category Names in it, just use plain old CategoryID which will deserialize easily.
 
-### Azure Cli
 
-Download Azure Cli 
+
+
+## Selenium Web Testing
+
+### Chrome Web Driver
+
+We are going to link our C# to a library which will allow us to take control of our browser.  The application will be called a 'Chrome Driver'.
+
+C# ==> Selenium ==> Chrome Web Driver ==> manipulate web pages without touching them
+
+Let's download the chrome driver
+
+http://chromedriver.chromium.org/downloads     v75 latest version
+
+
+### Add Selenium To C# Project
+
+```cs
+install-package selenium.webdriver -projectname lab_94_Selenium_01;
+install-package selenium.chrome.webdriver -projectname lab_94_Selenium_01;
+```
+
+```cs
+using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Threading;
+
+namespace lab_94_Selenium_01
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = "https://www.bbc.co.uk";
+            Thread.Sleep(2000);
+            driver.Close();  // one window
+            driver.Quit();   // all 
+        }
+    }
+}
+
+```
+
+### Add Testing
+
+We are going to use Selenium as part of our testing framework.
+
+The idea is to build a website and have automated tests run and confirm the website is working as planned.
+
+Let's add NUnit to our project.
 
 ```bash
-# verify install
-az
-# login
-az login 
-# Takes you to the browser to login
+install-package microsoft.codecoverage -projectname lab_94_Selenium_01;
+install-package microsoft.net.test.sdk -projectname lab_94_Selenium_01;
+install-package nunit3testadapter -projectname lab_94_Selenium_01;
+install-package nunit -projectname lab_94_Selenium_01;
 ```
 
-After successful login takes you to 
+Check it has worked
 
-https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
+```bash
+get-package -projectname lab_94_Selenium_01
+```
 
-```json
-[
-  {
-    "cloudName": "AzureCloud",
-    "id": "39ff3502-0a96-4f31-9d65-093ab484da57",
-    "isDefault": true,
-    "name": "MSDN Platforms",
-    "state": "Enabled",
-    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
-    "user": {
-      "name": "philanderson888@hotmail.com",
-      "type": "user"
+Should show
+
+```bash
+nunit                               {3.12.0}                                 lab
+nunit3testadapter                   {3.13.0}                                 lab
+selenium.chrome.webdriver           {74.0.0}                                 lab
+Microsoft.NETCore.App               {2.1}                                    lab
+microsoft.codecoverage              {16.1.1}                                 lab
+microsoft.net.test.sdk              {16.1.1}                                 lab
+selenium.webdriver                  {3.141.0}                                lab
+```
+
+
+Now convert our project from an application to a testing framework
+
+```cs
+using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Threading;
+using NUnit.Framework;
+using NUnit;
+
+namespace lab_94_Selenium_01
+{
+    class Program
+    {
+        //static void Main(string[] args)
+        //{
+        //    IWebDriver driver = new ChromeDriver();
+        //    driver.Url = "https://www.bbc.co.uk";
+        //    Thread.Sleep(2000);
+        //    driver.Close();  // one window
+        //    driver.Quit();   // all 
+        //}
     }
-  },
-  {
-    "cloudName": "AzureCloud",
-    "id": "90e96ce7-8d14-437b-a53d-8a2e72487187",
-    "isDefault": false,
-    "name": "Pay-As-You-Go",
-    "state": "Disabled",
-    "tenantId": "84db59c8-e4f2-4a8b-9c4a-2f6be457ceba",
-    "user": {
-      "name": "philanderson888@hotmail.com",
-      "type": "user"
+
+    class Selenium_Tests
+    {
+        IWebDriver driver;
+
+        [SetUp]
+        public void Initialise()
+        {
+            driver = new ChromeDriver();
+        }
+        [Test]
+        public void Selenium_Test_BBC_Site()
+        {
+            driver.Url = "https://www.bbc.co.uk";
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            Thread.Sleep(3000);
+            driver.Close();   // one
+            driver.Quit();  // all 
+        }
+
     }
-  }
-]
-```
-
-### Create 'bucket' to hold resources 'Resource Group'
-
-```powershell
-az group create --name ResourceGroup01 --location "West Europe"
-                 -n                     -l
-```
-
-```json
-{
-  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01",
-  "location": "westeurope",
-  "managedBy": null,
-  "name": "ResourceGroup01",
-  "properties": {
-    "provisioningState": "Succeeded"
-  },
-  "tags": null,
-  "type": null
 }
 ```
 
-### Create Virtual Machine
 
-```powershell
-az vm create --name LinuxVirtualMachine01 -g ResourceGroup01 --image UbuntuLTS
+### methods available
+
 ```
-
-```json
-# az vm create --name LinuxVirtualMachine01 -g ResourceGroup01 --image UbuntuLTS
+public void Selenium_Test_BBC_Site()
 {
-  "fqdns": "",
-  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01/providers/Microsoft.Compute/virtualMachines/LinuxVirtualMachine01",
-  "location": "westeurope",
-  "macAddress": "00-0D-3A-2C-EB-AA",
-  "powerState": "VM running",
-  "privateIpAddress": "10.0.0.4",
-  "publicIpAddress": "13.93.37.202",
-  "resourceGroup": "ResourceGroup01",
-  "zones": ""
+    driver.Url = "https://www.bbc.co.uk";
+    // Console.WriteLine(driver.PageSource);
+
+    Console.WriteLine($"Page Length {driver.PageSource.Length}");
+    Console.WriteLine($"URL is {driver.Url}");
+    Console.WriteLine($"Page Title is {driver.Title}");
+
+    Thread.Sleep(1500);
+    driver.Navigate().GoToUrl("https://www.intel.com");
+    Thread.Sleep(1500);
+    driver.Navigate().Back();
+    Thread.Sleep(1500);
+    driver.Navigate().Forward();
+    Thread.Sleep(1500);
+    driver.Navigate().Refresh();
+    Thread.Sleep(1500);
+    Thread.Sleep(1500);
 }
 ```
 
-### Create SQL Server
-
-```powershell
-az sql server create --name philanderson888SqlServer01 --resource-group ResourceGroup01 --location "West Europe" --admin-user philanderson888admin04 --admin-password Pa$$w0rdPa$$w0rd22
-```
-
-```json
-
- az sql server create --name philanderson888SqlServer01 --resource-group ResourceGroup01 --location "West Europe" --admin-user philanderson888admin04 --admin-password Pa$$w0rdPa$$w0rd22
-{
-  "administratorLogin": "philanderson888admin04",
-  "administratorLoginPassword": null,
-  "fullyQualifiedDomainName": "philanderson888sqlserver01.database.windows.net",
-  "id": "/subscriptions/39ff3502-0a96-4f31-9d65-093ab484da57/resourceGroups/ResourceGroup01/providers/Microsoft.Sql/servers/philanderson888sqlserver01",
-  "identity": null,
-  "kind": "v12.0",
-  "location": "westeurope",
-  "name": "philanderson888sqlserver01",
-  "resourceGroup": "ResourceGroup01",
-  "state": "Ready",
-  "tags": null,
-  "type": "Microsoft.Sql/servers",
-  "version": "12.0"
-}
-
-```
-
-### List servers
-
-```powershell
-az sql server list
-```
+### Finding HTML elements by ID, name or other criteria
 
 
+Let's get to some more exciting details of logging in to a website automatically.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+We have to identify the HTML elements on the page using name, #id and .class and other css styles.
 
 
 

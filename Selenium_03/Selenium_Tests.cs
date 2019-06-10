@@ -8,6 +8,7 @@ using System.Threading;
 
 namespace Selenium_03
 {
+   
     class Selenium_Tests
     {
         IWebDriver driver;
@@ -20,22 +21,11 @@ namespace Selenium_03
             
         }
 
+
+
         [Test]
         public void Selenium_Test_BBC_Website()
         {
-
-            driver.Url = "https://revivaldirectcoaches.co.uk/wp-login.php";
-            Thread.Sleep(1500);
-
-            element = driver.FindElement(By.Id("user_login"));
-            element.Clear();
-            element.SendKeys("jibbylt@hotmail.com");
-            element = driver.FindElement(By.Id("user_pass"));
-            element.Clear();
-            element.SendKeys("7*WellinGtondrive$%");
-            element = driver.FindElement(By.Id("wp-submit"));
-            element.Click();
-            Thread.Sleep(1500);
 
 
 
@@ -83,3 +73,4 @@ namespace Selenium_03
         }
     }
 }
+

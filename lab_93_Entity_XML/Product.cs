@@ -19,6 +19,7 @@ namespace lab_93_Entity_XML
         public short? Stock { get; set; }
         public bool Discontinued { get; set; }
         public int CategoryID { get; set; }
-        public virtual Category Category { get; set; }
+      //  public virtual Category Category { get; set; }
     }
+
 }
